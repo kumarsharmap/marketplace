@@ -1,0 +1,157 @@
+<form [formGroup]="technicalSummaryForm">
+    <div formArrayName="previews">
+        <div *ngFor="let preview of examples().controls; let i = index">
+            <div [formGroupName]="i">
+                <div class="div-border-tabs">
+                    <div class="row border-btm">
+                        <div class="col">
+                            <label for="title" class="preview">{{ artifactDetails }}</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="div-padding">
+                            <!-- <label for="title" class="inner-label" id="div-padding">Details</label> -->
+                        </div>
+                        <div>
+                            <label for="title" class="text-block-4">{{ artifactTitle }} <span
+                                    class="mandatoryClass">*</span></label>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="{{ artifactTitlePlaceHolder }}" class="text-field w-input" maxlength="256" formControlName="blockTitle" name="pageTitle" data-name="pageTitle" id="pageTitle" required="" value="position List" />
+                        </div>
+                        <div *ngIf="examples().controls[i]['controls'].blockTitle.errors?.maxlength" class="ErrMessage">
+                            {{ artifactTitle }} can be max of 50 characters
+                        </div>
+                        <div *ngIf="examples().controls[i]['controls'].blockTitle.errors?.required && examples().controls[i]['controls'].blockTitle.touched" class=" ErrMessage">
+                            {{ artifactTitle }} is required
+                        </div>
+                        <div>
+                            <label for="title" class="text-block-4">{{ artifactDesc }}</label>
+                        </div>
+                        <div>
+                            <textarea name="Description" placeholder="{{artifactDescPlaceHolder}}" formControlName="summdescription" class="text-area w-input"></textarea>
+                        </div>
+                        <div *ngIf="examples().controls[i]['controls'].summdescription.errors?.maxlength" class="ErrMessage">
+                            Description can be max of 800 characters
+                        </div>
+                    </div>
+                </div>
+                <div formArrayName="previewImages">
+                    <div *ngFor="let img of images(i).controls; let imgIdx = index">
+                        <div [formGroupName]="imgIdx">
+                            <div style="padding: 3px 0px 0px 16px">
+                                <div id="div-padding" style="border-bottom: 1px solid #edf2f7">
+                                    <label for="title" class="inner-label">{{ artifactImage }}</label>
+                                </div>
+                                <div id="div-padding">
+                                    <label class="text-block-4"> Upload Preview Image </label>
+                                </div>
+                                <div>
+                                    <div class="rich-text-template">
+                                        <img *ngIf="imgUrl[i] != null" class="img" src="{{ imgUrl[i] }}" />
+                                    </div>
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn">
+                                            <span
+                                                *ngIf="imgUrl[i] == null || imgUrl[i] == undefined || imgUrl[i] =='' ">
+                                                Select a file</span>
+                                            &nbsp;
+                                        </button> {{ fileName[i] | slice: 0:60 }} {{ fileName[i]?.length > 60 ? '.....':''}}
+                                        <i *ngIf="!imgUrl[i]" style="float: right; padding-right: 20px" class="fas fa-plus"></i>
+                                        <input type="file" multiple accept=".jpeg,.jpg,.png" formControlName="capImage" title="{{ fileName[i] }}" name="capbltyImg" id="capbltyImg" (click)="showSpinner()" (change)="onFileChange($event, i)" />
+                                        <button *ngIf="imgUrl[i] != null" style="float: right" (click)="removeImage(i)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div formArrayName="codeSection">
+                    <div *ngFor="let code of codes(i).controls; let codeIdx = index">
+                        <div [formGroupName]="codeIdx">
+                            <div style="padding: 36px 0px 0px 16px">
+                                <div class="row border-btm">
+                                    <div class="col">
+                                        <label class="inner-label"> Code</label>
+                                    </div>
+                                    <div class="col">
+                                        <i class="fas fa-trash" style="color: black; float: right" (click)="removeCode(i, codeIdx)"></i>
+                                    </div>
+                                </div>
+                                <div id="div-padding">
+                                    <label class="text-block-4"> Syntax </label>
+                                </div>
+                                <div id="div-padding">
+                                    <select id="Code" name="Code" class="dropdown" formControlName="syntax">
+                                        <option value="" selected>Select frontend code type</option>
+                                        <option value="HTML">HTML</option>
+                                        <option value="CSS">CSS</option>
+                                        <option value="JS"> JavaScript</option>
+                                        <option value="JS">Angular</option>
+                                        <option value="JS">React</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="text-block-4"> Code </label>
+                                </div>
+                                <div id="div-padding">
+                                    <textarea placeholder="Paste code here" name="Description" formControlName="code" class="text-area w-input"></textarea>
+                                </div>
+                                <div *ngIf="codes(i).controls[codeIdx]['controls'].code.errors?.maxlength" class="ErrMessage">
+                                    Code can be max of 5000 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 3px 0px 0px 16px">
+                        <button class="code-block-button" (click)="addCode(i)">
+                            <button class="button"><i class="fa fa-plus"></i></button>&nbsp;Add Additional Code Block/Snippet
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div formArrayName="richTextBlock">
+        <div *ngFor="let rich of richtxt().controls; let richIdx = index">
+            <div [formGroupName]="richIdx">
+                <div class="div-border-tabs">
+                    <div class="row border-btm">
+                        <div class="col">
+                            <label for="title" class="preview"> Rich Text Block</label>
+                        </div>
+                        <div class="col">
+                            <i class="fas fa-trash" style="color: black; float: right" (click)="removeRichText(richIdx)"></i>
+                        </div>
+                    </div>
+                    <div class="marginTop">
+                        <label class="text-block-4"> Block Title </label>
+                    </div>
+                    <div>
+                        <input type="text" class="text-field w-input" formControlName="blockTitle" maxlength="256" required="" value="Backend Services" />
+                    </div>
+                    <div *ngIf="richtxt().controls[richIdx]['controls'].blockTitle.errors?.maxlength" class="ErrMessage">
+                        Block Title can be max of 50 characters
+                    </div>
+                    <div>
+                        <label class="text-block-4"> Rich Text </label>
+                    </div>
+                    <div style="width: 740px; min-height: 56px">
+                        <quill-editor class="content-editor" [modules]="quillConfiguration" formControlName="richText" [placeholder]="" [styles]="{ 'min-height' : '120px' } "></quill-editor>
+                    </div>
+                    <div *ngIf=" richtxt().controls[richIdx][ 'controls' ].richText.errors?.maxlength " class="
+                            ErrMessage ">
+                        Rich Text can be max of 800 characters
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style=" padding: 3px 0px 0px 16px;">
+        <button class="code-block-button" (click)="addRichText()">
+            <button class="button"><i class=" fas fa-plus "></i></button> &nbsp;Add Additional Rich Text Block
+        </button>
+    </div>
+</form>

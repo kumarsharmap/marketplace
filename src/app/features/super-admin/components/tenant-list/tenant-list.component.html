@@ -1,0 +1,48 @@
+<div class="card mt-3">
+    <div class="row">
+        <div class="col-sm">
+            <div class="row justify-content-between p-3">
+                <div class="p-2 align-self-center">
+                    <h4>Tenants</h4>
+                </div>
+                <div class="w-35" *ngIf="isSuperAdmin === true">
+                    <app-btn-group [labelForCreate]="'Create Tenant'" [labelForDelete]="'Delete'" (clickCreate)="onclickCreateTenant()" (clickdelete)="onDeleteTenant()"></app-btn-group>
+                </div>
+            </div>
+            <table class="table table">
+                <thead>
+                    <tr class="table-heading">
+                        <th scope="col">Select</th>
+                        <th scope="col">Tenant Name</th>
+                        <th scope="col">Tenant Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="tenantData?.length > 0; else noData">
+                        <tr *ngFor="let tenant of tenantData">
+                            <th>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" (change)="onDeleteCheckbox($event, tenant?.tenantId)" />
+                                </div>
+                            </th>
+                            <td>
+                                <a>{{ tenant?.tenantName }}</a>
+                            </td>
+                            <td>{{ tenant?.tenantDescription }}</td>
+                            <td>
+                                <button (click)="onTenantEdit(tenant)" class="background-transparent">
+                  <i class="fas fa-edit text-dark"></i> Edit
+                </button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+            <ng-template #noData>
+                <div class="d-flex justify-content-center p-3">No Data Available</div>
+            </ng-template>
+        </div>
+    </div>
+    <app-confirm-window (deleted)="onClickYes()" (noDeleted)="onClickNo()"></app-confirm-window>
+</div>

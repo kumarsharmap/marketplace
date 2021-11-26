@@ -1,0 +1,71 @@
+<div>
+    <div class="left-panel-section">
+        <div class="inner-page-container">
+            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" [class.superAdminTabsHeight]="isSuperAdmin">
+                <div class="tabs-menu w-tab-menu" [class.superAdminHeaderBlack]="isSuperAdmin">
+                    <app-navigation-indication></app-navigation-indication>
+                    <a data-w-tab="Tab 1" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{ active: showHome == true && !isSuperAdmin, superAdminActive: showHome == true && isSuperAdmin }" (click)="loadData('home')" class="tab-link w-inline-block w-tab-link">
+                        <div>Capabilities Home
+                        </div>
+                    </a>
+                    <div>
+                        <div *ngFor="let approved of capabilitiesList">
+                            <a data-w-tab="Tab 2" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{ active: approved ==clicked || clicked == true && !isSuperAdmin, superAdminActive: approved ==clicked || clicked == true && isSuperAdmin}" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{
+                                approved.pageTitle }}
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="status =='Draft'">
+                        <div *ngFor="let draft of capabilitiesList">
+                            <a data-w-tab="Tab 2" [ngClass]="{ active: showCapability == true }" (click)="loadData(draft)" class="tab-link w-inline-block w-tab-link">{{ draft.pageTitle
+                                }}
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="status == 'Pending'">
+                        <div *ngFor=" let pending of capabilitiesList">
+                            <a data-w-tab="Tab 2" [ngClass]="{ active: showCapability == true }" (click)="loadData(pending)" class="tab-link w-inline-block w-tab-link">{{
+                                pending.pageTitle }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="buttonDiv" *ngIf="showCreateButton != 'Subscriber'">
+                        <button type=" button" class="btn btn-default dropdown-toggle createBencss" [class.superAdminHeaderTextWhite]="isSuperAdmin" (click)="loadData('create')">
+                            <i class="fas fa-plus"></i>&nbsp; Create New
+                        </button>
+                    </div>
+                </div>
+                <div class="tabs-content w-tab-content">
+                    <div *ngIf="showHome == true">
+                        <div class="section white bottom-border">
+                            <div class="in-page-container">
+                                <div class="split-container horizontal inner-page-max-width">
+                                    <div class="header-text">
+                                        <div class="heading-1">Capabilities</div>
+                                        <p class="_16pt grey 12-top-space w-50 desc">
+                                            Components are the reusable building blocks of our design system. Each component meets a specific interaction or UI need, and has been specifically created to work together to create patterns and intuitive user experiences.
+                                        </p>
+                                    </div>
+                                    <div class="header-image-area display">
+                                        <div data-w-id="b6e486bf-ba07-85de-1779-44473b08dc3d" data-animation-type="lottie" data-src="documents/Search-1.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="10" data-duration="0"
+                                            class="lottie-animation"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <app-capabilities-home [data]="artifact">
+                        </app-capabilities-home>
+                    </div>
+                    <div data-w-tab="Tab 2" class="w-tab-pane w--tab-active" [hidden]="showForm != true">
+                        <app-capabilities-create #createPage (refreshCapList)="refreshList($event)" [data]="inputDetails">
+                        </app-capabilities-create>
+                    </div>
+                    <div data-w-tab="Tab 2" class="w-tab-pane w--tab-active" *ngIf="showCapability == true">
+                        <app-capabilities-view (refresh)="refreshList($event)" (editData)="refreshList($event)" *ngIf="selectedCapabilityId" [selectedCapabilityId]="selectedCapabilityId">
+                        </app-capabilities-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<form [formGroup]="updatesForm">
+    <div formArrayName="updates">
+        <div *ngFor="let updt of update().controls; let updtIdx = index">
+            <div [formGroupName]="updtIdx">
+                <div class="div-border-tabs">
+                    <div class="row border-btm">
+                        <div class="col">
+                            <label for="title" class="preview"> Update Block</label>
+                        </div>
+                        <div class="col">
+                            <i class="fas fa-trash" style="color: black; float: right" (click)="removeUpdates(updtIdx)"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="text-block-4 text-block-4 pt-4"> Date of Update </label>
+                        </div>
+                        <div>
+                            <input type="text" class="text-field w-input" formControlName="dateOfUpdate" maxlength="256" name="pageTitle" data-name="pageTitle" id="pageTitle" required="" placeholder=" e.g 28 Jan 2021" />
+                        </div>
+                        <div>
+                            <label class="text-block-4"> Version </label>
+                        </div>
+                        <div>
+                            <input type="text" class="text-field w-input" formControlName="version" maxlength="256" name="pageTitle" data-name="pageTitle" id="pageTitle" required="" placeholder=" e.g 80.2" />
+                        </div>
+                        <div>
+                            <label class="text-block-4"> Description </label>
+                        </div>
+                        <div>
+                            <textarea name="Description" class="text-area w-input" formControlName="updateDescription"></textarea>
+                        </div>
+                        <div *ngIf="update().controls[updtIdx]['controls'].updateDescription.errors?.maxlength" class="ErrMessage">
+                            Description can be max of 800 characters
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 3px 0px 0px 16px">
+        <button class="code-block-button" (click)="addUpdates()">
+            <button class="button"><i class="fas fa-plus"></i></button>&nbsp;Add Additional Update Block
+        </button>
+    </div>
+</form>

@@ -1,0 +1,86 @@
+<div class="card mt-3 p-3">
+    <div class="row justify-content-between">
+        <div class="col-9 mb-3 p-0">
+            <div class="p-2">
+                <h4>{{ userManagement?.name }}</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb remove-breadcrumb">
+                        <li class="breadcrumb-item" (click)="navigateToUser()">
+                            <a href="javascript:void(0)">Users</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+                    </ol>
+                </nav>
+                <p class="_14pt grey">
+                    Components are the reusable building blocks of our design system. Each component meets a specific interaction or UI need, and has been specifically created to work together to create patterns and intuitive user experiences.
+                </p>
+            </div>
+        </div>
+        <div class="col-3 mb-3">
+            <button *ngIf="isDisableAdmin" type="button" class="warning-button b-button delete-manage" (click)="onDeleteUserManagement()">
+        Delete
+      </button>
+        </div>
+    </div>
+    <div class="form _40-top-space w-form">
+        <form [formGroup]="userManagementForm">
+            <label for="name" class="field-label">Name</label><input type="text" class="text-field w-input" formControlName="name" placeholder="Name" id="name" />
+            <div *ngIf="userManagementForm?.controls['name']?.invalid && userManagementForm?.controls['name']?.touched" class="alert alert-danger">
+                <div *ngIf="userManagementForm?.controls['name']?.errors?.required">
+                    <small> User Name is required.</small>
+                </div>
+            </div>
+            <label class="field-label">Email</label>
+            <input type="text" class="text-field w-input" rows="4" formControlName="email" placeholder="Tenant Description" />
+            <div *ngIf="userManagementForm?.controls['email'].invalid && userManagementForm?.controls['email']?.touched" class="alert alert-danger">
+                <div *ngIf="userManagementForm?.controls['email']?.errors?.required">
+                    <small>Email is required.</small>
+                    <small *ngIf="userManagementForm?.controls['email']?.errors?.email">Email address is invalid</small>
+                </div>
+            </div>
+            <app-add-tenant *ngIf="isVisibleAddTenant" (addTenantEvent)="addTenant($event)" [roles]="roles"> </app-add-tenant>
+            <table class="table table-bordered table-sm mt-4">
+                <thead>
+                    <tr>
+                        <th>Tenants</th>
+                        <th>Roles</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody formArrayName="tenantUser" *ngIf="addUsers">
+                    <tr [formGroupName]="userIndex" *ngFor="let controls of userManagementArray?.controls; let userIndex = index">
+                        <td>
+                            {{ addUsers[userIndex]?.tenantName }}
+                        </td>
+                        <td>
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                <select class="form-control" (change)="onSelectedRole($event, userIndex)" formControlName="roleName">
+                  <option [value]="role?.roleName" *ngFor="let role of roles; let i = index">
+                    {{ role?.roleName }}
+                  </option>
+                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" (click)="onDeleteUser(controls)"> <img src="assets/images/trash.svg" /></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <div class="d-flex flex-row-reverse">
+            <div class="column-5 w-col w-col-3">
+                <button [disabled]="userManagementForm?.invalid" [ngStyle]="{
+  cursor: !userManagementForm?.valid ? 'not-allowed' : 'pointer'
+  }" type="button" (click)="onUserManagement()" class="submit-button w-button">
+          Update User
+        </button>
+            </div>
+            <div class="column-5 w-col w-col-3 mr-3">
+                <button routerLink="../user" type="button" class="cancel-button b-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <app-confirm-window (deleted)="onClickYes()" (noDeleted)="onClickNo()"></app-confirm-window>
+</div>

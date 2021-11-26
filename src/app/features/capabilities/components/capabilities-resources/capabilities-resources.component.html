@@ -1,0 +1,63 @@
+<form [formGroup]="resourcesForm">
+    <div formArrayName="resources">
+        <div *ngFor="let res of resource().controls; let resIdx= index">
+            <div [formGroupName]="resIdx">
+                <div class="div-border-tabs">
+                    <div class="row border-btm">
+                        <div class="col">
+                            <label for="title" class="preview">Repository</label>
+                        </div>
+                        <div class="col">
+                            <i class="fas fa-trash" style="color: black; float: right" (click)="removeResources (resIdx)"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="div-padding">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <label class="text-block-4"> Resource Name </label>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button *ngIf="resource().controls[resIdx]['controls']['resourceName'].value=='Bitbucket' ||resource().controls[resIdx]['controls']['resourceName'].value=='Artifactory'" type="button" class="btnWidth" [style.background-color]="toggleUpload ? 'black' : 'gray'"
+                                        (click)="fileInput.click(); resetLink(resIdx); toggle(); showSpinner()">
+                                        <span>Upload</span>
+                                        <input #fileInput type="file" (change)="onFileSelected($event, resIdx)"
+                                            style="display: none" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="div-padding">
+                            <select placeholder="select resource" class="dropdown" (change)="resetLink(resIdx)" formControlName="resourceName">
+                                <option value="Artifactory">Artifactory</option>
+                                <option value="Bitbucket">Bitbucket</option>
+                                <option value="Jira">Jira</option>
+                                <option value="Sketch Location">Sketch Location</option>
+                                <option value="Zeplin">Zeplin</option>
+                                <option value="Figma Location">Figma Location</option>
+                                <option value="Invision Location">Invision Location</option>
+                                <option value="GitHub">GitHub</option>
+                                <option value="NPM">NPM</option>
+                            </select>
+                            <span *ngIf="resource().controls[resIdx]['controls']['resourceName'].value=='Bitbucket'">
+                                <i class="fa fa-info-circle" title="Restricted formats- {{ filesAllowedSrtring }}"
+                                    style="padding: 10px; font-size: 18px"></i></span>
+                        </div>
+                        <div>
+                            <label for="title" class="text-block-4">Link/Location</label>
+                        </div>
+                        <div>
+                            <a href="{{ downloadLink }}" target="_blank">
+                                <input type="text" formControlName="linkLocation" class="text-field w-input" maxlength="256" name="pageTitle" data-name="pageTitle" id="pageTitle" required="" placeholder=" e.g. www.artifactory.com/3d59t8" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 3px 0px 0px 16px">
+        <button class="code-block-button" (click)="addResources()">
+            <button class="button"><i class="fas fa-plus"></i></button>&nbsp;Add Additional Resource Block
+        </button>
+    </div>
+</form>

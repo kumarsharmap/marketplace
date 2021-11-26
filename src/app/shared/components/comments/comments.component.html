@@ -1,0 +1,70 @@
+<div class="section">
+    <div class="in-page-container">
+        <div class="in-page-text _24-bottom-space">
+            <div class="heading-2">Comments</div>
+        </div>
+
+        <div class="card inner-page-max-width">
+
+            <div class="comment bottom-border" *ngFor="let comments of selectedCapability?.comments">
+
+                <div class="avatar-container">
+
+                    <div class="avatar turquoise">{{ comments.badge }}</div>
+
+                </div>
+
+                <div class="card-block-title">
+
+                    <div class="name-container">
+
+                        <div class="_16pt">{{ comments.userName }}</div>
+
+                    </div>
+
+                    <div class="timestamp">
+
+                        <div class="_12pt grey">{{ comments.inptDateTime }}</div>
+
+                    </div>
+                </div>
+
+                <div class="comment-text">
+
+                    <div class="_16pt grey">{{ comments.comment }}</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="comment">
+
+            <div class="div-block-30">
+
+                <div class="avatar-container self">
+
+                    <div class="avatar turquoise">{{ userName }}</div>
+
+                </div>
+                <div class="form-block w-form">
+
+                    <input type="text" class="text-field-2 w-input" maxlength="256" data-name="" [(ngModel)]="userComment" placeholder="Enter your comment" />
+
+                </div>
+
+                <div class="div-block-29">
+
+                    <button class="button small w-button" [style.background-color]="toggleSubmit ? 'black' : 'gray'" (click)="submitComments">Submit
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,127 @@
+.text-block-4 {
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.border-btm {
+    border-bottom: 1px solid #edf2f7;
+    padding-bottom: 1%;
+}
+
+.button {
+    background-color: #000;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding-bottom: 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.code-block-button {
+    border: none;
+    color: black;
+    border-radius: 5px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #fafafa;
+    width: 740px;
+    min-height: 56px;
+}
+
+.div-border-tabs {
+    padding: 36px 0px 24px 16px;
+}
+
+.preview {
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.tab button:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #000;
+    padding-bottom: 2px;
+    display: inline-block;
+}
+
+i {
+    cursor: pointer;
+}
+
+.text-field {
+    width: 740px;
+    height: 58px;
+    top: 34px;
+}
+
+.cardRectangle {
+    height: 189px;
+    width: 343px;
+    border-radius: 12px;
+    background-color: #fafafa;
+}
+
+.library-block {
+    height: 27px;
+    width: 124px;
+    color: #27272e;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 27px;
+}
+
+.display-a-library-it {
+    height: 46px;
+    width: 295px;
+    opacity: 0.5;
+    color: #29323b;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 23px;
+}
+
+.iconPost {
+    float: left;
+    padding: 2px 24px 0px;
+    border-radius: 3px;
+}
+
+.grid {
+    padding-left: 0px;
+}
+
+.btnClr {
+    height: 44px;
+    width: 97px;
+    border-radius: 0px;
+    float: right;
+    color: white;
+    border-radius: 4px;
+}
+
+::ng-deep .q1-toolbar.q1-snow,
+::ng-deep .q1-container .q1-snow {
+    border-radius: 4px !important;
+}

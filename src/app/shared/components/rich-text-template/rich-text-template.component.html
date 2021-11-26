@@ -1,0 +1,290 @@
+<form [formGroup]="form">
+    <div>
+        <div class="section white">
+            <div class="in-page-container">
+                <div>
+                    <div>
+                        <div>
+                            <label class="field-label">Page Title <span class="mandatoryClass">*</span> </label>
+                        </div>
+                        <div>
+                            <input class="text-field w-input" type="text" formControlName="pageTitle" id="pageTitle" [readonly]="inputDetails.type === 'Edit'" />
+                            <div *ngIf="form.controls['pageTitle']?.invalid && form.controls['pageTitle']?.touched">
+                                <div class="ErrMessage" *ngIf="form.controls['pageTitle']?.errors['required']">
+                                    Page Title is required.
+                                </div>
+                                <div class="ErrMessage" *ngIf="form.controls['pageTitle']?.errors['maxlength']">
+                                    Page Title cannot exceed 80 characters.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="field-label"> Description <span class="mandatoryClass">*</span> </label>
+                        </div>
+                        <div>
+                            <textarea class="text-area w-input" formControlName="pageDescription"></textarea>
+                            <div *ngIf="form.controls['pageDescription']?.invalid && form.controls['pageDescription']?.touched">
+                                <div class="ErrMessage" *ngIf="form.controls['pageDescription']?.errors['required']">
+                                    Page Description is required.
+                                </div>
+                                <div class="ErrMessage" *ngIf="form.controls['pageDescription']?.errors['maxlength']">
+                                    Page Description cannot exceed 300 characters.
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 24px">
+                            <div class="artifactDiv">
+                                <label class="field-label">Artifact type <span class="mandatoryClass">*</span> </label>
+                                <div>
+                                    <select class="w-input" formControlName="artifactType">
+                                        <option value="Design">Design</option>
+                                        <option value="Development">Development</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="taskDiv" *ngIf="inputDetails.foundationArtifactType != 'Guides'">
+                                <label class="field-label">Task Id </label>
+                                <div>
+                                    <div class="input">
+                                        <div *ngFor="let pill of pills" class="pill">
+                                            {{ pill }}
+                                            <span (click)="removePill(pill)"><i class="fas fa-times"></i></span>
+                                        </div>
+                                        <input type="text" (keyup)="onkeyUp($event)" formControlName="taskId" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4" *ngIf="form.controls['artifactType']?.invalid && form.controls['artifactType']?.touched">
+                                <div class="ErrMessage" *ngIf="form.controls['artifactType']?.errors['required']">
+                                    Artifact type is required.
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding-top: 24px">
+                            <label class="field-label"> Upload Image </label>
+                            <carousel *ngIf="imageObject.length > 0">
+                            <ng-container *ngFor="let img of imageObject; index as i">
+                            <div class="carousel-cell">
+                            <button class="delete-image-button" (click)="handleDeleteImage(i)">x</button>
+                            <img src="{{ img.image }}" />
+                            </div>
+                            </ng-container>
+                            </carousel>
+                            <div class="upload-btn-wrapper">
+                            <button class="btn">Select a file</button>
+                            <i style="float: right; padding-right: 20px" class="fas fa-plus"></i>
+                                <input type="file" multiple accept=".jpeg,.jpg, .png" formControlName="image" title="{{ fileName }}" name="image" id="file" (click)="showSpinner()" (change)="onFileChange($event)" />
+                                
+                            </div>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subSection" *ngIf="form.get('richTextArray')['controls'].length > 0" formArrayName="richTextArray">
+            <div *ngFor="let text of form.get('richTextArray')['controls']; let i = index">
+                <div [formGroupName]="i">
+                    <div class="d-flex justify-content-between sectionHeader">
+                        <div class="headingColorSection">Rich Text Block</div>
+                        <hr />
+                        <div>
+                            <i class="fas fa-trash" style="color: black" (click)="deleteRichTextSection(i)"></i>
+                        </div>
+                    </div>
+                    <div class="richText">
+                        <div style="width: 740px; min-height: 56px">
+                            <quill-editor formControlName="richText" class="content-editor" [styles]="editorStyle" [modules]="quillConfiguration">
+                            </quill-editor>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subSection" *ngIf="form.get('colorSection')['controls'].length > 0 && inputDetails.foundationArtifactType!='Guides'" formArrayName="colorSection">
+            <div *ngFor="let colorSec of form.get('colorSection')['controls']; let j = index">
+                <div [formGroupName]="j">
+                    <div class="d-flex justify-content-between sectionHeader">
+                        <div class="headingColorSection">Colour Palette</div>
+                        <hr />
+                        <div>
+                            <i class="fas fa-trash" style="color: black" (click)="deleteColorPaletteSection(j)"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div style="padding: 10px">
+                                <p class="subTitle">Summary</p>
+                                <div>
+                                    <label class="field-label"> Title </label>
+                                </div>
+                                <div>
+                                    <input class="text-field w-input" type="text" formControlName="title" id="title" />
+                                </div>
+                                <div>
+                                    <label class="field-label"> Description </label>
+                                </div>
+                                <div>
+                                    <textarea class="text-area w-input" formControlName="description" id="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div>
+                        <div style="padding: 10px">
+                            <p class="subTitle" style="padding: 0px 0px 20px 0px">Colour Palette Item</p>
+                            <div>
+                                <table formArrayName="items" style="width: 100%">
+                                    <tr>
+                                        <th id="boxCss">Colour Name <span class="mandatoryClass">*</span></th>
+                                        <th id="boxCss">HEX Value <span class="mandatoryClass">*</span></th>
+                                        <th>RGB Value <span class="mandatoryClass">*</span></th>
+                                        <th id="boxCss"></th>
+                                    </tr>
+                                    <tr *ngFor="let item of colorSec.controls.items['controls']; let i = index" [formGroupName]="i">
+                                        <td id="boxCss">
+                                            <div style="height: 20px">
+                                                <div *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['colourName']?.invalid &&form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['colourName']?.touched">
+                                                    <div class="ErrMessage" *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['colourName']?.errors['required']">
+                                                        Colour Name required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input class="w-input" formControlName="colourName" placeholder="Colour Name" />
+                                        </td>
+                                        <td id="boxCss">
+                                            <div style="height: 20px">
+                                                <div *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['hexaValue']?.invalid &&form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['hexaValue']?.touched">
+                                                    <div class="ErrMessage" *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['hexaValue']?.errors['invalidHex']">
+                                                        Invalid Hex Value e.g #freeee
+                                                    </div>
+                                                    <div class="ErrMessage" *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['hexaValue']?.errors['required']">
+                                                        Hex value required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input class="w-input" formControlName="hexaValue" (change)="hexToRgb(j, i)" placeholder="HEX Value e.g #ffeBee" />
+                                        </td>
+                                        <td id="boxCss">
+                                            <div style="height: 20px">
+                                                <div *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['rgbValue']?.invalid &&form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['rgbValue']?.touched">
+                                                    <div class="ErrMessage" *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['rgbValue']?.errors['invalidRgb']">
+                                                        Invalid RGB Value e.g (255,0,0)
+                                                    </div>
+                                                    <div class="ErrMessage" *ngIf="form.controls['colorSection']['controls'][j]['controls']['items']['controls'][i]['controls']['rgbValue']?.errors['required']">
+                                                        RGB value required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input class="w-input" (change)="rgbToHex(j, i)" formControlName="rgbValue" placeholder="RGB Value e.g (255, 240, 34)" />
+                                        </td>
+                                        <td>
+                                            <i class="fas fa-trash" style="color: black" (click)="deleteColorPaletteItem(j,i)"></i>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div style="padding: 3px 0px 0px 16px">
+                            <button class="code-block-button" (click)="addItem(j)">
+                                <button class="smallButton"><i class="fa fa-plus"></i></button> &nbsp;Add colour
+                            </button>
+                        </div>
+                        <!-- <button type="button" class="btn btn-default" style="padding: @px @px 24px 24px" (click)="addItem())">
+<i class="fas fa-plus"></i>&nbsp; Add Colour
+</button> -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-border-tabs">
+        <div>
+            <div class="col">
+                <label for="title" class="preview">Add a new content block</label>
+            </div>
+        </div>
+        <div>
+            <div class="w-layout-grid grid inner-page-max-width">
+                <!-- <div *ngIf="inputDetails.foundationArtifactType != 'Guides'" class="card bg-light text-dark cardRectangle">
+<div>
+<div class="iconpost">
+<button class="button" style="width: 45px" (click)="addColorPalettesection()">
+<i class="fas fa-plus"></i>
+</button>
+</div>
+</div>
+<div data-w-id="d762fcfc-84c2-c587-3c54-68892ae4abd7" class="panel">
+<div class="panel-content small-margin">
+<h1 class="library-block">Colour Palette Block</h1>
+<div class="display-a-library-it">Display multiple images in a single grid with title & description. </div>
+</div>
+</div>
+</div>-->
+                <!-- <div class="card bg-light text-dark cardRectangle">
+<div>
+<div class="iconpost">
+<button class="button" style="width: 45px" (click)="addRichText()"><i class="fa fa-plus"></i></button>
+</div>
+</div>
+<div data-w-id="d762fcfc-84c2-c587-3c54-68892ae4abd7" class="panel">
+<div class="panel-content small-margin">
+<h1 class="library-block">Rich Text</h1>
+<div class="display-a-library-it">Display rich text content with headings, images & links.</div>
+</div>
+</div>
+</div> -->
+                <div *ngIf="inputDetails.foundationArtifactType!='Guides'" class="card bg-light text-dark cardRectangle">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                            <div class="iconPost">
+                                <button class="button" (click)="addColorPaletteSection()"><i
+                                        class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                            <h1 class="library-block">Colour Palette Block</h1>
+                            <div class="display-a-library-it">Display multiple images in a single grid with title & description.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-light text-dark cardRectangle">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                            <div class="icon Post">
+                                <button class="button" (click)="addRichText()"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                            <h1 class="library-block">Rich Text</h1>
+                            <div class="display-a-library-it">Display rich text content with headings, images & links.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="footer">
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-grow-1 bd-highlight">
+            <div id="footerLeft">You are in content edit mode</div>
+        </div>
+        <div class="p-2 bd -highlight align-items-center buttonSet">
+            <button class="footerBtn" [style.background-color]="toggleBack ? 'black' : '#ededed'" (click)="gotoHome()">
+                Back to live site</button>&nbsp;&nbsp;
+            <button *ngIf="inputDetails.type == 'Edit'" class="footerSubmitBtn" [style.background-color]="toggleCancel ? 'black' : 'gray'" (click)="cancel()">
+                Cancel</button>&nbsp;&nbsp;
+            <button class="footerSubmitBtn" [style.background-color]="toggleReset ? 'black' : 'gray'" (click)="refreshForm()">
+                Reset</button>&nbsp;&nbsp;
+            <button class="footerSubmitBtn" [style.background-color]="toggleSave ? 'black' : 'gray'" (click)="saveForm()">
+                Save As Draft</button>&nbsp;&nbsp;
+            <button class="footerSubmitBtn" [style.background-color]="toggleSubmit ? 'black' : 'gray'" (click)="formSubmit()">
+                Submit</button>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>

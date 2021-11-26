@@ -1,0 +1,29 @@
+export class CommonConstants {
+  public static REGISTER = 'Register Successfully';
+  public static DELETETENANT = 'Tenant Deleted Successfully';
+  public static DELETEUSER = 'User Deleted Successfully';
+  public static USERUPDATE = 'User Update Successfully';
+  public static CREATETENANT = 'Tenant Created Successfully';
+  public static UPDATETENANT = 'Tenant Update Successfully';
+  public static DELETEROLE = 'Tenant Deleted Successfully';
+  public static ADDTENANT = 'Add Tenant Successfully';
+  public static ADDUSER = 'Add User Successfully';
+  public static APPROVED = 'Approved';
+  public static PENDING = 'Pending';
+  public static APPROVEDSUCCESSFULLY = 'Approved Successfully';
+  public static REJECTEDSUCCESSFULLY = 'Rejected Successfully';
+  public static ARTIFACTDELETE = 'Artifact Deleted successfully';
+  public static REJECTED = 'Rejected';
+  public static DRAFT = 'Draft';
+  public static PERMISSION = 'Permission Created Successfully';
+  public static PERMISSIONUPDATED = 'Permission Update Successfully';
+  public static ROLE = 'Role Created Successfully';
+  public static ROLEUPDATED = 'Role Update Successfully';
+  public static PASSWORDCHANGE = 'Password changed successfully';
+  public static FOUNDATIONS = 'Foundations';
+  public static CAPABILITIES = 'Capabilities';
+  public static COMPONENTS = 'Components';
+  public static LIBRARIES = 'Libraries';
+  public static APPROVAL = 'approval';
+  public static ADDTENANTERR = 'Add atleast one tenant';
+}

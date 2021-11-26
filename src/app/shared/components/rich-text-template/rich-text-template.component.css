@@ -1,0 +1,371 @@
+.btn {
+    padding: 0px;
+}
+
+.upload-btn-wrapper input[type='file'] {
+    font-size: 38px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 95%;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    padding: 18px;
+    background-color: #f5f5f5;
+    width: 748px;
+    height: 58px;
+    border-radius: 4px;
+}
+
+#footer {
+    padding-top: 24px;
+    font-weight: 600;
+    background-color: #fafafa;
+}
+
+#button2 {
+    float: right;
+    margin-right: 18px;
+    padding: 10px;
+    background-color: Ilightgray;
+}
+
+.img {
+    width: 480px;
+    height: 250px;
+}
+
+.mandatoryClass {
+    color: red;
+    font-weight: 600;
+}
+
+.ErrMessage {
+    color: red;
+    font-weight: 600;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+.rich-text-template {
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.text-field {
+    width: 740px;
+    height: 58px;
+    top: 34px;
+}
+
+.w-input {
+    height: 58px;
+    border-radius: 4px;
+}
+
+.text-area {
+    width: 740px;
+    height: 146px;
+    margin-bottom: 24px;
+    border-radius: 4px;
+}
+
+.input input {
+    border: none;
+    outline: none;
+}
+
+.input {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    border: 1px solid #cccccc;
+    padding: 3px 5px;
+    position: relative;
+    height: 58px;
+    max-height: 250px;
+    z-index: 2;
+    overflow-y: scroll;
+    border-radius: 4px;
+}
+
+.pill {
+    background: lightgray;
+    color: fafafa;
+    height: 32px;
+    padding: 6px;
+    margin: 4px;
+    border-radius: 4px;
+}
+
+.artifactDiv {
+    display: inline-block;
+    width: 300px;
+    padding-right: 15px;
+    height: 58px;
+}
+
+.taskDiv {
+    display: inline-block;
+    width: 437px;
+    height: 58px;
+}
+
+.footerBtn {
+    box-sizing: border-box;
+    height: 45px;
+    width: 133px;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    background-color: #ededed;
+    color: #333333;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.35px;
+    line-height: 19px;
+}
+
+.footerSubmitBtn {
+    height: 44px;
+    width: 126px;
+    border-radius: 4px;
+    background-color: gray;
+    color: #ffffff;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 680;
+    letter-spacing: -0.35px;
+    line-height: 19px;
+    text-align: center;
+}
+
+.footer {
+    height: 76px;
+    width: 100%;
+    background: #F7F7F7;
+    box-shadow: inset 0 1px 0 0 #d1d1d1;
+}
+
+#footerLeft {
+    color: #000000;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 680;
+    letter-spacing: -0.45px;
+    line-height: 24px;
+    padding: 21.91px 0px 25px 23px;
+}
+
+.buttonSet {
+    float: right;
+    display: inline;
+    padding-top: 20px !important;
+}
+
+.button {
+    background-color: #000;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.smallButton {
+    background-color: #000;
+    /* Green */
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding-bottom: 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    float: left;
+    cursor: pointer;
+}
+
+.code-block-button {
+    border: none;
+    color: black;
+    border-radius: 5px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #fafafa;
+    width: 748px;
+    min-height: 56px;
+}
+
+.richTextDiv {
+    border-bottom: 1px solid lightgray;
+    background-color: #f5f5f5;
+}
+
+.richText {
+    background-color: white;
+    padding: 10px;
+}
+
+.grey-div {
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(56, 58, 71, 6.05), 0px 3px 8px -1px rgba(0, 26, 75, 0.5);
+    border-radius: 12px;
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+input:hover {
+    cursor: default;
+}
+
+.cardRectangle {
+    width: 426px;
+    border-radius: 12px;
+    background-color: white !important;
+}
+
+.library-block {
+    height: 27px;
+    color: #27272e;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 680;
+    letter-spacing: -0.5px;
+    line-height: 27px;
+}
+
+.display-a-library-it {
+    height: 46px;
+    width: 295px;
+    opacity: 0.5;
+    color: #29323b;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 23px;
+}
+
+.iconPost {
+    float: left;
+    padding: 24px 24px 0px;
+    border-radius: 3px;
+}
+
+.border-btm {
+    border-bottom: 1px solid #edf2f7;
+}
+
+.preview {
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: 680;
+}
+
+.headingColorSection {
+    height: 37px;
+    left: 32px;
+    top: 31px;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 37px;
+    letter-spacing: -0.699999988079071px;
+    text-align: left;
+}
+
+.sectionHeader {
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.subTitle {
+    font-family: Inter;
+    font-size: Semi Bold;
+    font-size: 20px;
+    line-height: 27px;
+    line-height: 112%;
+    vertical-align: top;
+    letter-spacing: -0.5px;
+    padding: 24px 0px;
+    font-weight: 600;
+}
+
+td .button {
+    margin: auto;
+    display: block;
+}
+
+.colorPalettecss .button {
+    background-color: black;
+    margin-right: 15px;
+}
+
+#boxCss {
+    padding: 8px 15px 5px 0px;
+}
+
+.preview {
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.section {
+    justify-content: left !important;
+}
+
+.btncir {
+    border-radius: 4px;
+}
+
+::ng-deep .ql-toolbar.ql-snow,
+::ng-deep .ql-container.ql-snow {
+    border-radius: 4px !important;
+}
+
+.subSection {
+    background-color: white;
+    padding: 24px;
+    /* box-shadow: inset @ 1px @ @ #dididi; */
+}
+
+.div-border-tabs {
+    /* margin: 24px;
+border-radius: 8px; */
+    background-color: #fafafa;
+    padding: 24px;
+    box-shadow: inset 0 1px 0 dididi;
+}
+.add-image-panel {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    }
+    .delete-image-button {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    }

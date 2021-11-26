@@ -1,0 +1,31 @@
+a:hover {
+    cursor: pointer !important;
+}
+
+.modal {
+    z-index: -1;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-open .modal {
+    z-index: 1050;
+}
+
+::ng-deep .modal-content {
+    margin-left: -235px !important;
+    width: 200% !important;
+}
+
+a {
+    text-decoration: underline !important;
+}
+
+.previewIcon:hover {
+    cursor: pointer;
+}
+
+.previewIcon {
+    padding-top: 15px !important;
+}

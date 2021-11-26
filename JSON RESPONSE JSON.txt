@@ -1,0 +1,112 @@
+[
+   {
+      "artifactName": "Design Foundations",
+      "name": "MarketplaceSuperadmin",
+      "userId": 7,
+      "isSuperAdmin": "1",
+      "customTenantList": [
+         {
+            "roleId": 4,
+            "tenantId": 1,
+            "tenantName": "HCL Digital",
+            "roleName": "Subscriber",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         },
+         {
+            "roleId": 5,
+            "tenantId": 9,
+            "tenantName": "HR Department",
+            "roleName": "Admin",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         }
+      ]
+   },
+   {
+      "artifactName": "Components",
+      "name": "MarketplaceSuperadmin",
+      "userId": 7,
+      "isSuperAdmin": "1",
+      "customTenantList": [
+         {
+            "roleId": 4,
+            "tenantId": 1,
+            "tenantName": "HCL Digital",
+            "roleName": "Subscriber",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         },
+         {
+            "roleId": 5,
+            "tenantId": 9,
+            "tenantName": "HR Department",
+            "roleName": "Admin",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         }
+      ]
+   },
+   {
+      "artifactName": "Capabilities",
+      "name": "MarketplaceSuperadmin",
+      "userId": 7,
+      "isSuperAdmin": "1",
+      "customTenantList": [
+         {
+            "roleId": 4,
+            "tenantId": 1,
+            "tenantName": "HCL Digital",
+            "roleName": "Subscriber",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         },
+         {
+            "roleId": 5,
+            "tenantId": 9,
+            "tenantName": "HR Department",
+            "roleName": "Admin",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         }
+      ]
+   },
+   {
+      "artifactName": "Libraries",
+      "name": "MarketplaceSuperadmin",
+      "userId": 7,
+      "isSuperAdmin": "1",
+      "customTenantList": [
+         {
+            "roleId": 4,
+            "tenantId": 1,
+            "tenantName": "HCL Digital",
+            "roleName": "Subscriber",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         },
+         {
+            "roleId": 5,
+            "tenantId": 9,
+            "tenantName": "HR Department",
+            "roleName": "Admin",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         }
+      ]
+   },
+   {
+      "artifactName": "Guides",
+      "name": "MarketplaceSuperadmin",
+      "userId": 7,
+      "isSuperAdmin": "1",
+      "customTenantList": [
+         {
+            "roleId": 4,
+            "tenantId": 1,
+            "tenantName": "HCL Digital",
+            "roleName": "Subscriber",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         },
+         {
+            "roleId": 5,
+            "tenantId": 9,
+            "tenantName": "HR Department",
+            "roleName": "Admin",
+            "artifactCategory": "Design Foundations,Components,Capabilities,Libraries,Guides"
+         }
+      ]
+   }
+]

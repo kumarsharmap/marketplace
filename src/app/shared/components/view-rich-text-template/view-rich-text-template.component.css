@@ -1,0 +1,95 @@
+h2 {
+    font-family: Plusjakartasans, sans-serif;
+    color: #000;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 6px;
+    padding-bottom: 24px;
+}
+
+.main {
+    padding: 24px 24px 0px 24px;
+    font-family: Inter !important;
+    line-height: 2rem;
+}
+
+main P,
+.main span {
+    color: #908e8e;
+    font-family: Inter;
+    padding-top: 16px;
+    line-height: 2rem;
+}
+
+.main image {
+    max-width: 100% !important;
+}
+
+.img {
+    max-width: 100%;
+}
+
+.editBtn {
+    height: 19px;
+    width: 25px;
+    color: #000000;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.35px;
+    line-height: 19px;
+}
+
+.editBtn button {
+    height: 44px;
+    width: 76px;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.heading-1 {
+    margin-left: -10px;
+}
+
+.card-columns {
+    column-count: auto;
+}
+
+.card-body {
+    padding: 0px;
+}
+
+.boxCss {
+    padding-right: 15px;
+}
+
+.card {
+    height: 300px;
+}
+
+.mainTop {
+    padding-bottom: 24px;
+    background-color: white !important;
+}
+
+h4 {
+    padding: 24px;
+}
+
+.desc {
+    padding-bottom: 48px;
+}
+
+.content {
+    background-color: #fafafa;
+    padding: 48px 24px 24px 24px;
+}
+
+.backlink {
+    color: black;
+    text-decoration: underline;
+    font-weight: 600;
+    padding: 24px;
+    width: 100%;
+    background-color: white;
+}

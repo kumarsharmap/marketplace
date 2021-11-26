@@ -1,0 +1,71 @@
+<div class="card mt-3 p-3">
+    <div class="row">
+        <div class="col-sm mb-3 p-0">
+            <div class="pl-2 pt-2">
+                <h4>Create User</h4>
+            </div>
+            <nav aria-label="breadcrumb" style="padding-left: 0.5rem !important">
+                <ol class="breadcrumb remove-breadcrumb">
+                    <li class="breadcrumb-item" (click)="navigateToUser()">
+                        <a href="javascript:void(0)">Users</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Create User</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm mb-3 p-op-2">
+            <form [formGroup]="registrationForm">
+                <label for="name" class="field-label">Email Address</label><input type="email" class="text-field w-input" formControlName="email" placeholder="email@hcl.com" id="name" />
+                <div *ngIf="registrationForm?.controls['email']?.invalid && registrationForm?.controls['email']?.touched" class="alert alert-danger">
+                    <small *ngIf="registrationForm?.controls['email']?.errors?.required">Email is required.</small>
+                    <small *ngIf="registrationForm?.controls['email']?.errors?.email">Email address is invalid</small>
+                </div>
+                <label for="Name-2" class="field-label">Name</label><input type="text" class="text-field w-input" formControlName="name" placeholder="e.g John Doe" id="Name-2" />
+                <div *ngIf="registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched" class="alert alert-danger">
+                    <div>
+                        <small *ngIf="registrationForm?.controls['name']?.errors?.required">Name is required.</small>
+                        <small *ngIf="registrationForm?.controls['name']?.errors?.pattern">User input contained a special
+              character</small>
+                        <small *ngIf="registrationForm?.controls['name']?.errors?.minlength">Minimum 3 characters</small>
+                        <small *ngIf="registrationForm?.controls['name']?.errors?.maxlength">maximum 60 characters</small>
+                    </div>
+                </div>
+                <h1 class="heading-2">Select Tenants</h1>
+                <p class="_14pt grey _8-top-space">
+                    Select Tenants you would like to access the artifacts, by default new user would be given a subscriber access to the artifacts from the selected tenant.
+                </p>
+                <p class="_14pt mb-3">
+                    <strong>Access Persmission can be changed from Tenant Management</strong>
+                </p>
+                <div class="div-block-22">
+                    <div class="w-row" formArrayName="createUser">
+                        <div class="column-5 w-col w-col-4" *ngFor="let project of projectFormArray?.controls; let i = index">
+                            <label class="w-checkbox checkbox-field">
+                <div #checkboxref class="w-checkbox-input w-checkbox-input--inputType-custom checkbox"></div>
+                <input type="checkbox" id="checkbox"
+                  (change)="onSelectedProject($event, applicationList[i]?.tenantName, i)" [formControlName]="i"
+                  style="opacity: 0; position: absolute; z-index: -1" /><span class="checkbox-label w-form-label"> {{
+                  applicationList[i]?.tenantName }}</span>
+              </label>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="registrationForm.controls['createUser'].invalid && registrationForm.controls['createUser'].touched" class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['createUser'].errors">Select at least one tenants</div>
+                </div>
+            </form>
+            <div class="d-flex flex-row-reverse">
+                <div class="column-5 w-col w-col-3">
+                    <button [disabled]="registrationForm.invalid" [ngStyle]="{cursor: !registrationForm.valid ? 'not-allowed' : 'pointer'}" type="button" (click)="onUserManagement()" class="submit-button w-button">
+            Save
+          </button>
+                </div>
+                <div class="column-5 w-col w-col-3 mr-3">
+                    <button routerLink="../user" type="button" class="cancel-button b-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div *ngIf="!editModeFlag" class="backgroundC1r">
+    <div>
+        <div class="fullsize-container">
+            <div class="split-container horizontal full-size" style="display: contents;">
+                <div class="header-text">
+                    <div *ngIf="resposneJson.artifactType == 'Design'" title="Design" class="guide-icon designers _16-bottom-margin">
+                        <img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" />
+                    </div>
+                    <div *ngIf="resposneJson.artifactType == 'Development'" title="Development" class="guide-icon developers mb-3">
+                        <img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" />
+                    </div>
+                    <div class="d-flex flex-row-reverse" *ngIf="showSearch">
+                        <div class="p-2" style="height: 44px; border-radius: 4px; background-color: #fafafa">
+                            <span>
+                                <button (click)="back()" style="background: #fafafa">
+                                    <i class="fas fa-arrow-left" style="color: black"></i>&nbsp; Back to search results
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                            <div class="heading-1" *ngIf="resposneJson" style="margin-left: -10px">{{ resposneJson?.pageTitle }}
+                            </div>
+                        </div>
+                        <div class="p-2 bd-highlight d-flex align-items-center" style="padding-top: 14px !important">
+                            <div>
+                                <label>Artifact Type :
+                                    <span *ngIf="resposneJson" class="font-weight-normal">
+                                        {{resposneJson?.artifactType}}</span></label>
+                            </div>
+                        </div>
+                        <div class="p-2 bd-highlight" *ngIf="!hideButton && role!='Subscriber'">
+                            <div>
+                                <span class="editBtn"><button (click)="edit()"><i class="fas fa-edit"
+                                            style="color: black"></i>Edit</button></span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="_16pt grey _12-top-space">
+                        {{ resposneJson.pageDescription }}
+                    </p>
+                    <div>
+                        <ng-image-slider
+                        *ngIf="resposneJson?.image.length > 0"
+                        [images]="resposneJson?.image"
+                        [infinite]="false"
+                        [autoSlide]="1"
+                        slideImage="1"
+                        #nav
+                        ></ng-image-slider>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="fullsize-container w-container">
+            <div class="section-container">
+                <div class="columns w-row">
+                    <div class="column w-col w-col-8 w-col-stack">
+                        <div class="card">
+                            <div class="panel-content" *ngFor="let text of resposneJson?.richTextArray; let i = index">
+                                <div [innerHTML]="text.richText"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column-2 w-col w-col-4 w-col-stack">
+                        <app-gudies-trending></app-gudies-trending>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="editModeFlag">
+    <app-rich-text-template [data]="richTextTemplateInput" (sendData)="handleClose($event)"></app-rich-text-template>
+</div>

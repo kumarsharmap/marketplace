@@ -1,0 +1,56 @@
+.editBtn {
+    height: 19px;
+    width: 25px;
+    color: #000000;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.35px;
+    line-height: 19px;
+}
+
+.editBtn button {
+    height: 44px;
+    width: 76px;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.libraries {
+    height: auto;
+    width: 112px;
+    color: #27272e;
+    font-family: Inter;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.7px;
+    line-height: 37px;
+}
+
+.components-are-the-r {
+    height: 53px;
+    width: 1122px;
+    color: #908e8e;
+    font-family: Inter;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+    line-height: 25px;
+}
+
+.desc {
+    padding-bottom: 24px;
+}
+
+a:hover {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.backgroundclr {
+    background-color: white !important;
+}
+
+:host ::ng-deep body {
+    background-color: white !important;
+    background: white !important;
+}

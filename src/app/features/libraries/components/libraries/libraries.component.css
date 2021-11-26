@@ -1,0 +1,410 @@
+#div-padding {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-top: 1%;
+}
+
+.navbar-button {
+    margin-right: 2%;
+    border-radius: 4px;
+    background-color: #fff;
+    -webkit-transition: background-color 200ms ease;
+    transition: background-color 200ms ease;
+    color: #222b45;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 600;
+    width: 20%;
+}
+
+.text-block-left-tab {
+    margin-bottom: 8%;
+    color: grey;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.left-div {
+    width: 20%;
+    margin-right: 1%;
+    position: absolute;
+    border-right: 1px solid #edf2f7;
+}
+
+.vertical-line {
+    border-left: 1px solid #e8e8e8;
+    height: 800px;
+    position: absolute;
+    padding-right: 2%;
+    margin-left: 10%;
+}
+
+.right-div {
+    margin-left: 16%;
+}
+
+.logo {
+    padding-right: 50px;
+}
+
+.w-button {
+    width: 20%;
+    display: inline-block;
+    padding: 1% 4%;
+    background-color: #282828;
+    color: white;
+    border: 0;
+    line-height: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.menu {
+    margin-right: 2%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 1%;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 60%;
+}
+
+.main-div {
+    margin-left: 1%;
+    margin-top: 0.2%;
+    margin-right: 4%;
+}
+
+.background-div {
+    background-color: #f8f8f8;
+}
+
+.text-block-4 {
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.dropdown {
+    font-size: 1rem;
+    border: 1px solid gray;
+    color: gray;
+    background-color: #f8f8f8;
+    min-width: 70%;
+    min-height: 38px;
+    border-radius: 4px;
+}
+
+.inner-label {
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+}
+
+#button1 {
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+}
+
+#button2 {
+    width: 100px;
+    height: 40px;
+    border-radius: 6px;
+}
+
+#container {
+    text-align: right;
+    margin-top: 10%;
+}
+
+.footer-content {
+    text-align: center;
+    margin-top: 5%;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.margin {
+    margin-top: -3%;
+    margin-left: 2%;
+}
+
+.border-btm {
+    border-bottom: 1px solid #edf2f7;
+    padding-bottom: 1%;
+}
+
+.upload-btn-wrapper input[type='file'] {
+    font-size: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.marginTop {
+    margin-top: 2%;
+}
+
+.active {
+    color: #000;
+}
+
+.button {
+    background-color: #000;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+}
+
+.code-block-button {
+    background-color: white;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    cursor: pointer;
+}
+
+.div-border {
+    border: 0.2px solid #e8e8e8;
+    border-radius: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    margin-top: 30px;
+    margin-left: 45px;
+    background-color: white;
+}
+
+.div-border-tabs {
+    margin-left: 24px;
+    border: 0.2px solid #92a8d1;
+    border-radius: 8px;
+    background-color: white;
+    padding: 2%;
+    margin-top: 10px;
+}
+
+.grey-div {
+    background-color: #f5f5f5;
+    padding: 18px 24px 24px 24px;
+    border-radius: 8px;
+    margin-left: -4%;
+}
+
+.preview {
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+hr.solid {
+    border-top: 0.4px solid #bbb;
+    margin-bottom: 29px;
+    margin-top: 35px;
+    margin-left: 1.52%;
+    margin-right: 0.52%;
+}
+
+hr.solid-line {
+    border-top: 0.1px #606060;
+}
+
+.text-area {
+    font-size: 0.8rem;
+    font-weight: 200;
+    min-height: 78px;
+    min-width: 70%;
+    margin-bottom: 1px;
+    margin-top: 8px;
+    border: 1px solid #cecece;
+    border-radius: 4px;
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.buttonDiv {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.code-area {
+    min-height: 148px;
+    min-width: 378px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+    border: 1px solid #cecece;
+    border-radius: 4px;
+}
+
+.tab {
+    overflow: hidden;
+}
+
+.tab button:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #000;
+    padding-bottom: 2px;
+    display: inline-block;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.tabs-menu-2 {
+    background-color: #fff;
+}
+
+.tabs-menu-2.bottom-border {
+    padding-left: 24px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.tab-link-tab-1 {
+    margin-right: 32px;
+    padding: 22px 0px;
+    background-color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.tab-link-tab-1.w--current {
+    margin-right: 32px;
+    padding-right: 0px;
+    padding-bottom: 22px;
+    padding-left: 0px;
+    border-bottom: 2px solid #000;
+    background-color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.statusDropdown {
+    width: 60%;
+    margin-left: 22px;
+    box-shadow: none !important;
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    padding-left: 0px;
+    cursor: pointer;
+}
+
+i {
+    cursor: pointer;
+}
+
+:host ::ng-deep a {
+    text-decoration: none;
+}
+
+
+/* Gayathri*/
+
+.required {
+    color: #ff0000;
+    padding-left: 1px;
+}
+
+.nav {
+    padding: 24px !important;
+}
+
+:host ::ng-deep .nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    border-bottom: 0px !important;
+    border-left: 3px solid black;
+    background-color: #fff !important;
+}
+
+.sideTabs {
+    padding-left: 12px;
+}
+
+.tabPadd {
+    padding-top: 55px;
+}
+
+:host ::ng-deep .nav-link {
+    color: silver !important;
+}
+
+:host ::ng-deep ul {
+    padding-top: 24px !important;
+}
+
+.createBtnCss {
+    padding: 24px;
+    outline: none;
+}
+
+.superAdminHeaderBlack {
+  background-color: #000 !important;
+}
+
+.superAdminHeaderWhite {
+  background-color: #fff !important;
+}
+
+.superAdminHeaderTextWhite {
+  color: #fff !important;
+}
+
+.superAdminTabsHeight {
+  min-height: 125vh !important;
+}
+
+.superAdminActive {
+  color: #fff;
+  border-left: 2px solid white;
+}
+
+a.superAdminHeaderBlack:hover {
+  color: #fff !important;
+}
+

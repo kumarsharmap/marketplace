@@ -1,0 +1,99 @@
+<div *ngIf="!editModeFlag">
+    <div class="in-page-container" style="background-color: white; padding-top: 38px">
+        <div class="d-flex flex-row-reverse" *ngIf="showSearch">
+            <div class="p-2" style="height: 44px; border-radius: 4px; background-color:#fafafa">
+                <span>
+                    <button (click)="back()" style="background: #fafafa">
+                        <i class="fas fa-arrow-left" style="color: black"></i>&nbsp; Back to search results
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                <div class="heading-1" *ngIf="responseToBeViewed">{{ responseToBeViewed?.pageTitle }}</div>
+            </div>
+            <div class="p-2 bd-highlight d-flex align-items-center" style="padding-top: 14px !important">
+                <div>
+                    <label>Artifact Type :
+                        <span *ngIf="responseToBeViewed"
+                            class="font-weight-normal">{{responseToBeViewed?.artifactType}}</span></label>
+                </div>
+            </div>
+            <div class="p-2 bd-highlight">
+                <div *ngIf="responseToBeViewed?.taskId?.length > 0">
+                    <div class="menu">
+                        <div data-hover="" data-delay="0" class="dropdown w-dropdown drop-nav" appNavigationDropdown>
+                            <div class="dropdown-toggle w-dropdown-toggle">
+                                <div class="icon w-icon-dropdown-toggle"></div>
+                                <div class="text-block" style="cursor: pointer">External Task Id</div>
+                            </div>
+                            <nav class="dropdown-list w-dropdown-list drop-nav">
+                                <a *ngFor="let id of responseToBeViewed?.taskId" href="javascript:void(0)" class="dropdown-block-item w-inline-block">
+                                    <div class="tenant-selection-container">
+                                        <div class="dropdown-link-block">
+                                            <div class="menu-dropdown-title">{{ id }}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-2 bd -highlight" *ngIf="!hideButton && role!='Subscriber'">
+                <div>
+                    <span class="editBtn"><button (click)="edit()"><i class="fas fa-edit" style="color: black"></i>
+                            Edit</button></span>
+                </div>
+            </div>
+        </div>
+        <p class="_16pt grey w-50 pb-4">{{ responseToBeViewed?.pageDescription }}</p>
+        <div>
+            <ng-image-slider
+            *ngIf="responseToBeViewed?.image.length > 0"
+            [images]="responseToBeViewed?.image"
+            [infinite]="false"
+            [autoSlide]="1"
+            slideImage="1"
+            #nav
+            ></ng-image-slider>
+            </div>
+    </div>
+    <div class="main" *ngFor="let text of responseToBeViewed?.richTextArray; let i = index">
+        <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(text.richText)"></div>
+    </div>
+    <div class="content" *ngFor="let colourSection of responseToBeViewed?.colorSection">
+        <div class="heading-2">{{ colourSection.title }}</div>
+        <p class="_16pt grey _12-top-space w-75 desc">{{ colourSection.description }}</p>
+        <div class="container row col-sm-12" style="padding: 0px">
+            <div class="card-columns col-sm-4 pr-6" *ngFor="let colourPallete of colourSection.items">
+                <div class="card">
+                    <div class="card-body">
+                        <div [ngStyle]="{ 'background-color': colourPallete.hexaValue }" style="height: 150px; border-bottom: 1px solid #fafafa"></div>
+                        <div>
+                            <h4 class="heading-2">{{ colourPallete.colourName }}</h4>
+                            <table style="margin-left: 24px">
+                                <tr>
+                                    <th class="boxCss"><span>HEX</span></th>
+                                    <th><span>RGB</span></th>
+                                </tr>
+                                <tr>
+                                    <td class="boxCss">
+                                        <span>{{ colourPallete.hexaValue }}</span>
+                                    </td>
+                                    <td>
+                                        <span>{{ colourPallete.rgbValue }}</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="editModeFlag">
+    <app-rich-text-template [data]="richTextTemplateInput" (sendData)="handleRefresh($event)"></app-rich-text-template>
+</div>

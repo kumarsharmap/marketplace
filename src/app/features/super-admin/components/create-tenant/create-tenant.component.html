@@ -1,0 +1,116 @@
+<div class="card mt-3 p-3">
+    <div class="row">
+        <div class="col-sm mb-3 p-0">
+            <div class="pl-2 pt-2">
+                <h4 *ngIf="editTenantMode; else tenantedit">Update Tenant</h4>
+                <ng-template #tenantedit>
+                    <h4>Create A New Tenant</h4>
+                </ng-template>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb remove-breadcrumb">
+                        <li class="breadcrumb-item" (click)="navigateToCreateList()">
+                            <a href="javascript:void(0)">Create Tenant List</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page" *ngIf="editTenantMode; else tenantbreadcrumb">
+                            Update Tenant
+                        </li>
+                        <ng-template #tenantbreadcrumb>
+                            <li class="breadcrumb-item active" aria-current="page">Create Tenant</li>
+                        </ng-template>
+                    </ol>
+                </nav>
+                <p class="_14pt grey">
+                    Components are the reusable building blocks of our design system. Each component meets a specific interaction or UI need, and has been specifically created to work together to create patterns and intuitive user experiences.
+                </p>
+            </div>
+            <div class="form 40-top-space w-form p-2">
+                <form [formGroup]="createTenantForm">
+                    <label for="name" class="field-label">Tenant Name</label><input type="text" class="text-field w-input" formControlName="tenantName" placeholder="Tenant Name" id="name" />
+                    <div *ngIf="
+  createTenantForm?.controls['tenantName']?.invalid && createTenantForm?.controls['tenantName']?.touched" class="alert alert-danger">
+                        <div *ngIf="createTenantForm?.controls['tenantName']?.errors?.required">
+                            <small>Tenant Name is required.</small>
+                        </div>
+                    </div>
+                    <label class="field-label">Tenant Description</label><textarea type="text" class="text-field w-input" rows="4" formControlName="tenantDescription" placeholder="Tenant Description">
+  </textarea>
+                    <div *ngIf="
+  createTenantForm?.controls['tenantDescription']?.invalid &&
+  createTenantForm?.controls['tenantDescription']?.touched" class="alert alert-danger">
+                        <div *ngIf="createTenantForm?.controls['tenantDescription']?.errors?.required">
+                            <small> Tenant Description is required.</small>
+                        </div>
+                    </div>
+                    <h1 class="heading-2">Artifact Category</h1>
+                    <p class="_14pt grey _8-top-space mb-4">
+                        Select the areas in which you would like this Tenant to be visible.
+                    </p>
+                    <div class="div-block-22 mb-4">
+                        <div class="w-row" formArrayName="selectLocation">
+                            <div class="column-5 w-col w-col-4" *ngFor="let order of selectLocationArray?.controls; let i = index">
+                                <label for="{{ selectLocationList[i]?.artifactoryName }}">
+                                    <input type="checkbox" [formControlName]="i"
+                                        name="{{ selectLocationList[i]?.artifactoryName }}"
+                                        id="{{ selectLocationList[i]?.artifactoryName }}"
+                                        (change)="onSelectedArtifactoryCategories($event, selectLocationList[i]?.artifactoryName, i)" />
+                                    {{ selectLocationList[i]?.artifactoryName }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="createTenantForm?.controls['selectLocation']?.invalid && createTenantForm?.controls['selectLocation']?.touched" class="alert alert-danger">
+                        <div *ngIf="createTenantForm?.controls['selectLocation']?.errors">
+                            <small>select at least one artifact category</small>
+                        </div>
+                    </div>
+                    <app-add-user [roles]="roles" (addUserEvent)="onAddUsers($event)"></app-add-user>
+                    <table class="table table-bordered table-sm mt-4">
+                        <thead>
+                            <tr>
+                                <th>Users</th>
+                                <th>Roles</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="tenantUser">
+                            <tr [formGroupName]="userIndex" *ngFor="let controls of projectUserArray?.controls; let userIndex = index">
+                                <td>
+                                    <input type="hidden" formControlName="email" /> {{ addUsers[userIndex]?.email }}
+                                </td>
+                                <td>
+                                    <div class="col-auto">
+                                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                        <select id="inputState" class="form-control" (change)="onSelectedRole($event, userIndex)" formControlName="roleName">
+                                            <option [value]="role?.roleName" *ngFor="let role of roles; let i = index">
+                                                {{ role?.roleName }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" (click)="onDeleteUser(controls)">
+                                        <img src="assets/images/trash.svg" /></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <div class="d-flex flex-row-reverse">
+                    <div class="column-5 w-col w-col-3">
+                        <button *ngIf="editTenantMode; else editMode" type="button" (click)="onUpdateTenant()" class="submit-button w-button">
+                            Update Tenant
+                        </button>
+                        <ng-template #editMode>
+                            <button type="button" (click)="onCreateTenant()" class="submit-button w-button">Create
+                                Tenant</button>
+                        </ng-template>
+                    </div>
+                    <div class="column-5 w-col w-col-3 mr-3">
+                        <button routerLink="../createTenantList" type="button" class="cancel-button b-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex mt-4"></div>

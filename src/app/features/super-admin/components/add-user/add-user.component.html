@@ -1,0 +1,126 @@
+<div class="d-flex">
+    <div class="column-5 w-col w-col-3">
+        <button type="button" class="submit-button w-button" (click)="parentModal.show()">
+            Add user
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="d-flex justify-content-between width-100 align-items-center">
+                    <div>
+                        <h4 id="dialog-nested-name1">Add User To Tenant</h4>
+                    </div>
+                    <div>
+                        <button type="button" class="submit-button w-button pull-right" (click)="childModal.show()">
+                          <!--  <img src="assets/images/plus.svg" class="pr-2" alt="+" /> 
+                            -->
+                            Create user </button>
+                    </div>
+                </div>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="w-form">
+                    <form [formGroup]="addUserForm">
+                        <label for="email">Email Address</label>
+                        <input type="text" class="text-field w-input" formControlName="email" id="email" placeholder="email@hcl.com" />
+                        <div *ngIf="addUserForm?.controls['email'].invalid && addUserForm?.controls['email']?.touched" class="alert alert-danger">
+                            <div>
+                                <small *ngIf="addUserForm?.controls['email']?.errors?.required">Email is
+                                    required.</small>
+                                <small *ngIf="addUserForm?.controls['email']?.errors?.email">Email address is
+                                    invalid</small>
+                            </div>
+                        </div>
+
+                        <label for="role">Role</label>
+                        <select id="role" class="text-field w-input" formControlName="roleName" (change)="onSelectedRole($event)">
+                            <option value="" selected>Choose Role</option>
+                            <option *ngFor="let role of roles" [value]="role?.roleName">
+                                {{ role?.roleName }}
+                            </option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse">
+                    <div class="column-5 w-col w-col-6">
+                        <button type="button" [disabled]="addUserForm.invalid" [ngStyle]="{
+                cursor: !addUserForm.valid ? 'not-allowed' : 'pointer'
+              }" class="submit-button w-button" (click)="onSaveAddUser()">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="column-5 w-col w-col-6 mr-3">
+                        <button type="button" class="cancel-button b-button" (click)="parentModal.hide()">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-nested-name2" class="modal-title pull-left">
+                    Create A New User
+                </h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="onChildPopupClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="w-form">
+                    <form [formGroup]="registrationForm">
+                        <label for="name" class="field-label">Email Address</label>
+                        <input type="email" class="text-field w-input" formControlName="registeremail" placeholder="email@hcl.com" id="name" />
+                        <div *ngIf="registrationForm.controls['registeremail'].invalid && registrationForm.controls['registeremail'].touched" class=" alert alert-danger">
+                            <small *ngIf="registrationForm.controls['registeremail'].errors.required">
+                                Email is required.</small>
+                            <small *ngIf="registrationForm.controls['registeremail'].errors.email">Email address is
+                                invalid.</small>
+                        </div>
+                        <label>Name</label>
+                        <input type="text" class="text-field w-input" formControlName="name" placeholder="e.g John Doe" id="Name-2" />
+                        <div *ngIf="registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched" class="alert alert-danger">
+                            <div>
+                                <small *ngIf="registrationForm?.controls['name']?.errors?.required">Name is
+                                    required.</small>
+                                <small *ngIf="registrationForm?.controls['name']?.errors?.pattern">User input contained
+                                    a special
+                                    character</small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse">
+                    <div class="column-5 w-col w-col-6">
+                        <button type="button" [disabled]="registrationForm?.invalid" [ngStyle]="{
+                cursor: !registrationForm?.valid ? 'not-allowed' : 'pointer'
+              }" class="submit-button w-button" (click)="onAddUser()">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="column-5 w-col w-col-6 mr-3">
+                        <button type="button" class="cancel-button b-button" (click)="onCloseRegisterUser()">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

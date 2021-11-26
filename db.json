@@ -1,0 +1,418 @@
+{
+  "permissions": [
+    {
+      "permissionId": "",
+      "permissionName": "Admin",
+      "permissionDescription": "Admin",
+      "id": 1
+    }
+  ],
+  "tenant": [
+    {
+      "tenantName": "ewwer",
+      "tenantDescription": "erewr",
+      "selectLocation": [
+        false,
+        false,
+        true,
+        false,
+        true
+      ],
+      "tenantUser": [
+        {
+          "email": "karthicvel3777@gmail.com",
+          "roleName": "Admin",
+          "userId": null,
+          "roleId": 1,
+          "name": null,
+          "tenantId": 1
+        },
+        {
+          "email": "demo@gmail.com",
+          "roleName": "Admin",
+          "userId": null,
+          "roleId": 1,
+          "name": null,
+          "tenantId": 1
+        },
+        {
+          "email": "test@gmail.com",
+          "roleName": "Admin",
+          "userId": null,
+          "roleId": 1,
+          "name": null,
+          "tenantId": 1
+        }
+      ],
+      "artifactCategory": "Guides,Capabilities",
+      "id": 1
+    },
+    {
+      "tenantName": "sadsa",
+      "tenantDescription": "asd",
+      "tenantUser": [],
+      "artifactCategory": "Foundations",
+      "id": 3
+    }
+  ],
+  "roles": [
+    {
+      "roleId": 1,
+      "roleName": "Admin",
+      "roleDescription": "Admin",
+      "permission": [
+        true
+      ],
+      "rolePermission": [
+        {
+          "permissionId": 1,
+          "permissionName": "Admin"
+        },
+        {
+          "permissionId": "",
+          "permissionName": "Admin"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "roleId": 2,
+      "roleName": "Subscriber",
+      "roleDescription": "Subscriber",
+      "permission": [
+        true
+      ],
+      "rolePermission": [
+        {
+          "permissionId": "",
+          "permissionName": "Admin"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "roleId": "",
+      "roleName": "sad",
+      "roleDescription": "asdsa",
+      "permission": [
+        false
+      ],
+      "rolePermission": [],
+      "id": 3
+    },
+    {
+      "roleId": "",
+      "roleName": "ff",
+      "roleDescription": "ff",
+      "permission": [
+        true
+      ],
+      "rolePermission": [
+        {
+          "permissionId": "",
+          "permissionName": "Admin"
+        }
+      ],
+      "id": 4
+    }
+  ],
+  "tenantList": [
+    {
+      "tenantId": 1,
+      "tenantName": "CS Digital",
+      "tenantUser": [
+        {
+          "tenantUserRoleId": 8,
+          "tenantId": 1,
+          "userId": 7,
+          "roleId": 1,
+          "roleName": "Admin",
+          "email": "admin@gmail.com",
+          "name": "admin"
+        },
+        {
+          "tenantUserRoleId": 11,
+          "tenantId": 1,
+          "userId": 10,
+          "roleId": 1,
+          "roleName": "Admin",
+          "email": "test@gmail.com",
+          "name": "test"
+        }
+      ],
+      "artifactCategory": "Component",
+      "tenantDescription": "Java"
+    },
+    {
+      "tenantId": 2,
+      "tenantName": "RM Plus",
+      "tenantUser": [
+        {
+          "tenantUserRoleId": 9,
+          "tenantId": 2,
+          "userId": 7,
+          "roleId": 1,
+          "roleName": "Admin",
+          "email": "admin@gmail.com",
+          "name": "admin"
+        }
+      ],
+      "artifactCategory": "Component,Library",
+      "tenantDescription": "PHP"
+    },
+    {
+      "tenantId": 3,
+      "tenantName": "NEXJ",
+      "tenantUser": [
+        {
+          "tenantUserRoleId": 12,
+          "tenantId": 3,
+          "userId": 10,
+          "roleId": 1,
+          "roleName": "Admin",
+          "email": "test@gmail.com",
+          "name": "test"
+        }
+      ],
+      "artifactCategory": "Component,Library,Capabilities",
+      "tenantDescription": "C"
+    }
+  ],
+  "login": [
+    {
+      "artifactName": "Foundations",
+      "name": "demo",
+      "userId": 7,
+      "isSuperAdmin": "1",
+      "customTenantList": [
+        {
+          "roleId": 1,
+          "tenantId": 1,
+          "tenantName": "CS Digital",
+          "roleName": "Admin",
+          "artifactCategory": "Components,Foundations"
+        }
+      ]
+    },
+    {
+      "artifactName": "Components",
+      "name": "demo",
+      "userId": 7,
+      "customTenantList": [
+        {
+          "roleId": 1,
+          "tenantId": 1,
+          "tenantName": "RM Plus",
+          "roleName": "Owner",
+          "artifactCategory": "Components,Foundations"
+        },
+        {
+          "roleId": 1,
+          "tenantId": 22,
+          "tenantName": "NEXJ",
+          "roleName": "Observer",
+          "artifactCategory": "Components,Guides,Libraries,Capabilities"
+        }
+      ]
+    },
+    {
+      "artifactName": "Capabilities",
+      "name": "demo",
+      "userId": 7,
+      "customTenantList": [
+        {
+          "roleId": 1,
+          "tenantId": 22,
+          "tenantName": "DDH",
+          "roleName": "Observer",
+          "artifactCategory": "Components,Guides,Libraries,Capabilities"
+        }
+      ]
+    },
+    {
+      "artifactName": "Libraries",
+      "name": "demo",
+      "userId": 7
+    },
+    {
+      "artifactName": "Guides",
+      "name": "demo",
+      "userId": 7
+    }
+  ],
+  "addUser": [
+    {
+      "projectuser": {
+        "email": "demo@gmail.com",
+        "rolename": "publisher",
+        "role_id": "",
+        "username": "demo@gmail.com"
+      },
+      "id": 4
+    },
+    {
+      "email": "ft.karthicvel@gmail.com",
+      "roleName": "Admin",
+      "roleId": 1,
+      "id": 5
+    },
+    {
+      "email": "karthikkalathivel@gmail.com",
+      "roleName": "RR",
+      "roleId": 2,
+      "id": 6
+    }
+  ],
+  "changepassword": [
+    {
+      "password": "ASD",
+      "newPassword": "ASD",
+      "id": 1
+    }
+  ],
+  "user": [
+    {
+      "userId": 7,
+      "email": "admin@gmail.com",
+      "name": "admin",
+      "tenantUser": [
+        {
+          "tenantId": 1,
+          "tenantName": "Java",
+          "roleId": 1,
+          "roleName": "Admin",
+          "tenantUser": [],
+          "artifactCategory": "Component",
+          "tenantDescription": "Java"
+        },
+        {
+          "tenantId": 2,
+          "tenantName": "PHP",
+          "roleId": 1,
+          "roleName": "Admin",
+          "tenantUser": [],
+          "artifactCategory": "Component,Library",
+          "tenantDescription": "PHP"
+        },
+        {
+          "tenantId": 13,
+          "tenantName": "React",
+          "roleId": 1,
+          "roleName": "Admin",
+          "tenantUser": [],
+          "artifactCategory": "WebElement",
+          "tenantDescription": "React"
+        }
+      ],
+      "isActive": "1",
+      "password": "BJmbVhG1a/Y6CZR+6SCZJKNrKfc6oXyfPU7SIT0fcDsHX6fRQmtjj5OaxCPy4zMN",
+      "userName": "admin@gmail.com",
+      "id": 7
+    },
+    {
+      "userId": 10,
+      "email": "test@gmail.com",
+      "name": "test",
+      "tenantUser": [
+        {
+          "tenantId": 1,
+          "tenantName": "Java",
+          "roleId": 1,
+          "roleName": "Admin",
+          "tenantUser": [],
+          "artifactCategory": "Component",
+          "tenantDescription": "Java"
+        },
+        {
+          "tenantId": 3,
+          "tenantName": "C",
+          "roleId": 1,
+          "roleName": "Admin",
+          "tenantUser": [],
+          "artifactCategory": "Component,Library,Capabilities",
+          "tenantDescription": "C"
+        },
+        {
+          "tenantId": 13,
+          "tenantName": "React",
+          "roleId": 1,
+          "roleName": "Admin",
+          "tenantUser": [],
+          "artifactCategory": "WebElement",
+          "tenantDescription": "React"
+        }
+      ],
+      "isActive": "1",
+      "password": "q1wn+yDOeDksr4BdzC8yUfbQ067XZVRUTCPPibvIHUg69G4dmorG/PgSVsWebZTM",
+      "userName": "test@gmail.com",
+      "id": 10
+    },
+    {
+      "email": "gayathri@cs.com",
+      "name": "gayathri",
+      "application": [],
+      "tenantUser": [],
+      "id": 11
+    }
+  ],
+  "approvalQueue": [
+    [
+      {
+        "artifactId": 49,
+        "artifactTitle": "Position List",
+        "artifactDescription": "Position List",
+        "tenantId": 1,
+        "tenantName": "CS Digital",
+        "artifactCategory": "Capabilities",
+        "createdBy": "hcl@gmail.com",
+        "createdOn": "2021-03-17T11:59:10",
+        "lastModifiedOn": "2021-03-17T11:59:10",
+        "status": "In Progress",
+        "active": true
+      }
+    ],
+    [
+      {
+        "artifactId": 50,
+        "artifactTitle": "User Onboarding",
+        "artifactDescription": "User Onboarding",
+        "tenantId": 46,
+        "tenantName": "Wealth Engine",
+        "artifactCategory": "Capabilities",
+        "createdBy": "hcl@gmail.com",
+        "createdOn": "2021-03-17T13:27:05",
+        "lastModifiedOn": "2021-03-17T13:27:05",
+        "status": "In Progress",
+        "active": true
+      }
+    ],
+    [
+      {
+        "artifactId": 51,
+        "artifactTitle": "Marketplace Document",
+        "artifactDescription": "Marketplace Document",
+        "tenantId": 2,
+        "tenantName": "BPI – Flowable",
+        "artifactCategory": "Guides",
+        "createdBy": "hcl@gmail.com",
+        "createdOn": "2021-03-17T14:22:38",
+        "lastModifiedOn": "2021-03-17T14:22:38",
+        "status": "In Progress",
+        "active": true
+      },
+      {
+        "artifactId": 52,
+        "artifactTitle": "DesignOps Document",
+        "artifactDescription": "DesignOps Document",
+        "tenantId": 2,
+        "tenantName": "BPI – Flowable",
+        "artifactCategory": "Guides",
+        "createdBy": "hcl@gmail.com",
+        "createdOn": "2021-03-17T14:28:03",
+        "lastModifiedOn": "2021-03-17T14:28:03",
+        "status": "In Progress",
+        "active": true
+      }
+    ]
+  ]
+}

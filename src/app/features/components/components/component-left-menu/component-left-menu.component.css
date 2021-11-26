@@ -1,0 +1,97 @@
+.active {
+    color: #000;
+    border-left: 2px solid black;
+}
+
+.buttonDiv {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.tab-link {
+    padding-top: 15px;
+}
+
+.dropdown-item {
+    font-size: 14px;
+}
+
+#dropDownDivCss {
+    padding: 0px 24px 0px 24px;
+}
+
+#dropDownDivCss select {
+    height: 32px;
+    width: 125px;
+}
+
+.dropdownListCss {
+    padding: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: lightgrey;
+}
+
+::-webkit-scrollbar-thumb {
+    background: lightgrey;
+}
+
+:host ::ng-deep a {
+    text-decoration: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.customScroll {
+    height: 60px;
+    overflow: hidden;
+}
+
+.customScroll:hover {
+    overflow-y: scroll;
+}
+
+.createBtnCss {
+    padding: 24px;
+    outline: none;
+}
+
+button:focus,
+button:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.superAdminHeaderBlack {
+  background-color: #000 !important;
+}
+
+.superAdminHeaderWhite {
+  background-color: #fff !important;
+}
+
+.superAdminHeaderTextWhite {
+  color: #fff !important;
+}
+
+.superAdminTabsHeight {
+  min-height: 125vh !important;
+}
+
+.superAdminActive {
+  color: #fff;
+  border-left: 2px solid white;
+}
+
+a.superAdminHeaderBlack:hover {
+  color: #fff !important;
+}
+

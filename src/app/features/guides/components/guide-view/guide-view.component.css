@@ -1,0 +1,32 @@
+.panel-content {
+    font-family: Inter;
+}
+
+.editBtn {
+    color: #000000;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.35px;
+    line-height: 19px;
+    float: right;
+}
+
+.editBtn button {
+    height: 44px;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+
+.backlink {
+    color: Oblack;
+    text-decoration: underline;
+    font-weight: 600;
+    padding: 24px;
+    width: 100%;
+    background-color: Iwhite;
+}
+
+.backgroundclr {
+    background-color: white;
+}

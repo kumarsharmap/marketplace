@@ -1,0 +1,8 @@
+.delete-manage{
+    background-color: #fa6400 !important;
+    color: #fff;
+}
+::ng-deep .modal-content{
+    margin-left: 0px !important;
+    width: 100% !important;
+}

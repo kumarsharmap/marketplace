@@ -1,0 +1,212 @@
+<div class="section first-section white bottom-border">
+    <div class="fullsize-container">
+        <div class="div-block-34">
+            <div *ngIf="searchValue" class="header-text">
+                <div class="heading-1">Results for &quot;{{ searchValue }}</div>
+                <p class="_16pt grey _12-top-space">We found {{ searchList.length }} results for your search term</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="fullsize-container w-container">
+        <div class="section-container">
+            <div class="card_32-top-space" *ngIf=" capabilitiesArray.length > 0">
+                <div class="large-card-title-block">
+                    <div class="_4-top-space">
+                        <div class="heading-2">Capabilities</div>
+                    </div>
+                </div>
+                <div *ngFor="let capability of capabilitiesArray| paginate:{itemsPerPage: itemsPerPage,currentPage: capabilityPage,id: 'capabilityPage'}">
+                    <div class=" information-container bottom-border w-inline-block">
+                        <a (click)="navigateToViewPage(capability)">
+                            <div class="card-block-title">
+                                <div class="text-block-4">{{ capability.pageTitle }}</div>
+                            </div>
+                        </a>
+                        <div class="card-block-title">
+                            <p class="_16pt grey _12-top-space">
+                                {{ capability.pageDescription }}
+                            </p>
+                        </div>
+                        <div class="card-block-title d-flex">
+                            <div class="tag-information">
+                                <div class="tag-container right-space" style.background-color="{{ capability?.lightColor }}">
+                                    <div class="_14pt" style.color="{{ capability?.darkColor }}">{{capability.tenantName }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="previewIcon" (click)="openModal(template, capability)">
+                                <img src="assets/images/previewSearch.png" loading="lazy" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-container">
+                    <pagination-controls *ngIf="capabilitiesArray?.length > maximumPerPage" class="my-pagination" id="capabilityPage" (pageChange)="capabilityPage= $event"></pagination-controls>
+                </div>
+            </div>
+            <div class="card_32-top-space" *ngIf="librariesArray.length > 0">
+                <div class="large-card-title-block">
+                    <div class="_4-top-space">
+                        <div class="heading-2">Libraries</div>
+                    </div>
+                </div>
+                <div *ngFor="let library of librariesArray| paginate:{itemsPerPage: itemsPerPage,currentPage: libraryPage,id: 'libraryPage'}">
+                    <div class=" information-container bottom-border w-inline-block">
+                        <a (click)="navigateToViewPage(library)">
+                            <div class="card-block-title">
+                                <div class="text-block-4">{{ library.pageTitle }}</div>
+                            </div>
+                        </a>
+                        <div class="card-block-title">
+                            <p class="_16pt grey _12-top-space">
+                                {{ library.pageDescription }}
+                            </p>
+                        </div>
+                        <div class="card-block-title d-flex">
+                            <div class="tag-information">
+                                <div class="tag-container right-space" style.background-color="{{ library?.lightcolor }}">
+                                    <div class="_14pt" style.color="{{ library?.darkcolor }}">
+                                        {{ library.tenantName }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="previewIcon" (click)="openModal(template, library)">
+                                <img src="assets/images/previewSearch.png" loading="lazy" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-container">
+                    <pagination-controls *ngIf="librariesArray?.length > maximumPerPage" class="my-pagination" id="libraryPage" (pageChange)="libraryPage= $event"></pagination-controls>
+                </div>
+            </div>
+            <div class="card _32-top-space" *ngIf="componentsArray.length > 6">
+                <div class="large-card-title-block">
+                    <div class="_4-top-space">
+                        <div class="heading-2">Components</div>
+                    </div>
+                </div>
+                <div *ngFor="let component of componentsArray| paginate:{itemsPerPage: itemsPerPage,currentPage: componentPage,id: 'componentPage'}">
+                    <div class=" information-container bottom-border w-inline-block">
+                        <a (click)="navigateToViewPage(component)">
+                            <div class="card-block-title">
+                                <div class="text-block-4">{{ component.pageTitle }}</div>
+                            </div>
+                        </a>
+                        <div class="card-block-title">
+                            <p class="_16pt grey _12-top-space">
+                                {{ component.pageDescription }}
+                            </p>
+                        </div>
+                        <div class="card-block-title d-flex">
+                            <div class="tag-information">
+                                <div class="tag-container right-space" style.background-color="{{ component?.lightColor }}">
+                                    <div class="_14pt" style.color="{{ component?.darkColor }}">{{ component.tenantName}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="previewIcon" (click)="openModal(template, component)">
+                                <img src="assets/images/previewSearch.png" loading="lazy" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-container">
+                    <pagination-controls *ngIf="componentsArray?.length > maximumPerPage" class="my-pagination" id="componentPage" (pageChange)="componentPage = $event"></pagination-controls>
+                </div>
+            </div>
+            <div class="card__32-top-space" *ngIf="foundationsArray.length > 0">
+                <div class="large-card-title-block">
+                    <div class="_4-top-space">
+                        <div class="heading-2">Design Foundations</div>
+                    </div>
+                </div>
+                <div *ngFor="let foundation of foundationsArray| paginate:{itemsPerPage: itemsPerPage,currentPage: foundationsPage,id: 'foundationsPage'}">
+                    <div class="information-container bottom-border w-inline-block">
+                        <a (click)="navigateToViewPage(foundation)">
+                            <div class="card-block-title">
+                                <div class="text-block-4">{{ foundation.pageTitle }}</div>
+                            </div>
+                        </a>
+                        <div class="card-block-title">
+                            <p class="_16pt grey _12-top-space">
+                                {{ foundation.pageDescription }}
+                            </p>
+                        </div>
+                        <div class="card-block-title d-flex">
+                            <div class="tag-information">
+                                <div class="tag-container right-space" style.background-color="{{ foundation?.lightColor }}">
+                                    <div class="_14pt" style.color="{{ foundation?.darkColor }}">
+                                        {{foundation.tenantName }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="previewIcon" (click)="openModal(template, foundation)">
+                                <img src="assets/images/previewSearch.png" loading="lazy" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-container">
+                    <pagination-controls *ngIf="foundationsArray?.length > maximumPerPage" class="my-pagination" id="foundationsPage" (pageChange)="foundationsPage = $event"></pagination-controls>
+                </div>
+            </div>
+            <div class="card__32-top-space" *ngIf="guidesArray.length > 0">
+                <div class="large-card-title-block">
+                    <div class="_4-top-space">
+                        <div class="heading-2">Guides</div>
+                    </div>
+                </div>
+                <div *ngFor="let guide of guidesArray| paginate:{itemsPerPage: itemsPerPage,currentPage: guidesPage,id: 'guidesPage'}">
+                    <div class=" information-container bottom-border w-inline-block">
+                        <a (click)="navigateToViewPage(guide)">
+                            <div class="container-mid">
+                                <div [className]="guide.artifactType == 'Design' ? 'guide-icon designers' : 'guide-icon developers'">
+                                    <img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" />
+                                </div>
+                                <div class="card-block-title left-margin">
+                                    <div class="text-block-4">{{ guide.pageTitle }}</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="container-mid">
+                            <div class="card-block-title" style="margin-left: 56px">
+                                <p class="paragraph grey">{{ guide.pageDescription }}</p>
+                            </div>
+                        </div>
+                        <div class="container-mid d-flex">
+                            <div class="tag-information">
+                                <div class="tag-container right-space" style.background-color="{{ guide?.lightColor }}">
+                                    <div class="_14pt" style.color="{{ guide.darkColor }}">{{ guide.tenantName }}</div>
+                                </div>
+                            </div>
+                            <div class="previewIcon" (click)="openModal(template, guide)">
+                                <img src="assets/images/previewSearch.png" loading="lazy" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination-container">
+                    <pagination-controls *ngIf="guidesArray?.length > maximumPerPage" class="my-pagination" id="guidesPage" (pageChange)="guidesPage = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Preview</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-capabilities-view *ngIf="showCapability" [selected CapabilityId]="selectedId"> </app-capabilities-view>
+        <app-component-view *ngIf="showComponent" [selectedCapabilityId]="selectedId"> </app-component-view>
+        <app-view-rich-text-template [data]="selectedId" *ngIf="showFoundation"> </app-view-rich-text-template>
+        <app-guide-view [data]="selectedId" *ngIf="showGuide"></app-guide-view>
+        <app-libraries-view [selectedLibraryId]="selectedId" *ngIf="showLibrary"></app-libraries-view>
+    </div>
+</ng-template>

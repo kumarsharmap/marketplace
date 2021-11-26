@@ -1,0 +1,33 @@
+<div class="main-div">
+    <div class="left-panel-section">
+        <div class="inner-page-container">
+            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" [class.superAdminTabsHeight]="isSuperAdmin">
+                <div class="tabs-menu w-tab-menu" [class.superAdminHeaderBlack]="isSuperAdmin">
+                    <app-navigation-indication></app-navigation-indication>
+                    <a data-w-tab="Tab 1" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{ active: homeFoundationFlag == true && !isSuperAdmin , superAdminActive: homeFoundationFlag == true && isSuperAdmin }" data-toggle="tabs" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Design Foundations Home </a>
+                    <div>
+                        <div *ngFor="let approveFoundation of list">
+                            <a data-w-tab="Tab 2" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{ active: approveFoundation?.artifactId == clicked?.artifactId && !isSuperAdmin, superAdminActive: approveFoundation?.artifactId == clicked?.artifactId && isSuperAdmin }" data-toggle="tabs" (click)="loadData('approved', approveFoundation)" class="tab-link w-inline-block w-tab-link">{{approveFoundation.pageTitle }}
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngIf="role != 'Subscriber'" class="buttonDiv">
+                        <button type="button" (click)="loadOthers()" [ngClass]="{ active: createFoundationFlag == true }" [class.superAdminHeaderTextWhite]="isSuperAdmin" class="btn btn-default createBtncss"><i
+                                class="fas fa-plus"></i>&nbsp; Create New
+                        </button>
+                    </div>
+                </div>
+                <div class="tabs-content w-tab-content">
+                    <div data-w-tab="Tab 6">
+                        <app-foundation-home [data]="homePageInput" (clickedArtifact)="handleClick($event)" *ngIf="homeFoundationFlag"></app-foundation-home>
+                        <app-rich-text-template *ngIf="othersFoundationFlag" [data]="richTextTemplateInput">
+                        </app-rich-text-template>
+                        <app-view-rich-text-template [data]="idToSend" *ngIf="viewOtherArtifactFlag">
+                        </app-view-rich-text-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div></div>
+    </div>
+</div>

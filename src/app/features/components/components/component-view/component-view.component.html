@@ -1,0 +1,246 @@
+<div *ngIf="!EditModeFlag" class="body">
+    <div class="left-panel-section">
+        <div class="inner-page-container">
+            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs">
+                <div class="tabs-content w-tab-content">
+                    <div data-w-tab="Tab 2" class="w-tab-pane w--tab-active">
+                        <div class="section white">
+                            <div class="in-page-container">
+                                <a id="button-back" href="#" class="back _24-bottom-space w-inline-block">
+                                    <div class="back-icon"><img src="images/tick_1.svg" loading="lazy" alt="" class="back-icon" /></div>
+                                    <p class="_16pt _4-top-space">Back</p>
+                                </a>
+                                <div class="split-container horizontal inner-page-max-width _24-top-space" style="display: flow-root;">
+                                    <div class="header-text" *ngIf="selectedCapability">
+                                        <div class="d-flex flex-row-reverse" *ngIf="showSearch">
+                                            <div class="p-2" style="height: 44px;border-radius: 4px; background-color: #fafafa">
+                                                <span>
+                                                    <button (click)="back()" style="background: #fafafa">
+                                                        <i class="fas fa-arrow-left" style="color: black"></i>&nbsp;
+                                                        Back to search results
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex bd -highlight">
+                                            <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                                                <div class="heading-1" *ngIf="selectedCapability">{{ selectedCapability?.pageTitle }}</div>
+                                            </div>
+                                            <div class="p-2 bd-highlight d-flex align-items-center" style="padding-top: 14px !important">
+                                                <div>
+                                                    <label>Artifact Type :
+                                                        <span *ngIf="selectedCapability"
+                                                            class="font-weight-normal">{{selectedCapability?.artifactType}}</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="p-2 bd-highlight">
+                                                <div *ngIf="selectedCapability?.taskId.length > 0">
+                                                    <div class="menu">
+                                                        <div data-hover="" data-delay="0" class="dropdown w-dropdown drop-nav" appNavigationDropdown>
+                                                            <div class="dropdown-toggle w-dropdown-toggle">
+                                                                <div class="icon w-icon-dropdown-toggle"></div>
+                                                                <div class="text-block" style="cursor: pointer">External Task Id</div>
+                                                            </div>
+                                                            <nav class="dropdown-list w-dropdown-list drop-nav">
+                                                                <a *ngFor="let id of selectedCapability?.taskId" href="javascript:void(0)" class="dropdown-block-item w-inline-block">
+                                                                    <div class="tenant-selection-container">
+                                                                        <div class="dropdown-link-block">
+                                                                            <div class="menu-dropdown-title">
+                                                                                {{ id }}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </nav>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-2 bd-highlight" *ngIf="!hideButton && role!='Subscriber'">
+                                                <div>
+                                                    <span class="editBtn"><button (click)="edit()">
+                                                            <i class="fas fa-edit" style="color: black"></i> Edit
+                                                        </button></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="_16pt grey _12-top-space">{{ selectedCapability?.pageDescription}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backgroundClr">
+                            <accordion [closeOthers]="true" style="padding: 24px">
+                                <accordion-group *ngFor="let details of selectedCapability?.componentDetails; let i = index" 
+                                style="margin-bottom: 24px" #group1 
+                                [isOpen]="selectedCapability?.componentDetails?.length === 1" (isOpenChange)="selectTab($event, i)" [isOpen]="selectedCapability?.componentDetails.length === 1">
+                                    <div accordion-heading style="width: 100%">
+                                        <div class="accordionHeader" *ngIf="details['tech']['previews'][0].blockTitle !=''">
+                                            {{ details['tech']['previews'][0].blockTitle }}
+                                        </div>
+                                        <div class="accordionHeader" *ngIf="details['tech']['previews'][0].blockTitle ==''">
+                                            Component New
+                                        </div>
+                                        <div style="float: right">
+                                            <i *ngIf="group1?.isOpen" class="fas fa-angle-down" style="font-size:20px"></i>
+                                            <i *ngIf="!group1?. isOpen" class="fas fa-angle-right" style="font-size:20px"></i>
+                                        </div>
+                                    </div>
+                                    <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                                        <div class="tabs-menu-2 bottom-border w-tab-menu">
+                                            <tabset type="pills" #tabset>
+                                                <tab *ngFor="let tab of headings" style="font-weight: 600" [(heading)]="tab.tabTitle" (selectTab)="confirmTabSwitch($event)">
+                                                </tab>
+                                            </tabset>
+                                        </div>
+                                        <div class="w-tab-content">
+                                            <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active" *ngIf="tabHeading == 'Example'">
+                                                <div>
+                                                    <div>
+                                                        <div class="section">
+                                                            <div class="in-page-container">
+                                                                <div class="card inner-page-max-width">
+                                                                    <div class="panel-content">
+                                                                        <h1 class="heading-2">
+                                                                            {{details['tech']['previews'][0].blockTitle }}
+                                                                        </h1>
+                                                                        <p class="_16pt grey _12-top-space">
+                                                                            {{ details['tech']['previews'][0].summdescription }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="panel-preview-area" style="display: table-cell; vertical-align: middle; text-align: center">
+                                                                        <div>
+                                                                            <div data-w-id="c941c752-1233-17a6-d179-8bab82ef2b82" class="website-preview">
+                                                                                <img class="image-9" style="max-width: 500px" [src]="details['tech']['previews'][0]['previewImages'][0]['previewImage']" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                                                                        <div class="tabs-menu-2 bottom-border w-tab-menu">
+                                                                            <tabset type="pills">
+                                                                                <tab *ngFor="let tabTitle of details['tech']['previews'][0].codeSection" [(heading)]="tabTitle.syntax" (selectTab)="subTabSwitch($event)">
+                                                                                    <div class="w-tab-content">
+                                                                                        <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+                                                                                            <div class="html-embed w-embed">
+                                                                                                <pre><code class="language-css">{{tabTitle.code | parseCode}}</code></pre>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </tab>
+                                                                            </tabset>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="section" *ngIf="details['tech'].richTextBlock.length != 0">
+                                                        <div class="in-page-container">
+                                                            <div class="card inner-page-max-width">
+                                                                <div class="panel-content" *ngFor="let services of details['tech'].richTextBlock">
+                                                                    <h1 class="heading-2">{{ services.blockTitle }}</h1>
+                                                                    <div class="_16pt grey _12-top-space" [innerHTML]="services.richText"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-w-tab="Tab 4" class="w-tab-pane w--tab-active" *ngIf="tabHeading == 'Code'">
+                                                <div class=" section" *ngFor="let code of details['code'].richTextArray">
+                                                    <div class="in-page-container">
+                                                        <div class="card inner-page-max-width">
+                                                            <div class="panel-content">
+                                                                <h1 class="heading-2">{{ code.blockTitle }}</h1>
+                                                            </div>
+                                                            <div class="panel-content">
+                                                                <div [innerHTML]="code.richText"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-w-tab="Tab 4" class="w-tab-pane w--tab-active" *ngIf="tabHeading == 'Usage'">
+                                                <div class="section" *ngFor="let usage of details['usage'].richTextArray">
+                                                    <div class="in-page-container">
+                                                        <div class="card inner-page-max-width">
+                                                            <div class="panel-content">
+                                                                <h1 class="heading-2">{{ usage.blockTitle }}</h1>
+                                                            </div>
+                                                            <div class="panel-content">
+                                                                <div [innerHTML]="usage.richText"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-w-tab="Tab 4" class="w-tab-pane w--tab-active" *ngIf="tabHeading == 'Resources'">
+                                                <div>
+                                                    <div class="w-layout-grid grid inner-page-max-width">
+                                                        <div class="card" *ngFor="let res of details['resource'].resources">
+                                                            <div data-w-id="d762fcfc-84c2-0587-3c54-60892ae4abd7" style="-webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0)rotatez() skew(0, 0);-moz-transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotatez(0)skew(0, 0);-ms-transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotatey(0) rotatez(0)skew(0,0);transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateX(0) rotatez(0) skew(0, 0);"
+                                                                class="panel">
+                                                                <div class="panel-content small-margin">
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'Bitbucket'">
+                                                                        <img src="assets/images/bitbucket.png " loading="lazy " alt="" />
+                                                                    </div>
+                                                                    <div class=" resource-icon-container " *ngIf=" res.resourceName=='Jira'">
+                                                                        <img src="assets/images/jira.png" loading="lazy" alt="" />
+                                                                    </div>
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'Artifactory'">
+                                                                        <img src="assets/images/artefactory.png" loading="lazy" alt="" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="panel-content small-margin">
+                                                                    <h1 class="heading-2">{{ res.resourceName }}</h1>
+                                                                    <div class="split-div">
+                                                                        <div class="copy-field">
+                                                                            <div class="copy-field-container">
+                                                                                {{res.linkLocation }}
+                                                                            </div>
+                                                                            <a href="{{ res.linkLocation }}" target="_blank" class="button small resource-inline
+                                                                            w-button">Download</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div data-w-tab="Tab 5" class="w-tab-pane w--tab-active" *ngIf="tabHeading =='Updates'">
+                                                <div class="section" *ngFor="let updates of details['update'].updates">
+                                                    <div class="in-page-container">
+                                                        <div class="card inner-page-max-width">
+                                                            <div class="panel-content">
+                                                                <h1 class="heading-2">{{ updates.version }}</h1>
+                                                                <div class="card-block-title bottom-margin">
+                                                                    <div class="tag-information">
+                                                                        <div class="_14pt grey _4-top-space">Released {{ updates.dateOfUpdate }}</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-content">
+                                                                <div [innerHTML]="updates.updateDescription"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </accordion-group>
+                            </accordion>
+                            <app-comments [data]="sendCommentsInput" (submittedComment)="refreshList($event)" *ngIf="selectedCapability"></app-comments>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="EditModeFlag">
+    <a class="backlink" (click)="handleCancel('')">>> Back to View</a>
+    <app-component-create [data]="senData" [artifactCategory]="sendCommentsInput" (sendData)="handleCancel($event)"></app-component-create>
+</div>

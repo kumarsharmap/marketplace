@@ -1,0 +1,59 @@
+<div class="section-2 minus_71px">
+    <div class="mini-size-container">
+        <div class="w-layout-grid card">
+            <div class="large-card-title-block user-mgmt-padding">
+                <div class="_4-top-space">
+                    <div class="heading-1 _16-bottom">Sign In</div>
+                    <p class="_14pt grey">Sign in to the HCL DesignOps to view components, capabilities and more!
+                    </p>
+                </div>
+                <div class="form _40-top-space w-form">
+                    <form [formGroup]="loginForm">
+                        <label for="Email" class="field-label">Email Address</label>
+                        <input type="email" class="text-field w-input" formControlName="email" placeholder="email@hcl.com" id="Email" />
+                        <div *ngIf="loginForm?.controls['email']?.invalid && loginForm?.controls['email']?.touched" class="alert alert-danger">
+                            <small *ngIf="loginForm?.controls['email']?.errors?.required"> Email is required. </small>
+                            <small *ngIf="loginForm?.controls['email']?.errors?.email">Email address is invalid</small>
+                        </div>
+                        <label for="Password" class="field-label">Password</label>
+                        <input type="password" class="text-field w-input" formControlName="password" placeholder="....." id="Password" />
+                        <div *ngIf="loginForm?.controls['password']?.invalid && loginForm?.controls['password']?.touched" class="alert alert-danger">
+                            <div *ngIf="loginForm?.controls['password']?.errors?.required">
+                                <small>Password is required.</small>
+                            </div>
+                        </div>
+                        <div class="div-block-24">
+                            <div class="div-block-26">
+                                <a href="javascript:void(0)" (click)="onForgotPassword()" class="link">Forgot
+                                    Password?</a>
+                            </div>
+                        </div>
+                        <button (click)="onSubmitLogin()" class="submit-button w-button">Login</button>
+                    </form>
+                </div>
+                <div class="div-block-23">
+                    <div class="w-richtext">
+                        <p>
+                            Haven&#x27;t registered yet? <a href="javascript:void(0)" (click)="onSignupAccount()">Click
+                                here to
+                                register</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div data-poster-url="https://uploads-ssl.webflow.com/60255a2bf4c5e49f26b6c084/602ab4401f77444fcf48b954_Norway   Mountains copy-poster-00001.jpg" data-video-urls="https://uploads-ssl.webflow.com/60255a2bf4c5e49f26b6c084/602ab4401f77444fcf48b954_Norway   Mountains copy-transcode.mp4,https://uploads-ssl.webflow.com/60255a2bf4c5e49f26b6c084/602ab4401f77444fcf48b954_Norway   Mountains copy-transcode.webm"
+                data-autoplay="true" data-loop="true" data-wf-ignore="true" class="background-video-3 w-background-video w-background-video-atom">
+                <video autoplay="" loop="" style="
+          background-image: url('https://uploads-ssl.webflow.com/60255a2bf4c5e49f26b6c084/602ab4401f77444fcf48b954_Norway   Mountains copy-poster-00001.jpg');
+        " muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
+                    <source
+                        src="https://uploads-ssl.webflow.com/60255a2bf4c5e49f26b6c084/602ab4401f77444fcf48b954_Norway   Mountains copy-transcode.mp4"
+                        data-wf-ignore="true" />
+                    <source
+                        src="https://uploads-ssl.webflow.com/60255a2bf4c5e49f26b6c084/602ab4401f77444fcf48b954_Norway   Mountains copy-transcode.webm"
+                        data-wf-ignore="true" />
+                </video>
+            </div>
+        </div>
+    </div>
+</div>

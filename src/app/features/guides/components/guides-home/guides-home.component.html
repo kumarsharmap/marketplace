@@ -1,0 +1,36 @@
+<div>
+    <div class="fullsize-container w-container">
+        <div class="section-container">
+            <div class="columns w-row">
+                <div class="column w-col w-col-8 w-col-stack">
+                    <div class="card">
+                        <div class="large-card-title-block">
+                            <div class="_4-top-space">
+                                <div class="heading-2">Guides for Developers and Designers</div>
+                            </div>
+                        </div>
+                        <a class="information-container bottom-border w-inline-block" *ngFor="let guide of listOfGuides | paginate: { itemsPerPage: 5, currentPage: guidesHome }">
+                            <div class="container-mid">
+                                <div *ngIf="guide.artifactType == 'Development'" title="Development" class="guide-icon developers">
+                                    <img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" />
+                                </div>
+                                <div *ngIf="guide.artifactType == 'Design'" title="Design" class="guide-icon designers">
+                                    <img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" />
+                                </div>
+                                <div class="card-block-title left-margin" (click)="loadData(guide)">
+                                    <div class="text-block-4">{{ guide.pageTitle }}</div>
+                                    <p class="paragraph grey">{{ guide.pageDescription }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div *ngIf="listOfGuides?.length === 0" class="p1-4">No records</div>
+                        <pagination-controls *ngIf="listOfGuides?. length > 0" class="my-pagination" (pageChange)="guidesHome = $event"></pagination-controls>
+                    </div>
+                </div>
+                <div class="column-2 w-col w-col-4 w-col-stack">
+                    <app-gudies-trending></app-gudies-trending>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

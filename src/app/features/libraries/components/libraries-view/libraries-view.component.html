@@ -1,0 +1,120 @@
+<div *ngIf="!editModeFlag" class="backgroundClr">
+    <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+        <div class="section white">
+            <div class="in-page-container" style="padding-top: 8px">
+                <div class="split-container horizontal inner-page-max-width_24-top-space" style="display: contents;">
+                    <div class="header-text">
+                        <div class="d-flex flex-row-reverse" *ngIf="showSearch">
+                            <div class="p-2" style="height: 44px; border-radius: 4px;background-color: #fafafa">
+                                <span>
+                                    <button (click)="back()" style="background: #fafafa">
+                                        <i class="fas fa-arrow-left" style="color: black"></i>&nbsp; Back to search
+                                        results
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                                <div *ngIf="selectedLibrary" style="margin-left: -10px">{{ selectedLibrary?.pageTitle }}
+                                </div>
+                            </div>
+                            <div class="p-2 bd-highlight d-flex align-items-center" style="padding-top: 14px !important">
+                                <div>
+                                    <label>Artifact Type :
+                                        <span *ngIf="selectedLibrary"
+                                            class="font-weight-normal">{{selectedLibrary?.artifactType}}</span></label>
+                                </div>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <div *ngIf="selectedLibrary?.taskId">
+                                    <div class="menu">
+                                        <div data-hover="" data-delay="0" class="dropdown w-dropdown drop-nav" appNavigationDropdown>
+                                            <div class="dropdown-toggle w-dropdown-toggle">
+                                                <div class="icon w-icon-dropdown-toggle"></div>
+                                                <div class="text-block" style="cursor: pointer">External Task Id</div>
+                                            </div>
+                                            <nav class="dropdown-list w-dropdown-list drop-nav">
+                                                <a *ngFor="let id of selectedLibrary.taskId" href="javascript:void(0)" class="dropdown-block-item w-inline-block">
+                                                    <div class="tenant-selection-container">
+                                                        <div class="dropdown-link-block">
+                                                            <div class="menu-dropdown-title">{{ id }}</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2 bd-highlight" *ngIf="!hideButton && role!='Subscriber'">
+                                <div>
+                                    <span class="editBtn">
+                                        <button (click)="showEdit()"><i class="fas fa-edit"
+                                                style="color: black"></i>Edit</button></span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="components-are-the-r _16pt grey 12-top-space w-50 desc">
+                            {{ selectedLibrary?.pageDescription }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let libraries of selectedLibrary?.libraries">
+            <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                <div class="w-tab-content">
+                    <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+                        <div class="section" *ngIf="selectedLibrary?.libraries.length !== 0">
+                            <div class="in-page-container">
+                                <div class="card inner-page-max-width">
+                                    <div class="panel-content">
+                                        <h1 class="heading-2">{{ libraries?.libraryName }}</h1>
+                                        <p class="_16pt grey _12-top-space">
+                                            {{ libraries?.libraryDesc }}
+                                        </p>
+                                    </div>
+                                    <div class="panel-preview-area web-preview" *ngIf="libraries?.previewImage">
+                                        <div class="example-content-container page">
+                                            <div data-w-id="c941c752-1233-17a6-d179-8babe2ef2b82" class="website-preview">
+                                                <img style="padding: 0px 110px 0px;width: 100%" [src]="libraries.previewImage" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                                        <div class="tabs-menu-2 bottom-border w-tab-menu" *ngIf="libraries.fileName">
+                                            <h1 class="heading-2 top-space" style="padding-left: 24px">Library Location
+                                            </h1>
+                                            <div class="split-div" style="width:70%;padding: 0px 24px 24px 24px">
+                                                <div class="copy-field">
+                                                    <div class="copy-field-container">{{ libraries?.fileName }}
+                                                    </div>
+                                                    <!-- <а href="{{libraries?.fileName}}" target="_blank" class="button small resource-inline w-button">Download</a> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tabs-menu-2 bottom-border w-tab-menu" *ngIf="libraries.libraryFile">
+                                            <h1 class="heading-2" style="padding-left: 24px">External Resource</h1>
+                                            <div class="split-div" style="width: 70%; padding: 0px 24px 24px 24px">
+                                                <div class="copy-field">
+                                                    <a href="{{ libraries?.libraryFile }}" target="_blank">
+                                                        <div class="copy-field-container">{{ libraries?.libraryFile }}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="editModeFlag">
+    <app-libraries-create [data]="libraryInput" (sendData)="handleRefresh($event)"></app-libraries-create>
+</div>

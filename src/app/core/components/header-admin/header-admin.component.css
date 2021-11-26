@@ -1,0 +1,11 @@
+.active {
+    border-left: 3px solid #000;
+    color: #000;
+}
+.admin-home:hover {
+    color: #a0a9b2;
+}
+.tag-alignment {
+    padding: 10px 24px !important;
+    text-align: left;
+}

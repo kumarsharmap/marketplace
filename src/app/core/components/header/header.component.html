@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-xl navbar-light bg-light navigation-bar-menu p-0 fixed-top" [class.superAdminHeaderBlack]="isSuperAdmin">
+    <a href="javascript:void(0)" (click)="navigateToDashboard()" class="navbar-brand link-block-3 w-inline-block main-menu">
+        <div class="mark">
+            <img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" class="image" />
+        </div>
+        <div class="logo-type" [class.superAdminHeaderTextWhite]="isSuperAdmin">DesignOps
+            <span class="font-weight-normal beta">BETA</span>
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto align-items-center">
+            <!-- {{isMenuRefresh}}
+            {{headerMenuItems}} -->
+            <ng-container *ngIf="isMenuRefresh">
+                <li class="nav-item dropdown"  *ngFor="let menu of headerMenuItems" [ngClass]="{'active-menu': menu?.artifactName === selectedMenu && !isSuperAdmin, 'superAdminHeaderSelected': menu?.artifactName === selectedMenu && isSuperAdmin, 'superAdminHeaderBlack': isSuperAdmin }">
+                    <a style="text-decoration: none" href="javascript:void(0)" class="nav-link dropdown-toggle" [ngClass]="{'superAdminHeaderTextSelected': menu?.artifactName === selectedMenu && isSuperAdmin }" [class.superAdminHeaderTextWhite]="isSuperAdmin" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ menu?.artifactName }}
+            <div class="icon w-icon-dropdown-toggle" *ngIf="menu?.customTenantList?.length > 0"></div>
+          </a>
+
+                    <div class="dropdown-menu pb-0" aria-labelledby="navbarDropdown">
+                        <a (click)="navigateToMenu(menu, subMenu)" style="padding: 0px 10px" class="dropdown-item dropdown-block-item w-inline-block" href="javascript:void(0)" *ngFor="let subMenu of menu?.customTenantList">
+                            <div class="tenant-selection-container">
+                                <div class="thumbnail cs-digital" [style.backgroundColor]="subMenu?.lightColor">
+                                    <div class="menu-dropdown-title" [style.color]="subMenu?.darkColor">
+                                        {{ subMenu?.tenantName.charAt(0) }}
+                                    </div>
+                                </div>
+
+                                <div class="dropdown-link-block">
+                                    <div class="menu-dropdown-title">{{ subMenu?.tenantName }}</div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ng-container>
+        </ul>
+        <div class="right-icons pr-0">
+            <div class="link-block-2 w-inline-block" [ngClass]="{'superAdminBorderRadius':isSuperAdmin}" [class.superAdminHeaderWhite]="isSuperAdmin">
+                <div class="fake-search-box">
+                    <div class="div-block-3">
+                        <input type="search" class="text-block-3 grey" placeholder="Search" (keydown)="search($event)" />
+                    </div>
+                </div>
+            </div>
+
+             <a *ngIf="!isSuperAdmin" routerLink="adminmenu" class="admin-button w-button ml-3" [ngClass]="isSelectedAdminMenu ? 'active-menu' : ''">
+                <img class="mr-1" src="assets/images/new-user.svg" loading="lazy" alt="" /> Admin </a>
+            <a *ngIf="isSuperAdmin" routerLink="adminmenu" class="admin-button w-button ml-3" [ngClass]="isSelectedAdminMenu ? 'active-menu' : ''">
+                <img class="mr-1" src="assets/images/new-user.svg" loading="lazy" alt="" /> Super Admin </a>
+            <a (click)="navigateToSignOut()" [class.superAdminHeaderWhite]="isSuperAdmin" href="javascript:void(0)" class="link-block-4 w-inline-block">
+                <img src="assets/images/Logo_1.svg" loading="lazy" alt="" class="image-14" />
+            </a>
+
+            <div class="div-block-36"></div>
+        </div>
+
+    </div>
+
+</nav>

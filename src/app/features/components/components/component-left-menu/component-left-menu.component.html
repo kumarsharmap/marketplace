@@ -1,0 +1,27 @@
+<div class="main-div">
+    <div class="left-panel-section">
+        <div class="inner-page-container">
+            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" [class.superAdminTabsHeight]="isSuperAdmin">
+                <div class="tabs-menu w-tab-menu" [class.superAdminHeaderBlack]="isSuperAdmin">
+                    <app-navigation-indication></app-navigation-indication>
+                    <a data-w-tab="Tab 1" data-toggle="tabs" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{active:showHomePage==true && !isSuperAdmin,superAdminActive:showHomePage==true && isSuperAdmin}" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Components Home</a>
+                    <div *ngFor="let listObj of list">
+                        <a data-w-tab="Tab 2" data-toggle="tabs" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{active:clicked.artifactId==listObj.artifactId && !isSuperAdmin,superAdminActive:clicked.artifactId==listObj.artifactId && isSuperAdmin}" (click)="loadData('approved',listObj)" class="tab-link w-inline-block w-tab-link">{{listObj.pageTitle}}</a>
+                    </div>
+                    <div class="buttonDiv">
+                        <button type="button" (click)="loadCreate()" class="btn btn-default createBtnCss" [class.superAdminHeaderTextWhite]="isSuperAdmin"><i
+                                class="fas fa-plus"></i>&nbsp; Create New</button>
+                    </div>
+                    <!-- *ngIf="role=='publisher'||role=='Admin'" -->
+                </div>
+                <div class="tabs-content w-tab-content">
+                    <div data-w-tab="Tab 6">
+                        <app-component-home-page *ngIf="showHomePage"></app-component-home-page>
+                        <app-component-create [data]="inpObjTosend" (sendData)="refreshListCreate($event)" *ngIf="showCreatePage"></app-component-create>
+                        <app-component-view *ngIf="showViewPage" (data)="refreshList($event)" [selectedCapabilityId]="selectedCapabilityId"></app-component-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<form [formGroup]="form">
+    <div>
+        <div formArrayName="richTextArray" *ngFor="let text of form.get('richTextArray')['controls'];let i=index">
+            <div [formGroupName]="i">
+                <div class="div-border-tabs">
+                    <div class="row border-btm">
+                        <div class="col">
+                            <label for="title" class="preview">Code Block</label>
+                        </div>
+                        <div class="col">
+                            <i class="fas fa-trash" style="color: black;float:right" (click)="deleteRichTextSection(i)"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label class="text-block-4 pt-4">Block Title</label>
+                        </div>
+                        <div>
+                            <input formControlName="blockTiitle" class="text-field w-input" type="text" />
+                        </div>
+                        <div>
+                            <label class="text-block-4">Rich Text</label>
+                        </div>
+                        <div style="width:740px;min-height: 56px;">
+                            <quill-editor formControlName="richText" class="content-editor" [styles]="{'min-height':'150px'}" [modules]="quillConfiguration"></quill-editor>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 3px 0px 0px 16px;">
+        <button class="code-block-button" (click)="addRichText()">
+            <button class="button"><i class="fas fa-plus"></i></button> &nbsp; Add Additional Code Block
+        </button>
+    </div>
+</form>

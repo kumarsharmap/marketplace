@@ -1,0 +1,19 @@
+<div *ngIf="active">
+    <!-- <p-progressSpinner></p-progressSpinners -->
+    <ngx-spinner bdcolor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+        <p style="color: white">Uploading...</p>
+    </ngx-spinner>
+</div>
+<div *ngIf="enableAPISpinner">
+    <!-- <p-progressSpinnerx</p-progressSpinner> -->
+    <ngx-spinner bdcolor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+        <p style="color: white">Loading...</p>
+    </ngx-spinner>
+</div>
+
+<div *ngIf="enableBrowseSpinner">
+    <!-- <p-progressSpinnerx</p-progressSpinner) -->
+    <ngx-spinner bdcolor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+        <p style="color:  white">Loading...</p>
+    </ngx-spinner>
+</div>

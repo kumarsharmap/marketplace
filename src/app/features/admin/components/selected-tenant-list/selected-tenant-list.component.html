@@ -1,0 +1,94 @@
+<div class="card mt-3" *ngIf="!viewOtherArtifactFlag"> 
+  <div class="row">
+  <div class="col-sm">
+  <div class="row justify-content-between p-3">
+  <div class="p-2 w-50">
+  <h4>Pages</h4>
+  <nav aria-label="breadcrumb">
+  <ol class="breadcrumb remove-breadcrumb">
+  <li class="breadcrumb-item">
+  <a href="javascript:void(0)" (click)="onParentPage()">{{ artifactName }}</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+  <a href="javascript:void(0)" (click)="onTenantPage()">{{ tenantName }}</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">Pages</li>
+  </ol>
+  </nav>
+  </div>
+  </div>
+  <div class="row sub-heading">
+  <div class="col-10">
+  <h5>Page Name</h5> 
+  </div>
+  <div class="col-2">
+  <h5>Actions</h5>
+  </div>
+  </div>
+  <ng-container *ngIf="fliterTenantlist?.length > 0; else noTenant">
+  <div class="row p-4 border-bottom" *ngFor="let tenant of fliterTenantlist">
+  <div class="col-10">
+  <img width="17" height="17" src="assets/images/link.svg" />
+  {{ tenant?.artifactTitle }}
+  </div>
+  <div class="col-2 d-flex align-items-center">
+  <button (click)="onArtifactEdit(tenant)" class="background-transparent mr-2">
+  <i class="fas fa-edit text-dark"></i> Edit
+  </button>
+  <a href="javascript:void(0)" (click)="onDeleteArtifact(tenant)">
+  <img src="assets/images/trash.svg" />
+  </a>
+  </div>
+  </div>
+  </ng-container> 
+  <ng-template #noTenant>
+  <div class="d-flex justify-content-center p-3">No Data Available</div>
+  </ng-template>
+  </div>
+  </div>
+  </div>
+  <div class="card mt-3" *ngIf="viewOtherArtifactFlag">
+  <div class="row">
+  <div class="col-sm">
+  <div class="row justify-content-between p-3">
+  <div class="p-2 W-50">
+  <h4>Pages</h4>
+  <nav aria-label="breadcrumb">
+  <ol class="breadcrumb remove-breadcrumb">
+  <li class="breadcrumb-item">
+  <a href="javascript:void(0)" (click)="onParentPage()">{{ artifactName }}</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+  <a href="javascript:void(0)" (click)="onTenantPage()">{{ tenantName }}</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page"> 
+  <a href="javascript:void(0)" (click)="onPage()">{{ artifactTitle }}</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">Artifact</li>
+  </ol>
+  </nav>
+  </div>
+  </div>
+  <div [ngSwitch]="artifactCategory" *ngIf="viewOtherArtifactFlag">
+  <ng-template [ngSwitchCase]="'Capability'">
+  <app-capabilities-view [selectedCapabilityId]="selectedArtifactId"> </app-capabilities-view>
+  </ng-template>
+  <ng-template [ngSwitchCase]="'Component'">
+  <app-component-view [selectedCapabilityId]="selectedArtifactId"> </app-component-view>
+  </ng-template>
+  <ng-template [ngSwitchCase]="'Foundation'">
+  <app-view-rich-text-template [data]="selectedGuidesId"> </app-view-rich-text-template>
+  </ng-template>
+  <ng-template [ngSwitchCase]=" 'Guides'"> 
+  <app-guide-view [data]="selectedArtifactId"> </app-guide-view>
+  </ng-template>
+  <ng-template [ngSwitchCase]="'libraries'">
+  <app-libraries-view [selectedLibraryId]="selectedGuidesId"> </app-libraries-view>
+  </ng-template>
+  </div>
+  </div>
+  </div>
+  </div>
+  <app-confirm-window (deleted)="onclickYes()" (noDeleted)="onclickNo()"></app-confirm-window>
+  <div class="d-flex mt-4"></div>
+  

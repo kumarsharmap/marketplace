@@ -1,0 +1,21 @@
+<div class="large-card-title-block">
+    <div class="_4-top-space">
+        <div class="heading-2">Top Guides for Developers</div>
+    </div>
+</div>
+<a href="#" *ngFor="let topDeveloperGuides of topDeveloperGuides | paginate: { itemsPerPage: 5, currentPage: currentPage }" class="information-container bottom-border w-inline-block">
+    <div class="container-mid" (click)="navigateTosearcPage(topDeveloperGuides)">
+        <div class="guide-icon developers" title="Development">
+            <img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" />
+        </div>
+        <div class="card-block-title left-margin">
+            <div class="text-block-4">{{ topDeveloperGuides.pageTitle }}</div>
+            <p class="paragraph grey">{{ topDeveloperGuides.pageDescription }}</p>
+        </div>
+    </div>
+</a>
+<div *ngIf="topDeveloperGuides.length === 0" class="p-4">No records</div>
+<div class="page">
+    <pagination-controls *ngIf="topDeveloperGuides.length > 0" class="my-pagination" (pageChange)="currentPage = $event">
+    </pagination-controls>
+</div>

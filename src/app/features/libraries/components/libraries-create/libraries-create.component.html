@@ -1,0 +1,204 @@
+<div>
+    <form [formGroup]="librariesForm">
+        <div class="section white">
+            <div class="in-page-container">
+                <div class="split-container horizontal inner-page-max-width _24-top-space">
+                    <div class="header-text">
+                        <div>
+                            <div>
+                                <label class="field-label">Page Title <span class="required">*</span> </label>
+                            </div>
+                            <div>
+                                <input type="text" class="text-field w-input" formControlName="pageTitle" [readonly]="inputDetails?.type == 'Edit'">
+                            </div>
+                            <div *ngIf="libraryFormControls.pageTitle.errors?.maxlength" class="ErrMessage">
+                                Page Title can be max of 80 characters
+                            </div>
+                            <div class="ErrMessage" *ngIf="libraryFormControls.pageTitle?.touched && libraryFormControls.pageTitle.errors?.required">
+                                Page Title Required</div>
+                            <div>
+                                <label class="field-label"> Description <span class="required">*</span> </label>
+                            </div>
+                            <div>
+                                <textarea name="Description" formControlName="pageDescription" class="text-area"></textarea>
+                            </div>
+                            <div *ngIf="libraryFormControls.pageDescription.errors?.maxlength" class="ErrMessage">
+                                Description can be max of 300 characters
+                            </div>
+                            <div *ngIf="libraryFormControls.pageDescription.errors?.pattern" class="ErrMessage">
+                                Only alpha-numeric values are allowed
+                            </div>
+                            <div class="ErrMessage" *ngIf="libraryFormControls.pageDescription?.touched && libraryFormControls.pageDescription.errors?.required">
+                                Description Required
+                            </div>
+                            <div style=" margin: 24px Opx">
+                                <div class="artifactDiv">
+                                    <label class="field-label">Artifact type <span class="required">*</span> </label>
+                                    <div>
+                                        <select class="w-input" formControlName="artifactType">
+                                            <option value="Design">Design</option>
+                                            <option value="Development">Development</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="taskDiv">
+                                    <label class="field-label">Task Id </label>
+                                    <div>
+                                        <div class="input">
+                                            <div *ngFor="let pill of pills" class="pill">
+                                                {{ pill }}
+                                                <span (click)="removePill(pill)"><i class="fas fa-times"></i></span>
+                                            </div>
+                                            <input type="text" (keyup)="onkeyUp($event)" formControlName="taskId" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ErrMessage mt-4" *ngIf="libraryFormControls.artifactType?.touched && libraryFormControls.artifactType.errors?.required">
+                                    Artifact Type Required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div formArrayName="libraries">
+            <div *ngFor="let lib of library().controls; let libIdx = index">
+                <div [formGroupName]="libIdx">
+                    <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                        <div class="w-tab-content">
+                            <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+                                <div class="subSection">
+                                    <div>
+                                        <div>
+                                            <div class="d-flex justify-content-between sectionHeader">
+                                                <div class="headingColorSection">Library Block</div>
+                                                <hr />
+                                                <div>
+                                                    <i class="fas fa-trash" style="color: black" (click)="removeLibraries(libIdx)"></i>
+                                                </div>
+                                            </div>
+                                            <div class="tabsBorder">
+                                                <div>
+                                                    <div>
+                                                        <label class="text-block-4"> Name of Library Item </label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" class="text-field w-input" formControlName="libraryName" />
+                                                    </div>
+                                                    <div>
+                                                        <label class="text-block-4"> Description </label>
+                                                    </div>
+                                                    <div>
+                                                        <textarea name="Description" class="text-field w-input" formControlName="libraryDesc"></textarea>
+                                                    </div>
+                                                    <div *ngIf="library().controls[libIdx]['controls'].libraryDesc.errors?.maxlength" class="ErrMessage">Description can be max of 800 characters
+                                                    </div>
+                                                    <div>
+                                                        <label class="field-label"> Upload Image </label>
+                                                        <div class="rich-text-template">
+                                                            <img *ngIf="imgArray[libIdx] != null" class="img" src="{{ imgArray[libIdx] }}" />
+                                                        </div>
+                                                        <div class="upload-btn-wrapper">
+                                                            <button class="btn">
+                                                                <span
+                                                                    *ngIf="imgArray[libIdx] == null || imgArray[libIdx] == undefined || imgArray[libIdx]==''">
+                                                                    Select a file</span> &nbsp; </button> {{ imageName[libIdx] | slice: 0:60 }} {{ imageName[libIdx]?.length > 60 ? '....':""}}
+                                                            <i *ngIf=" !imgArray[libIdx]" style="float: right; padding-right: 20px" class="fas fa-plus"></i>
+                                                            <input type="file" multiple accept=".jpeg, .jpg, .png" formControlName="libImage" title="{{ imageName[libIdx] }}" name="image" id="file" (click)="showSpinner()" (change)="onFileChange($event, libIdx)" />
+                                                            <i *ngIf="imgArray[libIdx] != null" style="float: right" class="fas fa-trash" (click)="removeImage(libIdx)"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div id="div-padding">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <label class="text-block-4">
+                                                                        Library File &nbsp;
+                                                                        <i class="fa fa-info-circle"
+                                                                            title="Restricted formats- {{ filesAllowedSrtring }}"
+                                                                            style="font-size: 18px"></i>
+                                                                    </label>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label class="button btnWidth" [style.background-color]="toggleUpload ? 'black' : 'gray'" (click)="uploadzip(libIdx)">Upload</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="upload-btn-wrapper">
+                                                        <button class="btn">
+                                                            <span
+                                                                *ngIf="fileName[libIdx] == null || fileName[libIdx]== undefined || fileName[libIdx]==''">Select
+                                                                a file</span>
+                                                            <span>{{ fileName[libIdx] | slice: 0:60 }}
+                                                                {{ fileName[libIdx]?.length > 60 ? '....':''}}</span>
+                                                        </button>
+                                                        <i *ngIf="!fileName[libIdx]" style="float: right; padding-right: 20px" class="fas fa-plus"></i>
+                                                        <input type="file" multiple formControlName="libFile" title="{{ fileName[libIdx] }}" name="libFile" id="libFile" (click)="showSpinner()" (change)="onlibFileChange ($event, libIdx)" />
+                                                        <i *ngIf="fileName[libIdx] != null" style="float: right" class="fas fa-trash" (click)="removeLibFile(libIdx)"></i>
+                                                    </div>
+                                                    <div id="div-padding">
+                                                        <label class="text-block-4">Link/Location </label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" class="text-field w-input" placeholder=" e.g. www.artifactory.com/3d59t8" formControlName="libraryFile" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="div-border-tabs">
+            <div style="width: 100%">
+                <div>
+                    <div>
+                        <div class="col">
+                            <label for="title" class="preview">Add a new content block</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="w-layout-grid grid inner-page-max-width">
+                            <div class="card bg-light text-dark cardRectangle">
+                                <div class="d-flex bd-highlight">
+                                    <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                                        <div class="iconPost">
+                                            <button class="button" (click)="addLibraries()"><i
+                                                    class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                                        <h1 class="library-block">Library Item</h1>
+                                        <div class="display-a-library-it">Display a library item with a file download link.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="footer">
+        <div class="d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <div id="footerLeft">You are in content edit mode</div>
+            </div>
+            <div class="p-2 bd-highlight align-items-center buttonSet">
+                <button class="footerBtn" [style.background-color]="toggleBack ? 'black' : '#ededed'" (click)="back()">
+                    Back to live site</button>&nbsp;&nbsp;
+                <button *ngIf="inputDetails?.type == 'Edit'" class="footerSubmitBtn" [style.background-color]="toggleCancel ? 'black' : 'gray'" (click)="cancel()">Cancel</button>&nbsp;&nbsp;
+                <button class="footerSubmitBtn" [style.background-color]="toggleReset ? 'black' : 'gray'" (click)="resetForm()">
+                    Reset</button>&nbsp;&nbsp;
+                <button class="footerSubmitBtn" [style.background-color]="toggleSave ? 'black' : 'gray'" (click)="makerAction('save')">Save As Draft</button>&nbsp;&nbsp;
+                <button class="footerSubmitBtn" [style.background-color]="toggleSubmit ? 'black' : 'gray'" (click)="makerAction('submit')">Submit</button>&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+</div>

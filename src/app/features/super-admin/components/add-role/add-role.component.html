@@ -1,0 +1,67 @@
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" *ngIf="isEditMode; else editMode">
+            Add Role
+        </h4>
+        <ng-template #editMode>
+            <h4 class="modal-title pull-left">Edit Role</h4>
+        </ng-template>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="roleForm" *ngIf="isLoad">
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="roleId" formControlName="roleId" />
+            </div>
+            <div class="form-group">
+                <label for="rolename">Role Name</label>
+                <input type="text" class="form-control" id="rolename" placeholder="Role Name" formControlName="roleName" />
+            </div>
+            <div *ngIf="roleForm?.controls['roleName']?.invalid && roleForm?.controls['roleName']?.touched" class="alert alert-danger">
+                <div *ngIf="roleForm?.controls['roleName']?.errors?.required">
+                    <small> Role Name is required.</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="roledescription">Role Description</label>
+                <input type="text" class="form-control" id="roledescription" placeholder="Role Description" formControlName="roleDescription" />
+            </div>
+            <div *ngIf="roleForm?.controls['roleDescription']?.invalid && roleForm?.controls['roleDescription']?.touched" class="alert alert-danger">
+                <div *ngIf="roleForm?.controls['roleDescription']?.errors?.required">
+                    <small> Role Description is required.</small>
+                </div>
+            </div>
+            <h4>Select Permissions</h4>
+            <div formArrayName="permission">
+                <div class="form-check" *ngFor="let control of permission?.controls; let roleIndex = index">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"
+                            [value]="permissionData[roleIndex]?.permissionId" [formControl]="control"
+                            (change)="onRoleCheckbox($event, roleIndex)" />
+                        {{permissionData[roleIndex]?.permissionName }}</label>
+                </div>
+            </div>
+            <div *ngIf="roleForm?.controls['permission']?.invalid && roleForm?.controls['permission']?.touched" class="alert alert-danger">
+                <div *ngIf="roleForm?.controls['permission']?.errors">
+                    <small> Select at least one select Permissions</small>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onClose()">
+            Close
+        </button>
+        <button *ngIf="isEditMode; else editRole" type="button" class="btn btn-primary" (click)="onSavePermissions()">
+            Save
+        </button>
+        <ng-template #editRole>
+            <button type="button" class="btn btn-primary" (click)="onUpdateRole()">
+                Update
+            </button>
+        </ng-template>
+    </div>
+</ng-template>

@@ -1,0 +1,49 @@
+<div class="row no-gutters" *ngIf="adminMenuData">
+    <div class="col-sm no-gutters">
+        <div class="main-div">
+            <div class="left-panel-section">
+                <div class="inner-page-container">
+                    <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs">
+                        <div class="tabs-menu w-tab-menu">
+                            <div class="text-centre _16-bottom-space" (click)="onNavigateToHome()">
+                                <div class="tag-alignment tag-container cs-digital">
+                                    <div class="_14pt">Admin Home</div>
+                                </div>
+                            </div>
+                            <a class="tab-link w-inline-block w-tab-link" (click)="onNavigateToApproval('approval')" [ngClass]="selectedMenuItem == 'approval' ? 'active' : ''">
+                                All Artifacts
+                            </a>
+                            <a class="tab-link w-inline-block w-tab-link" (click)="onNavigateToPageManagement('pagemanagement')" [ngClass]="selectedMenuItem == 'pagemanagement' ? 'active' : ''">
+                                Page Management
+                            </a>
+                            <a class="tab-link w-inline-block w-tab-link" (click)="onNavigateToCreateTenantList('createTenantList')" [ngClass]="selectedMenuItem == 'createTenantList' ? 'active' : ''">
+                                Tenant Management
+                            </a>
+
+                            <a class="tab-link w-inline-block w-tab-link" routerLink="" (click)="onNavigateToUser('user')" [ngClass]="selectedMenuItem == 'user' ? 'active' : ''">
+                                User Management
+                            </a>
+
+                            <a class="tab-link w-inline-block w-tab-link" (click)="onNavigateToArtifacts('myartifact')" [ngClass]="selectedMenuItem == 'myartifact' ? 'active' : ''">
+                                My Artifacts
+                            </a>
+
+                            <a *ngIf="isSuperAdmin" class="tab-link w-inline-block w-tab-link" routerLink="role" (click)="onNavigateToRole('role')" [ngClass]="selectedMenuItem == 'role' ? 'active' : ''">
+                                Role
+                            </a>
+                            <a *ngIf="isSuperAdmin" class="tab-link w-inline-block w-tab-link" (click)="onNavigateToPermission('permission')" [ngClass]="selectedMenuItem == 'permission' ? 'active' : ''">
+                                Permission
+                            </a>
+                            <a class="tab-link w-inline-block w-tab-link" routerLink="newpassword" (click)="onNavigateToNewpassword('newpassword')" [ngClass]="selectedMenuItem == 'newpassword' ? 'active' : ''">
+                                Change Password
+                            </a>
+                        </div>
+                        <div class="tabs-content w-tab-content p-3">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

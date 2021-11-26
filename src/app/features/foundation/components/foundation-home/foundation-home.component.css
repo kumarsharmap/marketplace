@@ -1,0 +1,39 @@
+.desc {
+    padding-bottom: 24px;
+}
+
+.card-columns {
+    column-count: auto;
+}
+
+.descriptionCss {
+    font-size: 0.875rem;
+}
+
+.descriptionCss {
+    color: #908e8e;
+}
+
+.card {
+    min-height: 250px;
+}
+
+a span {
+    text-decoration: underline;
+}
+
+.card-text {
+    font-weight: 600;
+    line-height: 2rem;
+    font-size: 1.37rem;
+    font-family: Plusjakartasans, sans-serif;
+}
+
+.grid {
+    cursor: pointer;
+    cursor: hand
+}
+
+.FoundationHome {
+    padding-bottom: 5px;
+}

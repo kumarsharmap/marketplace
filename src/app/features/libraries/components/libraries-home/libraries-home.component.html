@@ -1,0 +1,39 @@
+<div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+    <div class="section white bottom-border">
+        <div class="in-page-container" style="padding-top: 8px">
+            <div class="split-container horizontal inner-page-max-width">
+                <div class="header-text">
+                    <div class="heading-1">Libraries</div>
+                    <p class="_16pt grey _12-top-space w-50 desc">
+                        This is the all new HCL DesignOps, over here you will find a single repository of all of our components and tech capabilities across the entire HCL DesignOps program.
+                    </p>
+                </div>
+                <div class="header-image-area display">
+                    <div data-w-id="07bd8535-98fb-6880-acb7-0c7eaaa48104" data-animation-type="lottie" data-src="documents/Search-1.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="10" data-duration="0"
+                        class="lottie-animation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-layout-grid grid inner-page-max-width">
+        <div (click)="showApprovedLib(lib)" class="link-block w-inline-block clickDiv" *ngFor="let lib of librariesList">
+            <div class="card">
+                <div data-w-id="cd83e176-6abb-05c9-d07b-ef023bb569fd" style="
+-webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotatez(0) skew(0, 0);
+-moz-transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotatez(0) skew(0, 0);
+-ms-transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateX(0) rotate (0) skew(0, 0);
+transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateX(0) rotate (0) skew(0, 0);" class="panel">
+                    <div class="image-holder">
+                        <img src="assets/images/library.png" loading="lazy" alt="" class="image" />
+                    </div>
+                    <div class="panel-content small-margin">
+                        <h1 class="heading-2">{{lib?.pageTitle }}</h1>
+                        <div class="_14pt grey _8-top-space desc">
+                            {{ lib?.pageDescription }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

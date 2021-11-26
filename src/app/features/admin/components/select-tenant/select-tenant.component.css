@@ -1,0 +1,23 @@
+.remove-breadcrumb { 
+    background-color: transparent;
+    padding-left: 0px;
+    }
+    .sub-heading {
+    margin: 0px;
+    background-color: #dadada;
+    padding-left: 15px;
+    }
+    .remove-unorder-style {
+    list-style-type: none;
+    padding-left: 0px;
+    }
+    .page-list {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eae6e6;
+    margin-bottom: 10px;
+    }
+   
+    .breadcrumb-item + .breadcrumb-item::before {
+    content: '>';
+    }
+    

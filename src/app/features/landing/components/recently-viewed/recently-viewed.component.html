@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="small-card-title-block">
+        <div class="_4-top-space">
+            <div class="heading-2">Recently Viewed</div>
+        </div>
+    </div>
+    <a href="#" *ngFor="let recentlyViewed of listOfRecentlyViewed" class="information-container small bottom-border smaller-container w-inline-block">
+        <div class="card-block-title" (click)="navigateTosearcPage(recentlyViewed)">
+            <div class="detail-container">
+                <div class="div-block-20">
+                    <div class="text-block-4">{{ recentlyViewed?.pageTitle }}</div>
+                    <div class="_14pt grey _4-top-space">{{ recentlyViewed?.artifactCategory }}</div>
+                </div>
+                <div class="tag-container" [style.backgroundColor]="recentlyViewed?.lightColor">
+                    <div class="_14pt" [style.color]="recentlyViewed?.darkColor">{{ recentlyViewed?.tenantName }}</div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>

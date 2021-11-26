@@ -1,0 +1,41 @@
+.active {
+    color: #000;
+    border-left: 2px solid black;
+}
+
+.createBtnCss {
+    padding: 24px;
+    outline: none;
+}
+
+.buttonDiv {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+
+.superAdminHeaderBlack {
+  background-color: #000 !important;
+}
+
+.superAdminHeaderWhite {
+  background-color: #fff !important;
+}
+
+.superAdminHeaderTextWhite {
+  color: #fff !important;
+}
+
+.superAdminTabsHeight {
+  min-height: 125vh !important;
+}
+
+.superAdminActive {
+  color: #fff;
+  border-left: 2px solid white;
+}
+
+a.superAdminHeaderBlack:hover {
+  color: #fff !important;
+}

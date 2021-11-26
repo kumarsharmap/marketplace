@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="small-card-title-block">
+        <div class="_4-top-space">
+            <div class="heading-2">Trending Guides</div>
+        </div>
+    </div>
+    <a *ngFor="let guides of listofTrendingGuides" class="information-container bottom-border small-container w-inline-block">
+        <div class="container-mid">
+            <!-- <div class="guide-icon developers"><img src="assets/images/Icon---On-Dark.svg" loading="lazy" alt="" /></div> -->
+            <div class="card-block-title left-margin">
+                <div class="text-block-4">{{ guides.pageTitle }}</div>
+                <p class="paragraph grey">{{ guides.viewcount }} Views</p>
+            </div>
+        </div>
+    </a>
+</div>

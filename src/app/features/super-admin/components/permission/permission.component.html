@@ -1,0 +1,41 @@
+<div class="card mt-3">
+    <div class="row">
+        <div class="col-sm">
+            <div class="row justify-content-between p-3">
+                <div class="p-2 align-self-center">
+                    <h4>Permission</h4>
+                </div>
+                <div class="w-35">
+                    <app-btn-group [labelForCreate]="'Add'" [labelForDelete]="'Delete'" [isShowIcon]="false" (clickCreate)="onOpenModal()" (clickdelete)="onDeletePermission()"></app-btn-group>
+                </div>
+            </div>
+            <table class="table table">
+                <thead>
+                    <tr class="table-heading">
+                        <th scope="col">Select</th>
+                        <th scope="col">Permission Name</th>
+                        <th scope="col">Permission Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="permissionData?.length > 0; else noData">
+                        <tr *ngFor="let permission of permissionData">
+                            <th>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" (change)="onDeleteCheckbox($event, permission?.permissionId)" />
+                                </div>
+                            </th>
+                            <td>
+                                <a (click)="onPermissionEdit(permission)" href="javascript:void(0)">{{ permission?.permissionName }}</a>
+                            </td>
+                            <td>{{ permission?.permissionDescription }}</td>
+                        </tr>
+                    </ng-container>
+                    <ng-template #noData> No Permission Added </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-add-permission (getPermissionDataFromChild)="getPermissionData()"></app-add-permission>
+<app-confirm-window (deleted)="onClickYes()" (noDeleted)="onClickNo()"></app-confirm-window>

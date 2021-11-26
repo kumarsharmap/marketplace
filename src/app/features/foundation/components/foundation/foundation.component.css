@@ -1,0 +1,76 @@
+.active {
+    color: #000;
+    border-left: 2px solid Oblack;
+}
+
+.buttonDiv {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.dropdown-item {
+    font-size: 14px;
+}
+
+#dropdownDivCss {
+    padding: Opx 24px Opx 24px;
+}
+
+#dropdownDivCss select {
+    height: 32px;
+    width: 125px;
+}
+
+.dropdownlistCss {
+    padding: 0px;
+}
+
+#statusMenu {
+    border: 1px solid lightgray !important;
+    outline: none;
+}
+
+.dropdownlistCss a {
+    text-decoration: none !important;
+}
+
+button:focus,
+button:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.createBtnCss {
+    padding: 24px;
+    outline: none;
+}
+
+.tab-link {
+    height: auto;
+}
+
+.superAdminHeaderBlack {
+  background-color: #000 !important;
+}
+
+.superAdminHeaderWhite {
+  background-color: #fff !important;
+}
+
+.superAdminHeaderTextWhite {
+  color: #fff !important;
+}
+
+.superAdminTabsHeight {
+  min-height: 125vh !important;
+}
+
+.superAdminActive {
+  color: #fff;
+  border-left: 2px solid white;
+}
+
+a.superAdminHeaderBlack:hover {
+  color: #fff !important;
+}

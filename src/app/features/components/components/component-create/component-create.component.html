@@ -1,0 +1,156 @@
+<form [formGroup]="componentForm">
+    <div>
+        <div class="section white">
+            <div class="in-page-container">
+                <div>
+                    <div>
+                        <div>
+                            <label class="field-label"> Category Name <span class="mandatoryClass">*</span> </label>
+                        </div>
+                        <div>
+                            <input class="text-field w-input" type="text" placeholder="Select name that will appear in the navigation" formControlName="pageTitle" id="pageTitle" [readonly]="inputDetails.type == 'Edit'" />
+                            <div *ngIf="componentForm.controls['pageTitle']?.invalid && componentForm.controls['pageTitle']?.touched">
+                                <div class="ErrMessage" *ngIf="componentForm.controls['pageTitle']?.errors['required']">
+                                    Page Title is required.
+                                </div>
+                                <div class="ErrMessage" *ngIf="componentForm.controls['pageTitle']?.errors['maxlength']">
+                                    Page Title caannot exceed 80 characters.
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="field-label">Category Description <span class="mandatoryClass">*</span>
+                            </label>
+                        </div>
+                        <div>
+                            <textarea placeholder="Enter generic description" class="text-area w-input" formControlName="pageDescription" id="description"></textarea>
+                            <div *ngIf="componentForm.controls['pageDescription']?.invalid && componentForm.controls['pageDescription']?.touched">
+                                <div class=" ErrMessage" *ngIf="componentForm.controls['pageDescription']?.errors['required']">
+                                    Page Description is required.
+                                </div>
+                                <div class="ErrMessage" *ngIf="componentForm.controls['pageDescription']?.errors['maxlength']">
+                                    Page Description caannot exceed 300 characters.
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 24px">
+                            <div class="artifactDiv">
+                                <label class="field-label">Component Type <span class="mandatoryClass">*</span> </label>
+                                <div>
+                                    <select placeholder="Select type" class="w-input" formControlName="artifactType">
+                                        <option value="" selected>Select type</option>
+                                        <option value="Design">Design</option>
+                                        <option value="Development">Development</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="taskDiv">
+                                <label class="field-label">Task Id </label>
+                                <div>
+                                    <div class="input">
+                                        <div *ngFor="let pill of pills" class="pill">
+                                            {{ pill }}
+                                            <span (click)="removePill(pill)"><i class="fas fa-times"></i></span>
+                                        </div>
+                                        <input type="text" [placeholder]="getPlaceholder()" (keyup)="setTaskId($event)" formControlName="taskId" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4" *ngIf="componentForm.controls['artifactType']?.invalid &&
+                                componentForm.controls['artifactType']?.touched">
+                                <div class="ErrMessage" *ngIf="componentForm.controls['artifactType']?.errors['required']">
+                                    Artifact type is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- Accordion -->
+<div class="details">
+    <accordion [closeOthers]="true">
+        <accordion-group *ngFor="let group of groups; let i = index" #group1 
+        [isOpen]="groups?.length === 1" (isopenChange)="selectTab($event, i)" style="margin-bottom: 24px">
+            <div accordion-heading style="width: 100%">
+                <div *ngIf="titleErrFlag[i] =='t'" class="accordionHeader">
+                    {{ fetchComponentName(i) }}
+                </div>
+                <div *ngIf="errFlagArr[i] =='f'" class="accordionHeader ErrMessage">
+                    {{ fetchComponentName(i) }}
+                </div>
+                <div style="float: right">
+                    <i *ngIf="group1?.isOpen" class="fas fa-angle-down" style="font-size: 20px"></i>
+                    <i *ngIf="!group1?.isOpen" class="fas fa-angle-right" style="font-size: 20px"></i>
+                    <i class="fas fa-trash" style="color: black; padding-left: 25px" (click)="removeGroup(i)"></i>
+                </div>
+            </div>
+            <div data-w-tab="Tab 2" class="w-tab-pane w--tab-active">
+                <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                    <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                        <div class="tabs-menu-2 w-tab-menu">
+                            <tabset type="pills" #tabset>
+                                <tab *ngFor="let tab of headings" [(heading)]="tab.tabTitle" (selectTab)="confirmTabSwitch($event)">
+                                </tab>
+                            </tabset>
+                            <div>
+                                <app-capabilities-technical-summary #technicalSummaryTab [hidden]="tabHeading!= 'Example'" [artifactCategory]="artifactCategory">
+                                </app-capabilities-technical-summary>
+                                <app-capabilities-resources #resourcesTab [hidden]="tabHeading!= 'Resource'">
+                                </app-capabilities-resources>
+                                <app-capabilities-updates #updatesTab [hidden]="tabHeading!='Update'">
+                                </app-capabilities-updates>
+                                <app-component-code #code [hidden]="tabHeading!='Code'">
+                                </app-component-code>
+                                <app-component-usage #usage [hidden]="tabHeading!='Usage'"></app-component-usage>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>
+<div>
+    <div class="div-border-tabs">
+        <div>
+            <div class="col">
+                <label for="title" class="preview">Add new {{ componentForm.controls.pageTitle.value }}</label>
+            </div>
+        </div>
+        <div>
+            <div class="w-layout-grid grid inner-page-max-width">
+                <div class="card bg-light text-dark cardRectangle">
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                            <div class="iconPost">
+                                <button class="button" (click)="addGroupItem()"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                            <h1 class="library-block">Component Details</h1>
+                            <div class="display-a-library-it">Displays Technical details section.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <div id="footerLeft">You are in content edit mode</div>
+            </div>
+            <div class="p-2 bd-highlight align-items-center buttonSet">
+                <button class="footerBtn" [style.background-color]="toggleBack?'black' : '#ededed'" (click)="gotoHome()">
+                    Back to live site</button>&nbsp;&nbsp;
+                <button class="footerSubmitBtn" *ngIf="inputDetails.type == 'Edit'" (click)="cancel()">Cancel</button>&nbsp;&nbsp;
+                <button class="footerSubmitBtn" [style.background-color]="toggleReset ?'black' : 'gray'" (click)="refresh()">Reset</button>&nbsp;&nbsp;
+                <button class="footerSubmitBtn" [style.background-color]="toggleSave ?'black' : 'gray'" (click)="createComponent('save')">Save As Draft</button>&nbsp;&nbsp;
+                <button class="footerSubmitBtn" [style.background-color]="toggleSubmit ?'black' : 'gray'" (click)="createComponent('submit')"> Submit</button>&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+</div>

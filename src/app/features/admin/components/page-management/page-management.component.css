@@ -1,0 +1,17 @@
+.page-title { 
+    background-color: #dadada;
+    padding-left: 1.5rem;
+    }
+    .remove-unorder-style {
+    list-style-type: none;
+    padding-left: 0px;
+    }
+    .page-list {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eae6e6;
+    margin-bottom: 10px;
+    }
+    .text-decoration-none {
+    text-decoration: none;
+    }
+    

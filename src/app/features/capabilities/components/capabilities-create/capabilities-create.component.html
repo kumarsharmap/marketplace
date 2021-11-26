@@ -1,0 +1,135 @@
+<form [formGroup]="titleForm" id="titleForm">
+    <div class="section white">
+        <div class="in-page-container">
+            <div>
+                <div>
+                    <div>
+                        <label class="field-label"> Page Title <span class="required">*</span> </label>
+                    </div>
+                    <div>
+                        <input type="text" class="text-field w-input" maxlength="256" name="pageTitle" data-name="pageTitle" required="" formControlName="pageTitle" value="position List" [readonly]="inputDetails?.type == 'Edit'" />
+                    </div>
+                    <div *ngIf="titleFormControls.pageTitle.errors?.maxlength" class="ErrMessage">
+                        Page Title can be max of 80 characters
+                    </div>
+                    <div class="ErrMessage" *ngIf="titleFormControls.pageTitle?.touched && titleFormControls.pageTitle.errors?.required">
+                        Page Title Required</div>
+                    <div>
+                        <label class="field-label"> Description <span class="required">*</span> </label>
+                    </div>
+                    <div>
+                        <textarea name="Description" formControlName="pageDescription" class="text-area w-input"></textarea>
+                    </div>
+                    <div *ngIf="titleFormControls.pageDescription.errors?.maxlength" class="ErrMessage">
+                        Description can be max of 300 characters
+                    </div>
+                    <div class="ErrMessage" *ngIf="titleFormControls.pageDescription?.touched && titleFormControls.pageDescription.errors?.required">
+                        Description Required </div>
+                    <div style="margin:24px 0px">
+                        <div class="artifactDiv">
+                            <label class="field-label">Artifact type <span class="required">*</span> </label>
+                            <div>
+                                <select class="w-input" formControlName="artifactType">
+                                    <option value="Design">Design</option>
+                                    <option value="Development">Development</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="taskDiv">
+                            <label class="field-label">Task Id </label>
+                            <div>
+                                <div class="input">
+                                    <div *ngFor="let pill of pills" class="pill">
+                                        {{ pill }}
+                                        <span (click)="removePill(pill)"><i class="fas fa-times"></i></span>
+                                    </div>
+                                    <input type="text" (keyup)="onkeyUp($event)" formControlName="taskId" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ErrMessage mt-4" *ngIf="titleFormControls.artifactType?.touched && titleFormControls.artifactType.errors?.required">
+                            Artifact Type Required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="details">
+        <accordion [closeOthers]="true">
+            <accordion-group *ngFor="let group of groups; let i = index" #group1 
+            [isOpen]="groups?.length === 1" (isOpenChange)="selectTab($event, i)" style="margin-bottom: 24px">
+                <div accordion-heading style="width: 100%">
+                    <div *ngIf="titleErrFlag[i]=='t'" class=" accordionHeader">
+                        {{ fetchComponentName(i) }}
+                    </div>
+                    <div *ngIf="errFlagArr[i] == 'f'" class="accordionHeader ErrMessage">{{ fetchComponentName(i) }}
+                    </div>
+                    <div style="float: right">
+                        <i *ngIf="group1?.isOpen" class="fas fa-angle-down" style="font-size: 20px"></i>
+                        <i *ngIf="!group1?. isOpen" class="fas fa-angle-right" style="font-size: 20px"></i>
+                        <i class="fas fa-trash" style="color: black; padding-left: 25px" (click)="removeGroup(i)"></i>
+                    </div>
+                </div>
+                <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                    <div class="tabs-menu-2 w-tab-menu">
+                        <tabset type="pills" #tabset>
+                            <tab *ngFor="let tab of headings" [(heading)]="tab.tabTitle" (selectTab)="confirmTabSwitch($event)">
+                            </tab>
+                        </tabset>
+                        <div>
+                            <app-capabilities-technical-summary #technicalSummaryTab [artifactCategory]="artifactCategory" [hidden]="tabHeading != 'Technical Summary'">
+                            </app-capabilities-technical-summary>
+                            <!-- ---------form 2 starts here-->
+                            <app-capabilities-resources #resourcesTab [hidden]=" tabHeading !='Resources'">
+                            </app-capabilities-resources>
+                            <!-- ---------form 2 ends here.-->
+                            <app-capabilities-updates #updatesTab [hidden]=" tabHeading !='Updates'">
+                            </app-capabilities-updates>
+                        </div>
+                    </div>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</form>
+<div class=" div-border-tabs">
+    <div>
+        <div class="col">
+            <label for="title" class="preview">Add new {{ titleForm.controls.pageTitle.value}}</label>
+        </div>
+    </div>
+    <div>
+        <div class="w-layout-grid grid inner-page-max-width">
+            <div class="card bg-light text-dark cardRectangle">
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                        <div class="iconPost">
+                            <button class="button" (click)="addGroupItem()"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="p-2 flex-grow-1 bd-highlight libraries" style="padding-top: 14px !important">
+                        <h1 class="library-block">Capability Details</h1>
+                        <div class="display-a-library-it">Displays Technical details section.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-grow-1 bd-highlight">
+            <div id="footerLeft">You are in content edit mode</div>
+        </div>
+        <div class="p-2 bd-highlight align-items-center buttonSet">
+            <button class="footerBtn" [style.background-color]="toggleBack ? 'black' :'#ededed'" (click)="back()">Back
+                to live site</button>&nbsp;&nbsp;
+            <button *ngIf=" inputDetails?.type=='Edit'" [style.background-color]=" toggleCancel ? 'black' : 'gray'" class="footerSubmitBtn" (click)="cancel()">Cancel</button>&nbsp;&nbsp;
+            <button class="footerSubmitBtn" [style.background-color]="toggleReset ? 'black' : 'gray'" (click)="reset()">
+                Reset</button>&nbsp;&nbsp;
+            <button class="footerSubmitBtn" [style.background-color]="toggleSave ? 'black' : 'gray'" (click)="makerAction('save')">
+                Save As Draft</button>&nbsp;&nbsp;
+            <button class=" footerSubmitBtn" [style.background-color]="toggleSubmit ? 'black' : 'gray'" (click)="makerAction('submit')">Submit</button>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div *ngIf="hiddenMenu">
+  <app-header *ngIf="isCommonMenu && router.url != '/login' && router.url != '/register' && 
+  router.url != '/registermailsent' && router.url != '/forgot' && router.url != '/forgotpassword'"></app-header>
+
+</div>
+<app-spinner></app-spinner>
+<div class="container-fluid" style="margin-top: 73px;">
+  <router-outlet></router-outlet>
+</div>

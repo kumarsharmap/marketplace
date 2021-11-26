@@ -1,0 +1,33 @@
+<div class="large-card-title-block">
+    <div class="_4-top-space">
+        <div class="heading-2">Latest Capability Updates</div>
+    </div>
+</div>
+<a href="#" *ngFor="let capabilitiesLatest of capabilitiesLatest | paginate: { itemsPerPage: 3, currentPage: currentPage }" class="information-container bottom-border w-inline-block">
+    <div class="card-block-title bottom-margin" (click)="navigateTosearcPage(capabilitiesLatest)">
+        <div class="text-block-4">
+            {{ capabilitiesLatest?.pageTitle }}
+        </div>
+        <div class="tag-information">
+            <div class="tag-container right-space" style.background-color="{{ capabilitiesLatest?.lightColor }}">
+                <div class="_14pt" style.color="{{ capabilitiesLatest?.darkColor }}">
+                    {{ capabilitiesLatest?.tenantName }}
+                </div>
+            </div>
+            <!-- <div class="_14pt grey _4-top-space">
+<span *ngIf="capabilitiesLatest?.updatesDTO[0]?.version">Version</span
+>{{ capabilitiesLatest?.updatesDTO[0]?.version }} {{ capabilitiesLatest?.updatesDTO[0]?.dateOfUpdate }}
+</div> -->
+        </div>
+    </div>
+    <!-- <ul role="list" class="list" *ngIf="capabilitiesLatest?.updatesDTO[@]?.updateDescription">
+<li class="list-item">
+{{ capabilitiesLatest?.updatesDTO[0]?.updateDescription }}
+<br />
+</li>
+</ul> -->
+</a>
+<div *ngIf="capabilitiesLatest.length == 0" class="p-4">No records</div>
+<div class="page">
+    <pagination-controls *ngIf="capabilitiesLatest.length > 0" class="my-pagination extra" (pageChange)="currentPage = $event"></pagination-controls>
+</div>

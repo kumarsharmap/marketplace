@@ -1,0 +1,68 @@
+<div class="d-flex">
+    <div class="column-5 w-col w-col-3">
+        <button type="button" class="submit-button w-button" (click)="parentModal.show()">
+            Add Tenant
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 id="dialog-nested-name1">Add Tenant To User</h4>
+                    </div>
+                </div>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="onClose()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="w-form">
+                    <form [formGroup]="addTenantForm">
+                        <label for="tenant">Select Tenant</label>
+                        <select (change)="onSelectedTenant($event)" class="text-field w-input" formControlName="tenantName">
+                            <option value="Select Tenant" selected>Select Tenant</option>
+                            <option *ngFor="let tenant of tenantManagement" [value]="tenant?.tenantName">
+                                {{ tenant?.tenantName }}
+                            </option>
+                        </select>
+                        <div *ngIf="addTenantForm?.controls['tenantName']?.invalid && addTenantForm?.controls['tenantName']?.touched" class="alert alert-danger">
+                            <div *ngIf="addTenantForm?.controls['tenantName']?.errors?.required">
+                                <small>Tenant Name is required.</small>
+                            </div>
+                        </div>
+                        <label for="role">Role</label>
+                        <select class="text-field w-input" formControlName="roleName" (change)="onSelectedRole($event)">
+                            <option value="" disabled>Choose Role</option>
+                            <option *ngFor="let role of roles" [value]="role?.roleName">
+                                {{ role?.roleName }}
+                            </option>
+                        </select>
+                        <div *ngIf="addTenantForm?.controls['roleName']?.invalid && addTenantForm?.controls['roleName']?.touched" class="alert alert-danger">
+                            <div *ngIf="addTenantForm?.controls['roleName']?.errors?.required">
+                                <small>Role Name is required.</small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="d-flex flex-row-reverse">
+                    <div class="column-5 w-col w-col-6">
+                        <button type="button" class="submit-button w-button" (click)="onSaveAdduser()">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="column-5 w-col w-col-6 mr-3">
+                        <button type="button" class="cancel-button b-button" (click)="onClose()">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-end">
+    <div class="pr-2 W-50" style="flex-grow: 1">
+        <button (click)="onclickCreateTenant()" type="button" class="submit-button w-button gray-button">
+
+            <!--
+            <img *ngIf="isShowIcon" src="assets/images/plus.svg" class="pr-2" alt="+" /> -->
+            {{ labelForCreate }}
+            
+        </button>
+    </div>
+    <div class="w-50 pr-2" >
+        <button type="button" class="cancel-button b-button delete-button" (click)="onDeleteTenant()">
+
+            {{ labelForDelete }}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="card mt-3"> 
+  <div class="row">
+  <div class="col-sm">
+  <div class="row justify-content-between p-3">
+  <div class="p-2 w-50">
+  <h4>Tenants For Components</h4>
+  <nav aria-label="breadcrumb">
+  <ol class="breadcrumb remove-breadcrumb">
+  <li class="breadcrumb-item">
+  <a href="javascript:void(0)" (click)="onParentPage()">{{ pageManagement.artifactName }}</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">Select Tenant</li>
+  </ol>
+  </nav>
+  </div>
+  </div>
+  <div class="row sub-heading">
+  <div class="col-12">
+  <h5>Tenants</h5>
+  </div>
+  </div>
+  <ul class="remove-unorder-style" *ngIf="pageManagement?.customTenantList?.length > 0; else noTenant">
+  <li *ngFor="let tenantlist of pageManagement?.customTenantList" class="page-list">
+  <a style="text-decoration: none" href="javascript:void(0)" (click)="onclickTenant(tenantlist)">
+  {{ tenantlist?.tenantName }}
+  <span style="float: right">
+  <img src="assets/images/chevron-right.svg" /> 
+  </span>
+  </a>
+  </li>
+  </ul>
+  <ng-template #noTenant>
+  <div class="d-flex justify-content-center p-3">No Data Available</div>
+  </ng-template>
+  </div>
+  </div>
+  </div>
+  

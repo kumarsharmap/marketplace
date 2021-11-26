@@ -1,0 +1,13 @@
+.remove-breadcrumb { 
+    background-color: transparent;
+    padding-left: 0px;
+    }
+    .sub-heading {
+    margin: 0px;
+    background-color:#dadada;
+    padding-left: 15px;
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+    content:'>';
+    }
+    
