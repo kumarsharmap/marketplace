@@ -108,53 +108,7 @@ export class CapabilitiesViewComponent implements OnInit, OnChanges {
     }
   }
   public getSelectedCapabilityDetails(): void {
-    this.selectedCapability = {
-      "status": "Pending",
-      "artifactId": 0,
-      "pageTitle": "Test",
-      "pageDescription": "Test",
-      "artifactType": "Design",
-      "taskId": [
-        "sdsafad",
-        "dsadsadas"
-      ],
-      "version": 0,
-      "comments": [],
-      "capabilityDetails": [{
-        "tech": {
-          "previews": [{
-            "blockTitle": "Main",
-            "summdescription": "exampl",
-            "previewImages": [{
-              "previewImage": "",
-              "fileName": "",
-              "capImage": ""
-            }],
-            "codeSection": [{
-              "syntax": "CSS",
-              "code": "p{\n}"
-            }]
-          }],
-          "richTextBlock": [{
-            "blockTitle": "rich heading",
-            "richText": "<p>text here</p>"
-          }]
-        },
-        "update": {
-          "updates": [{
-            "dateOfUpdate": "Aug 9, 2021",
-            "version": "4.6",
-            "updateDescription": "text here --update"
-          }]
-        },
-        "resource": {
-          "resources": [{
-            "resourceName": "Artifactory",
-            "linkLocation": null
-          }]
-        }
-      }]
-    }
+    
     this.capabilityService.getCapabilityByID(this.inputObj['id']).subscribe(
       (res) => {
         this.selectedCapability = res;

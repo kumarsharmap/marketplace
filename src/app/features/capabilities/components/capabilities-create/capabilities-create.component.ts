@@ -63,7 +63,7 @@ export class CapabilitiesCreateComponent implements OnInit {
   public ngOnInit(): void {
     this.titleForm = this.fb.group({
       pageTitle: ['', [Validators.required, Validators.maxLength(80)]],
-      pageDescription: ['', [Validators.required, Validators.maxLength(300)]],
+      pageDescription: ['', [Validators.required]],
       artifactType: ['', [Validators.required]],
       taskId: ['']
     });
@@ -76,7 +76,7 @@ export class CapabilitiesCreateComponent implements OnInit {
   public ngOnChanges(): void {
     this.titleForm = this.fb.group({
       pageTitle: ['', [Validators.required, Validators.maxLength(80)]],
-      pageDescription: ['', [Validators.required, Validators.maxLength(300), Validators.pattern('[a-zA-Z0-9_]+. *$')]],
+      pageDescription: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9_]+. *$')]],
       artifactType: ['', [Validators.required]],
       taskid: ['']
     });

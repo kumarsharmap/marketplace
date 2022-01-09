@@ -65,7 +65,7 @@ export class ComponentCreateComponent implements OnInit {
   public ngOnInit(): void {
     this.componentForm = this.formBuilder.group({
       pageTitle: new FormControl('', [Validators.required, Validators.maxLength(80)]),
-      pageDescription: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+      pageDescription: new FormControl('', [Validators.required]),
       artifactType: new FormControl('', [Validators.required]),
       taskId: new FormControl('')
     });

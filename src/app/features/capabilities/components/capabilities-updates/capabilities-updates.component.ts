@@ -25,7 +25,7 @@ export class CapabilitiesUpdatesComponent implements OnInit {
     return new FormGroup({
       dateOfUpdate: new FormControl(this.datePipe.transform(Date.now(), 'mediumDate')),
       version: new FormControl(""),
-      updateDescription: new FormControl("", Validators.maxLength(800)),
+      updateDescription: new FormControl(""),
     });
   }
 

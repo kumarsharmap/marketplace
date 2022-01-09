@@ -80,7 +80,9 @@ private el: ElementRef
     
 
   get projectFormArray(): FormArray {
-    return this.registrationForm.controls.application as FormArray;
+
+    return this.registrationForm.controls.createUser as FormArray;
+    
   }
 
   private addCheckboxes(): void {

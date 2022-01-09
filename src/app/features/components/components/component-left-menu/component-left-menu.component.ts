@@ -39,7 +39,8 @@ export class ComponentLeftMenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+    //this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+    this.role = (sessionStorage.getItem('menu') != undefined) ? JSON.parse(sessionStorage.getItem('menu')).roleName : '';
     this.searchService.searchView.subscribe((value) => {
       this.spinner.startBrowse();
       this.list = [];
@@ -48,7 +49,8 @@ export class ComponentLeftMenuComponent implements OnInit {
       if (value) {
         this.showHomePage = false;
         this.tennatId = value['tenantId'];
-        this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+      //  this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+      this.role = (sessionStorage.getItem('menu') != undefined) ? JSON.parse(sessionStorage.getItem('menu')).roleName : '';
         this.getComponentList();
         this.loadData('component', value);
       } else {

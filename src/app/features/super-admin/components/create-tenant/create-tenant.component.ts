@@ -61,7 +61,7 @@ export class CreateTenantComponent
 
   private isEditModeCreateTenant(): void {
     if (this.editTenantValue) {
-      this.createTenantForm.get('tenantName').disable();
+//    this.createTenantForm.get('tenantName').disable();
       this.tenantEditId = this.editTenantValue.tenantId;
       this.editTenantMode = true;
       if (this.editTenantValue.artifactCategory !== '') {
@@ -129,6 +129,7 @@ export class CreateTenantComponent
   public onUpdateTenant(): void {
     const artifactCategory = this.selectedArtifactoryCategories.toString();
     const newData = { ...this.createTenantForm.value, artifactCategory };
+    newData.tenantName = this.editTenantValue.tenantName;
     this.subscriptions.push(
       this.tenantService
         .updateTenant(this.editTenantValue.tenantId, newData)
@@ -169,9 +170,10 @@ export class CreateTenantComponent
   }
 
   private addCheckboxes(): void {
-    if (this.selectLocationList) {
+    if (this.selectLocationList) { 
+      this.selectLocationList.map(item => {this.selectedArtifactoryCategories.push(item.artifactoryName)})    
       this.selectLocationList.forEach(() =>
-        this.selectLocationArray.push(new FormControl(false))
+        this.selectLocationArray.push(new FormControl(true))
       );
     }
   }

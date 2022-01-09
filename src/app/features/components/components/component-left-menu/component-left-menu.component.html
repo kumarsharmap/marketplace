@@ -1,15 +1,15 @@
 <div class="main-div">
     <div class="left-panel-section">
         <div class="inner-page-container">
-            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" [class.superAdminTabsHeight]="isSuperAdmin">
-                <div class="tabs-menu w-tab-menu" [class.superAdminHeaderBlack]="isSuperAdmin">
+            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" >
+                <div class="tabs-menu w-tab-menu"   >
                     <app-navigation-indication></app-navigation-indication>
-                    <a data-w-tab="Tab 1" data-toggle="tabs" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{active:showHomePage==true && !isSuperAdmin,superAdminActive:showHomePage==true && isSuperAdmin}" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Components Home</a>
+                    <a data-w-tab="Tab 1" data-toggle="tabs"    [ngClass]="{active:showHomePage==true }" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Components Home</a>
                     <div *ngFor="let listObj of list">
-                        <a data-w-tab="Tab 2" data-toggle="tabs" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{active:clicked.artifactId==listObj.artifactId && !isSuperAdmin,superAdminActive:clicked.artifactId==listObj.artifactId && isSuperAdmin}" (click)="loadData('approved',listObj)" class="tab-link w-inline-block w-tab-link">{{listObj.pageTitle}}</a>
+                        <a data-w-tab="Tab 2" data-toggle="tabs"    [ngClass]="{active:clicked.artifactId==listObj.artifactId }" (click)="loadData('approved',listObj)" class="tab-link w-inline-block w-tab-link">{{listObj.pageTitle}}</a>
                     </div>
                     <div class="buttonDiv">
-                        <button type="button" (click)="loadCreate()" class="btn btn-default createBtnCss" [class.superAdminHeaderTextWhite]="isSuperAdmin"><i
+                        <button type="button" (click)="loadCreate()" class="btn btn-default createBtnCss" ><i
                                 class="fas fa-plus"></i>&nbsp; Create New</button>
                     </div>
                     <!-- *ngIf="role=='publisher'||role=='Admin'" -->

@@ -33,7 +33,9 @@ export class GuidesLeftmenuComponent implements OnInit {
     private spinner: SpinnerService
   ) { }
   public ngOnInit(): void {
-    this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+    //this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+    this.role = (sessionStorage.getItem('menu') != undefined) ? JSON.parse(sessionStorage.getItem('menu')).roleName : '';
+    
     this.spinner.startBrowse();
     this.searchService.searchView.subscribe((value) => {
       this.list = [];

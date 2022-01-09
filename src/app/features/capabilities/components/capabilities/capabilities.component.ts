@@ -163,7 +163,7 @@ export class CapabilitiesComponent implements OnInit {
     this.spinner.stopBrowse();
     this.titleForm = this.fb.group({
       pageTitle: ['', [Validators.required, Validators.maxLength(80)]],
-      pageDescription: ['', [Validators.required, Validators.maxLength(300), Validators.pattern('[a-zA-Z0-9_]+. *$')]],
+      pageDescription: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9_]+. *$')]],
       artifactType: ['', [Validators.required]],
       taskid: ['']
     });

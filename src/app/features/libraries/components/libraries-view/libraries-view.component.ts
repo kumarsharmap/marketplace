@@ -68,27 +68,6 @@ export class LibrariesViewComponent implements OnInit, OnChanges {
   }
 
   public getSelectedLibraryDetails(): void {
-    this.selectedLibrary = {
-      "pageTitle": "Test",
-      "pageDescription": "Test desc",
-      "artifactType": "Development",
-      "taskId": [
-        "Cca",
-        "safasf"
-      ],
-      "libraries": [{
-        "libraryName": "asfas",
-        "libraryDesc": "asfafaff",
-        "previewImage": "",
-        "imageName": "Capture1.PNG",
-        "libraryFile": null,
-        "fileName": null,
-        "libImage": "C:\\fakepath\\Capture1.PNG",
-        "libFile": null
-      }],
-      "status": "Pending",
-      "artifactId": 0
-    }
     this.libraryService.getLibraryByID(this.selectedLibraryId).subscribe(
       (res) => {
         this.selectedLibrary = res;

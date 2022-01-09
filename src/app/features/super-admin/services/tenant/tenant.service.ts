@@ -36,8 +36,9 @@ export class TenantService {
     return this.http.get(`${HttpClientHelper.PROJECTS}`);
   }
 
-  public removeTenant(deleteTenant: number[]): Observable<any> {
-    return this.http.post(`${HttpClientHelper.DELETETENANT}`,deleteTenant);
+  public removeTenant(tenantId: number): Observable<any> {
+   // return this.http.post(`${HttpClientHelper.DELETETENANT}`,deleteTenant);
+   return this.http.delete(`${HttpClientHelper.TENANT}/${tenantId}`);
   }
 
   public setTenantData(tenant) {

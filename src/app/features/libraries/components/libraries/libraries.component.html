@@ -1,15 +1,15 @@
 <div class="left-panel-section">
     <div class="inner-page-container">
-        <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" [class.superAdminTabsHeight]="isSuperAdmin">
-            <div class="tabs-menu w-tab-menu" [class.superAdminHeaderBlack]="isSuperAdmin">
+        <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" >
+            <div class="tabs-menu w-tab-menu"  >
                 <app-navigation-indication></app-navigation-indication>
-                <a data-w-tab="Tab 1" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{ active: showHome === true && !isSuperAdmin, superAdminActive: showHome === true && isSuperAdmin}" (click)="loadData('home')" class="tab-link w-inline-block w-tab-link">
+                <a data-w-tab="Tab 1"   [ngClass]="{ active: showHome === true }" (click)="loadData('home')" class="tab-link w-inline-block w-tab-link">
                     <div>Libraries Home</div>
                 </a>
                 <perfect-scrollbar style="max-width: 600px; max-height: 400px">
                     <div *ngIf="status =='Approved'">
                         <div *ngFor="let approved of librariesList">
-                            <a data-w-tab="Tab 2" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{active: approved.artifactId === clicked.artifactId || approved.pageTitle === clicked && !isSuperAdmin, superAdminActive: approved.artifactId === clicked.artifactId || approved.pageTitle === clicked && isSuperAdmin}" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{approved?.pageTitle}} </a>
+                            <a data-w-tab="Tab 2"   [ngClass]="{active: approved.artifactId === clicked.artifactId || approved.pageTitle === clicked }" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{approved?.pageTitle}} </a>
                         </div>
                     </div>
                 </perfect-scrollbar>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="buttonDiv" *ngIf="showCreateButton!=='Subscriber'">
-                    <button type="button" class="btn btn-default dropdown-toggle createBtnCss" [class.superAdminHeaderTextWhite]="isSuperAdmin" (click)="loadData('create')">
+                    <button type="button" class="btn btn-default dropdown-toggle createBtnCss"  (click)="loadData('create')">
                         <i class="fas fa-plus"></i>&nbsp; Create New
                     </button>
                 </div>

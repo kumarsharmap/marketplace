@@ -1,18 +1,18 @@
 <div class="main-div">
     <div class="left-panel-section">
         <div class="inner-page-container">
-            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" [class.superAdminTabsHeight]="isSuperAdmin">
-                <div class="tabs-menu w-tab-menu" [class.superAdminHeaderBlack]="isSuperAdmin">
+            <div data-duration-in="300" data-duration-out="100" class="tabs w-tabs" >
+                <div class="tabs-menu w-tab-menu" >
                     <app-navigation-indication></app-navigation-indication>
-                    <a data-w-tab="Tab 1" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{ active: homeGuideFlag == true && !isSuperAdmin, superAdminActive: homeGuideFlag == true && isSuperAdmin }" data-toggle="tabs" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Guides Home </a>
+                    <a data-w-tab="Tab 1"  [ngClass]="{ active: homeGuideFlag == true  }" data-toggle="tabs" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Guides Home </a>
                     <div>
                         <div *ngFor="let guides of list">
-                            <a data-w-tab="Tab 2" [class.superAdminHeaderBlack]="isSuperAdmin" [ngClass]="{ active: guides.artifactId === clicked.artifactId && !isSuperAdmin, superAdminActive: guides.artifactId === clicked.artifactId && isSuperAdmin }" data-toggle="tabs" (click)="loadData(guides)" class="tab-link w-inline-block w-tab-link">{{ guides.pageTitle }}
+                            <a data-w-tab="Tab 2"  [ngClass]="{ active: guides.artifactId === clicked.artifactId  }" data-toggle="tabs" (click)="loadData(guides)" class="tab-link w-inline-block w-tab-link">{{ guides.pageTitle }}
                             </a>
                         </div>
                     </div>
                     <div class="buttonDiv" *ngIf="role != 'Subscriber'">
-                        <button type="button" (click)="loadOthers()" [ngClass]="{ active: createFlag == true }" class="btn btn-default createBtnCss" [class.superAdminHeaderTextWhite]="isSuperAdmin"><i class="fas fa-plus"></i>&nbsp; Create New
+                        <button type="button" (click)="loadOthers()" [ngClass]="{ active: createFlag == true }" class="btn btn-default createBtnCss" ><i class="fas fa-plus"></i>&nbsp; Create New
                         </button>
                     </div>
                 </div>

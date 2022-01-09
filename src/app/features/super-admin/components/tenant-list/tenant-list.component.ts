@@ -73,15 +73,21 @@ export class TenantListComponent implements OnInit {
   }
 
   public onClickYes(): void {
-    this.tenantService
-      .removeTenant(this.deleteTenant)
-      .subscribe(() => {
-        this.getTenant();
-        this.referMenu();
-        this.toastNotificationService.showSuccess (CommonConstants.DELETETENANT);
-        delete this.deleteTenant;
-      });
-  }
+    this.deleteTenant.map(id => {this.deleteTenantDetails(id)})
+    }
+
+public deleteTenantDetails(id){
+
+  this.tenantService
+  .removeTenant(id)
+  .subscribe(() => {
+    this.getTenant();
+    this.referMenu();
+    this.toastNotificationService.showSuccess (CommonConstants.DELETETENANT);
+    delete this.deleteTenant;
+  });
+
+}
 
   public onClickNo(): void {}
 

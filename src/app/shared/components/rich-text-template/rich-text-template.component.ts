@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+
 import { SpinnerService } from 'src/app/core/services/spinner/spinner.service';
 import { ToastNotificationService } from 'src/app/core/services/toast-notification/toast-notification.service';
 import { LoginService } from 'src/app/features/auth/services/login/login.service';
@@ -73,7 +74,7 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
         this.toggleSubmit = false;
         this.form = this.formBuilder.group({
             pageTitle: new FormControl('', [Validators.required, Validators.maxLength(80)]),
-            pageDescription: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+            pageDescription: new FormControl('', [Validators.required]),
             artifactType: new FormControl('', [Validators.required]),
             taskId: new FormControl(''),
             image: new FormControl(''),
@@ -99,7 +100,7 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
         this.toggleSubmit = false;
         this.form = this.formBuilder.group({
             pageTitle: new FormControl('', [Validators.required, Validators.maxLength(80)]),
-            pageDescription: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+            pageDescription: new FormControl('', [Validators.required]),
             artifactType: new FormControl('', [Validators.required]),
             taskId: new FormControl(''),
             image: new FormControl(''),
@@ -224,7 +225,10 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
                     artifactType: this.form.value.artifactType,
                     taskId: this.pills,
                     status: 'Pending',
-                    image: img,
+                    image: this.imageObject,
+                    /*image: {
+                        image: this.imageObject
+                    },*/
                     tenantId: JSON.parse(sessionStorage.getItem('menu')).tenantId,
                     userName: sessionStorage.getItem("userName"),
                     userId: JSON.parse(sessionStorage.getItem('userId')),
@@ -251,7 +255,12 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
                     artifactType: this.form.value.artifactType,
                     taskId: this.pills,
                     status: 'Pending',
-                    image: img,
+                    image: this.imageObject,
+                    /*
+                    image: {
+                        image: this.imageObject
+                    }, */
+
                     tenantId: JSON.parse(sessionStorage.getItem('menu')).tenantId,
                     userName: sessionStorage.getItem('userName'),
                      userId: JSON.parse(sessionStorage.getItem("userId")),
@@ -295,11 +304,16 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
                 reader.onload = () => {
                     this.imgArray = reader.result as string;
                     this.fileName = event.target.files[0].name;
-                    this.imageObject.push({
-                    image: this.imgArray,
-                    thumbImage: this.imgArray,
-                    title: this.fileName
-                    });
+                    console.log("1------", typeof(this.imgArray));
+                    console.log("2-----------",typeof(this.fileName));
+                    
+
+                    const temp = JSON.parse(JSON.stringify({
+                        imageURL: this.imgArray,
+                        thumbImage: this.imgArray,
+                        title: this.fileName
+                        }));
+                    this.imageObject.push(temp);
                 };
             }
         }
@@ -375,7 +389,11 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
                     taskId: this.pills,
                     version: this.inputDetails.details.version,
                     status: 'Draft',
-                    image: img,
+                    image: this.imageObject,
+                   /* image: {
+                        image: this.imageObject
+                    },*/
+
                     tenantId: JSON.parse(sessionStorage.getItem('menu')).tenantId,
                     userName: sessionStorage.getItem('userName'),
                     userId: JSON.parse(sessionStorage.getItem('userId')),
@@ -393,13 +411,15 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
                 }
             }
             else {
-                obj = {
+
+                
+             /*   obj = {
                     artifactId: 0,
                     artifactType: this.form.value.artifactType,
                     taskId: this.pills,
                     version: 0,
                     status: 'Draft',
-                    image: img,
+                    image: this.imageObject,
                     tenantId: JSON.parse(sessionStorage.getItem('menu')).tenantId,
                     userName: sessionStorage.getItem('userName'),
                     userId: JSON.parse(sessionStorage.getItem('userId')),
@@ -407,6 +427,28 @@ export class RichTextTemplateComponent implements OnInit, OnChanges {
                     pageTitle: this.form.value.pageTitle,
                     richTextArray: this.form.value.richTextArray
                 };
+                */
+                
+                obj = JSON.parse(JSON.stringify({
+                    artifactId: 0,
+                    artifactType: this.form.value.artifactType,
+                    taskId: this.pills,
+                    version: 0,
+                    status: 'Draft',
+                   image: this.imageObject,
+/*
+                   image: {
+                    image: this.imageObject
+                }, */
+                    tenantId: JSON.parse(sessionStorage.getItem('menu')).tenantId,
+                    userName: sessionStorage.getItem('userName'),
+                    userId: JSON.parse(sessionStorage.getItem('userId')),
+                    pageDescription: this.form.value.pageDescription,
+                    pageTitle: this.form.value.pageTitle,
+                    richTextArray: this.form.value.richTextArray
+                }));
+                console.log("JSON DEsign Foundation-------",obj);
+                console.log('richText', this.form.value.richTextArray);
                 if (this.inputDetails.foundationArtifactType !== 'Guides') {
                     obj['colorSection'] = colorSec;
                 }

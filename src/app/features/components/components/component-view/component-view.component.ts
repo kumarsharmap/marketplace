@@ -85,64 +85,7 @@ export class ComponentViewComponent implements OnInit, OnChanges {
     this.tabHeading = data.heading;
   }
   public getComponentsDetails(): void {
-    this.selectedCapability = {
-      "status": "Pending",
-      "pageTitle": "Test",
-      "pageDescription": "test desc",
-      "artifactType": "Design",
-      "taskId": [
-        "test5",
-        " test6"
-      ],
-      "comments": [],
-      "componentDetails": [{
-        "tech": {
-          "previews": [{
-            "blockTitle": "Test example",
-            "summdescription": "tset desc",
-            "previewImages": [{
-              "previewImage": "",
-              "fileName": "",
-              "capImage": ""
-            }],
-            "codeSection": [{
-              "syntax": "HTML",
-              "code": "<p> ok </p>"
-            }]
-          }],
-          "richTextBlock": [{
-            "blockTitle": "test",
-            "richText": "<p>block 1</p>"
-          }]
-        },
-        "code": {
-          "richTextArray": [{
-            "blockTitle": "CodeH",
-            "richText": "<p>Code rich</p>"
-          }]
-        },
-        "usage": {
-          "richTextArray": [{
-            "blockTitle": "usageH",
-            "richText": "<p>rich usgae</p>"
-          }]
-        },
-        "update": {
-          "updates": [{
-            "dateOfUpdate": "Aug 9, 2021",
-            "version": "90.1",
-            "updateDescription": "ok"
-          }]
-        },
-        "resource": {
-          "resources": [{
-            "resourceName": "Artifactory",
-            "linkLocation": null
-          }]
-        }
-      }],
-      "artifactId": 0
-    }
+    
     this.componentServ.fetchComponentArtifactsById(this.inputObj['id']).subscribe(
       (res) => {
         this.selectedCapability = res;

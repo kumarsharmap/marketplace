@@ -104,7 +104,7 @@ export class CapabilitiesTechnicalSummaryComponent implements OnInit, OnChanges 
   public populatePreviewsArray(): FormGroup {
     return new FormGroup({
       blockTitle: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      summdescription: new FormControl('', Validators.maxLength(800)),
+      summdescription: new FormControl(''),
       previewImages: new FormArray([this.populatePreviwImagesArray()]),
       codeSection: new FormArray([this.populateCodeSectionArray()])
     });
@@ -121,13 +121,13 @@ export class CapabilitiesTechnicalSummaryComponent implements OnInit, OnChanges 
   public populateCodeSectionArray(): FormGroup {
     return new FormGroup({
       syntax: new FormControl(''),
-      code: new FormControl('', Validators.maxLength(5000))
+      code: new FormControl('')
     });
   }
   public populateRichTextArray(): FormGroup {
     return new FormGroup({
       blockTitle: new FormControl('', Validators.maxLength(50)),
-      richText: new FormControl('', Validators.maxLength(800))
+      richText: new FormControl('')
     });
   }
   public setPreviews(obj): void {

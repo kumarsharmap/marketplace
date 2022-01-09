@@ -25,7 +25,7 @@
             </div>
             <div class="form 40-top-space w-form p-2">
                 <form [formGroup]="createTenantForm">
-                    <label for="name" class="field-label">Tenant Name</label><input type="text" class="text-field w-input" formControlName="tenantName" placeholder="Tenant Name" id="name" />
+                    <label for="name" class="field-label">Tenant Name</label><input type="text" class="text-field w-input" formControlName="tenantName" placeholder="Tenant Name" id="name"  [readonly]="editTenantValue" />
                     <div *ngIf="
   createTenantForm?.controls['tenantName']?.invalid && createTenantForm?.controls['tenantName']?.touched" class="alert alert-danger">
                         <div *ngIf="createTenantForm?.controls['tenantName']?.errors?.required">

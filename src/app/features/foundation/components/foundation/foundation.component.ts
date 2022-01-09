@@ -44,7 +44,10 @@ export class FoundationComponent implements OnInit {
     private spinner: SpinnerService
   ) { }
   public ngOnInit(): void {
-    this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+    //this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
+    this.role = (sessionStorage.getItem('menu') != undefined) ? JSON.parse(sessionStorage.getItem('menu')).roleName : '';
+
+
     this.searchService.searchView.subscribe((value) => {
       this.spinner.startBrowse();
       this.list = [];

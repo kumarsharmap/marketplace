@@ -66,7 +66,7 @@
                             <ng-container *ngFor="let img of imageObject; index as i">
                             <div class="carousel-cell">
                             <button class="delete-image-button" (click)="handleDeleteImage(i)">x</button>
-                            <img src="{{ img.image }}" />
+                            <img src="{{ img.imageURL }}" />
                             </div>
                             </ng-container>
                             </carousel>

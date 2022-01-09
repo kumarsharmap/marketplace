@@ -64,7 +64,7 @@ export class LibrariesCreateComponent implements OnInit, OnChanges {
     this.imgArray = [];
     this.librariesForm = this.fb.group({
       pageTitle: ['', [Validators.required, Validators.maxLength(80)]],
-      pageDescription: ['', [Validators.required, Validators.maxLength(300)]],
+      pageDescription: ['', [Validators.required]],
       artifactType: ['', Validators.required],
       taskId: [''],
       libraries: new FormArray([this.populateLibrariesArray()])
@@ -93,7 +93,7 @@ export class LibrariesCreateComponent implements OnInit, OnChanges {
     this.removeZip.push('f');
     this.librariesForm = this.fb.group({
       pageTitle: ['', [Validators.required, Validators.maxLength(80)]],
-      pageDescription: ['', [Validators.required, Validators.maxLength(300)]],
+      pageDescription: ['', [Validators.required]],
       artifactType: ['', [Validators.required]],
       taskId: [''],
       libraries: new FormArray([this.populateLibrariesArray()])
@@ -140,7 +140,7 @@ export class LibrariesCreateComponent implements OnInit, OnChanges {
     this.removeZip[this.removeZip.length] = 'f';
     return new FormGroup({
       libraryName: new FormControl(''),
-      libraryDesc: new FormControl('', Validators.maxLength(800)),
+      libraryDesc: new FormControl(''),
       previewImage: new FormControl(''),
       imageName: new FormControl(''),
       libraryFile: new FormControl(''),
@@ -171,7 +171,7 @@ export class LibrariesCreateComponent implements OnInit, OnChanges {
   public unSetFormControls(): void {
     this.librariesForm = this.fb.group({
       pageTitle: ['', [Validators.required, Validators.maxLength(80), Validators.pattern('[a-zA-Z] [a-zA-Z ]+[a-zA-Z]$')]],
-      pageDescription: ['', [Validators.required, Validators.maxLength(300), Validators.pattern('[a-zA-Z0-9_]+. *$')]],
+      pageDescription: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9_]+. *$')]],
       artifactType: ['', [Validators.required]],
       taskId: ['', [Validators.required]],
       libraries: new FormArray([])
