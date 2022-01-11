@@ -21,6 +21,7 @@ export class LibrariesComponent extends ParentSubscriptionComponent implements O
   public showForm = false;
   public showView = false;
   public librariesList = [];
+  public librariesListAsync;
   public homePageInput: boolean;
   public id: number;
   public showCreateButton;
@@ -84,7 +85,7 @@ export class LibrariesComponent extends ParentSubscriptionComponent implements O
   }
   public getLibrariesList(): void {
     this.librariesList = [];
-    this.libraryService.getLibraryByStatus(this.tenantId, this.status).subscribe(
+    this.librariesListAsync = this.libraryService.getLibraryByStatus(this.tenantId, this.status)/*.subscribe(
       (res) => {
         if (res != null) {
           this.librariesList=res;
@@ -95,7 +96,7 @@ export class LibrariesComponent extends ParentSubscriptionComponent implements O
       (error: HttpErrorResponse) => {
         throw error;
       }
-    );
+    );*/
   }
   public loadData(selectedTab): void {
     this.clicked = selectedTab;

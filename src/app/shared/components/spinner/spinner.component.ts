@@ -26,21 +26,21 @@ export class SpinnerComponent implements OnInit {
       this.active = st;
       if (this.active == true) {
 
-        this.showSpinner();
+        //this.showSpinner();
       }
     });
     spinner.apiStatus.subscribe((st: boolean) => {
       this.enableAPISpinner = st;
       if (this.enableAPISpinner === true) {
 
-        this.showSpinner();
+        //this.showSpinner();
       }
     });
     spinner.browserStatus.subscribe((st: boolean) => {
       this.enableBrowseSpinner = st;
       if (this.enableBrowseSpinner === true) {
 
-        this.showBrowseSpinner();
+        //this.showBrowseSpinner();
       }
     });
 
@@ -51,15 +51,15 @@ export class SpinnerComponent implements OnInit {
   }
   public showSpinner() {
     this.ngxSpinner.show(undefined, { fullScreen: true });
-    setTimeout(() => {
-      this.ngxSpinner.hide();
-    }, 50000);
+    //setTimeout(() => {
+    //  this.ngxSpinner.hide();
+    //}, 50000);
   }
   public showBrowseSpinner() {
     this.ngxSpinner.show(undefined, { fullScreen: true });
-    setTimeout(() => {
-      this.ngxSpinner.hide();
-    }, 4000);
+    //setTimeout(() => {
+    //  this.ngxSpinner.hide();
+    //}, 4000);
   }
 }
 

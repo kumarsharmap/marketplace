@@ -6,7 +6,7 @@
                     <app-navigation-indication></app-navigation-indication>
                     <a data-w-tab="Tab 1"  [ngClass]="{ active: homeGuideFlag == true  }" data-toggle="tabs" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Guides Home </a>
                     <div>
-                        <div *ngFor="let guides of list">
+                        <div *ngFor="let guides of listAsync | async">
                             <a data-w-tab="Tab 2"  [ngClass]="{ active: guides.artifactId === clicked.artifactId  }" data-toggle="tabs" (click)="loadData(guides)" class="tab-link w-inline-block w-tab-link">{{ guides.pageTitle }}
                             </a>
                         </div>

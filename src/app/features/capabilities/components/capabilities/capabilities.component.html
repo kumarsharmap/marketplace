@@ -9,21 +9,21 @@
                         </div>
                     </a>
                     <div>
-                        <div *ngFor="let approved of capabilitiesList">
-                            <a data-w-tab="Tab 2"   [ngClass]="{ active: approved ==clicked || clicked == true }" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{
+                        <div *ngFor="let approved of capabilityList | async">
+                            <a data-w-tab="Tab 2"  [ngClass]="{ active: approved ==clicked || clicked == true }" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{
                                 approved.pageTitle }}
-                            </a>
+                            </a> <!--  data-w-tab="Tab 2"  -->
                         </div>
                     </div>
                     <div *ngIf="status =='Draft'">
-                        <div *ngFor="let draft of capabilitiesList">
+                        <div *ngFor="let draft of capabilityList | async">
                             <a data-w-tab="Tab 2" [ngClass]="{ active: showCapability == true }" (click)="loadData(draft)" class="tab-link w-inline-block w-tab-link">{{ draft.pageTitle
                                 }}
                             </a>
                         </div>
                     </div>
                     <div *ngIf="status == 'Pending'">
-                        <div *ngFor=" let pending of capabilitiesList">
+                        <div *ngFor=" let pending of capabilityList | async">
                             <a data-w-tab="Tab 2" [ngClass]="{ active: showCapability == true }" (click)="loadData(pending)" class="tab-link w-inline-block w-tab-link">{{
                                 pending.pageTitle }}
                             </a>

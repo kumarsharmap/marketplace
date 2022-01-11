@@ -14,6 +14,7 @@ import { SpinnerService } from 'src/app/core/services/spinner/spinner.service';
 })
 export class GuidesLeftmenuComponent implements OnInit {
   list: any = [];
+  public listAsync;
   public createFlag = false;
   public richTextTemplateInput: { foundationArtifactType: string; type: string; details: {} };
   public clicked: any;
@@ -35,7 +36,7 @@ export class GuidesLeftmenuComponent implements OnInit {
   public ngOnInit(): void {
     //this.role = JSON.parse(sessionStorage.getItem('menu')).roleName;
     this.role = (sessionStorage.getItem('menu') != undefined) ? JSON.parse(sessionStorage.getItem('menu')).roleName : '';
-    
+
     this.spinner.startBrowse();
     this.searchService.searchView.subscribe((value) => {
       this.list = [];
@@ -67,7 +68,7 @@ export class GuidesLeftmenuComponent implements OnInit {
 
   public fetchlist(type): void {
     this.list = [];
-    this.guideServiceService.getGuidesByStatus(type, this.tenantId).subscribe(
+    this.listAsync = this.guideServiceService.getGuidesByStatus(type, this.tenantId)/*.subscribe(
       (response) => {
         if (response != null) {
           this.list = response;
@@ -78,7 +79,7 @@ export class GuidesLeftmenuComponent implements OnInit {
       (error) => {
         this.toastNotificationService.showError('Failed fetch list of Guides');
       }
-    );
+    );*/
   }
   public loadData(obj): void {
     this.clicked = obj;
