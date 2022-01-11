@@ -6,7 +6,7 @@
                     <app-navigation-indication></app-navigation-indication>
                     <a data-w-tab="Tab 1"     [ngClass]="{ active: homeFoundationFlag == true }" data-toggle="tabs" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Design Foundations Home </a>
                     <div>
-                        <div *ngFor="let approveFoundation of list">
+                        <div *ngFor="let approveFoundation of listAsync | async">
                             <a data-w-tab="Tab 2"     [ngClass]="{ active: approveFoundation?.artifactId == clicked?.artifactId  }" data-toggle="tabs" (click)="loadData('approved', approveFoundation)" class="tab-link w-inline-block w-tab-link">{{approveFoundation.pageTitle }}
                             </a>
                         </div>

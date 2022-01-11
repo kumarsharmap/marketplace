@@ -8,19 +8,19 @@
                 </a>
                 <perfect-scrollbar style="max-width: 600px; max-height: 400px">
                     <div *ngIf="status =='Approved'">
-                        <div *ngFor="let approved of librariesList">
+                        <div *ngFor="let approved of librariesListAsync | async">
                             <a data-w-tab="Tab 2"   [ngClass]="{active: approved.artifactId === clicked.artifactId || approved.pageTitle === clicked }" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{approved?.pageTitle}} </a>
                         </div>
                     </div>
                 </perfect-scrollbar>
                 <div *ngIf="status == 'Draft'">
-                    <div *ngFor="let draft of librariesList">
+                    <div *ngFor="let draft of librariesListAsync | async">
                         <a data-w-tab="Tab 2" [ngClass]="{ active: showView == true }" (click)="loadData(draft)" class="tab-link w-inline-block w-tab-link">{{ draft?.pageTitle }}
                         </a>
                     </div>
                 </div>
                 <div *ngIf="status == 'Pending'">
-                    <div *ngFor="let pending of librariesList">
+                    <div *ngFor="let pending of librariesListAsync | async">
                         <a data-w-tab="Tab 2" [ngClass]="{ active: showView === true }" (click)="loadData(pending)" class="tab-link w-inline-block w-tab-link">{{ pending?.pageTitle }} </a>
                     </div>
                 </div>

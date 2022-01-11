@@ -74,9 +74,13 @@ export class HeaderComponent extends ParentSubscriptionComponent implements OnIn
   }
 
   private getColors(menuItem): void {
+    var tempMenu = JSON.parse(JSON.stringify(menuItem));
+    Object.preventExtensions(tempMenu);
+    this.headerMenuItems = tempMenu;
+
     this.subscriptions.push(
       this.menuService.getAllColors().subscribe((colors) => {
-        var tempMenu = JSON.parse(JSON.stringify(menuItem));
+        //D var tempMenu = JSON.parse(JSON.stringify(menuItem));
         if (colors) {
 
           for (const i in menuItem) {
@@ -98,8 +102,8 @@ export class HeaderComponent extends ParentSubscriptionComponent implements OnIn
             }
           }
 
-          Object.preventExtensions(tempMenu);
-          this.headerMenuItems = tempMenu;
+          //D Object.preventExtensions(tempMenu);
+          //D this.headerMenuItems = tempMenu;
 
         }
       })

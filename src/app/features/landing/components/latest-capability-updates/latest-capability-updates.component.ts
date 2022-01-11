@@ -34,7 +34,7 @@ export class LatestCapabilityUpdatesComponent implements OnInit {
     );
   }
   public getColors(): void {
-    this.menu.getAllColors().subscribe((colors) => {
+    /*this.menu.getAllColors().subscribe((colors) => {
       for (const i in this.capabilitiesLatest) {
         for (const k in colors) {
           if (this.capabilitiesLatest[i].tenantName === colors[k].tenantName) {
@@ -43,7 +43,7 @@ export class LatestCapabilityUpdatesComponent implements OnInit {
           }
         }
       }
-    });
+    });*/
   }
   public hexToRGB(hex, alpha): string {
     const r = parseInt(hex.slice(1, 3), 16);

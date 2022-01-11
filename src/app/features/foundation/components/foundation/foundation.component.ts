@@ -14,6 +14,7 @@ import { SpinnerService } from 'src/app/core/services/spinner/spinner.service';
 export class FoundationComponent implements OnInit {
 
   public list: any = [];
+  public listAsync;
   public createCustomForm: FormGroup;
   public homeFoundationFlag = false;
   public createFoundationFlag = false;
@@ -80,7 +81,7 @@ export class FoundationComponent implements OnInit {
   }
   public fetchlist(type): void {
     this.list = [];
-    this.foundationServ.getOtherArtifactsByStatus(type, this.tenantId).subscribe(
+    this.listAsync = this.foundationServ.getOtherArtifactsByStatus(type, this.tenantId)/*.subscribe(
       (response) => {
         if (response != null) {
           this.list = response;
@@ -91,7 +92,7 @@ export class FoundationComponent implements OnInit {
       (error) => {
         this.toastNotificationService.showError('Failed fetch list of Foundation artifacts');
       }
-    );
+    );*/
   }
   public loadData(status, obj): void {
     this.clicked = obj;

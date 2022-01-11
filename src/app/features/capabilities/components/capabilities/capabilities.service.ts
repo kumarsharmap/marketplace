@@ -72,15 +72,15 @@ export class CapabilitiesService {
   getCapabilityByStatus(status, tenantId, http?): Observable<any> {
     this.spinner.startAPICall();
     return this.http.get(this.capabilityByStatusUrl + tenantId + "/" + status, http).pipe(
-      finalize(() => this.spinner.stopAPICall()),
-      timeout(30000)
+      finalize(() => this.spinner.stopAPICall())
+      //timeout(30000)
     )
   }
   uploadFilesToRepo(url, data, http?): Observable<any> {
     this.spinner.start();
     return this.http.post(url, data, http).pipe(
-      finalize(() => this.spinner.stop()),
-      timeout(30000));
+      finalize(() => this.spinner.stop()));
+      //timeout(30000));
   }
   uploadFoldersToGit(data): Observable<any> {
     const httpOptions = {
@@ -90,14 +90,14 @@ export class CapabilitiesService {
     };
     this.spinner.start();
     return this.http.post(this.gitFolderUrl, data, httpOptions).pipe(
-      finalize(() => this.spinner.stop()),
-      timeout(30000));
+      finalize(() => this.spinner.stop()));
+      //timeout(30000));
   }
   uploadFileToArtifact(data, http?): Observable<any> {
     this.spinner.start();
     return this.http.post(this.artifactFileUrl, data, http).pipe(
-      finalize(() => this.spinner.stop()),
-      timeout(30000));
+      finalize(() => this.spinner.stop()));
+      //timeout(30000));
   }
   setSelectedMenuItem(data: any) {
     this.menuItem = data;
