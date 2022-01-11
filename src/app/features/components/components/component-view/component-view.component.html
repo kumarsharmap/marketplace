@@ -185,12 +185,31 @@
                                                                     <div class="resource-icon-container" *ngIf="res.resourceName == 'Bitbucket'">
                                                                         <img src="assets/images/bitbucket.png " loading="lazy " alt="" />
                                                                     </div>
-                                                                    <div class=" resource-icon-container " *ngIf=" res.resourceName=='Jira'">
+                                                                    <div class=" resource-icon-container " *ngIf=" res.resourceName =='Jira'">
                                                                         <img src="assets/images/jira.png" loading="lazy" alt="" />
                                                                     </div>
                                                                     <div class="resource-icon-container" *ngIf="res.resourceName == 'Artifactory'">
                                                                         <img src="assets/images/artefactory.png" loading="lazy" alt="" />
                                                                     </div>
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'Sketch Location'">
+                                                                        <img src="assets/images/sketch.png" loading="lazy" alt="" />
+                                                                    </div>
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'Zeplin'">
+                                                                        <img src="assets/images/zeplin.png" loading="lazy" alt="" />
+                                                                    </div>
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'Figma Location'">
+                                                                        <img src="assets/images/figma.png" loading="lazy" alt="" />
+                                                                    </div>
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'Invision Location'">
+                                                                        <img src="assets/images/invision.jpg" loading="lazy" alt="" />
+                                                                    </div>
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'GitHub'">
+                                                                        <img src="assets/images/git.png" loading="lazy" alt="" />
+                                                                    </div>
+                                                                    <div class="resource-icon-container" *ngIf="res.resourceName == 'NPM'">
+                                                                        <img src="assets/images/npn.png" loading="lazy" alt="" />
+                                                                    </div>
+
                                                                 </div>
                                                                 <div class="panel-content small-margin">
                                                                     <h1 class="heading-2">{{ res.resourceName }}</h1>
@@ -199,8 +218,10 @@
                                                                             <div class="copy-field-container">
                                                                                 {{res.linkLocation }}
                                                                             </div>
-                                                                            <a href="{{ res.linkLocation }}" target="_blank" class="button small resource-inline
-                                                                            w-button">Download</a>
+                                                                            <a href="{{ res.linkLocation }}" target="_blank" class="button small resource-inline w-button">
+                                                                                <div *ngIf="(res.resourceName == 'Bitbucket' || res.resourceName == 'Artifactory') ; else view">Download</div>
+                                                                                <ng-template #view>View</ng-template>
+                                                                                </a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
