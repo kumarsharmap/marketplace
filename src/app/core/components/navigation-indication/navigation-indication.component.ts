@@ -25,9 +25,9 @@ export class NavigationIndicationComponent implements OnInit {
                 this.selectedTenant = sessionStorage.getItem('tenantName');
             }
 
-            /*this.menu.getAllColors().subscribe((selectedTenantName: MenuColorMenuModel[]) => {
+            this.menu.getAllColors().subscribe((selectedTenantName: MenuColorMenuModel[]) => {
                 this.getColors(selectedTenantName);
-            });*/
+            });
         });
         this.spinner.stopBrowse();
         this.isSuperAdmin = this.loginService.getSuperAdmin();
