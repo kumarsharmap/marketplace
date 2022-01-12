@@ -196,7 +196,7 @@
                                                                                 {{res.linkLocation }}
                                                                             </div>
                                                                             <a href="{{ res.linkLocation }}" target="_blank" class="button small resource-inline w-button">
-                                                                                <div *ngIf="(res.resourceName == 'Bitbucket' || res.resourceName == 'Artifactory') ; else view">Download</div>
+                                                                                <div *ngIf="(res.resourceName == 'Bitbucket' || res.resourceName == 'Artifactory' || res.resourceName == 'NPM') ; else view">Download</div>
                                                                                 <ng-template #view>View</ng-template>
                                                                                 </a>
                                                                         </div>
