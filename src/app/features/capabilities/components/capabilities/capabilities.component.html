@@ -9,21 +9,21 @@
                         </div>
                     </a>
                     <div>
-                        <div *ngFor="let approved of capabilitiesList">
-                            <a data-w-tab="Tab 2"   [ngClass]="{ active: approved ==clicked || clicked == true }" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{
+                        <div *ngFor="let approved of capabilityList | async">
+                            <a data-w-tab="Tab 2"  [ngClass]="{ active: approved ==clicked || clicked == true }" (click)="loadData(approved)" class="tab-link w-inline-block w-tab-link">{{
                                 approved.pageTitle }}
-                            </a>
+                            </a> <!--  data-w-tab="Tab 2"  -->
                         </div>
                     </div>
                     <div *ngIf="status =='Draft'">
-                        <div *ngFor="let draft of capabilitiesList">
+                        <div *ngFor="let draft of capabilityList | async">
                             <a data-w-tab="Tab 2" [ngClass]="{ active: showCapability == true }" (click)="loadData(draft)" class="tab-link w-inline-block w-tab-link">{{ draft.pageTitle
                                 }}
                             </a>
                         </div>
                     </div>
                     <div *ngIf="status == 'Pending'">
-                        <div *ngFor=" let pending of capabilitiesList">
+                        <div *ngFor=" let pending of capabilityList | async">
                             <a data-w-tab="Tab 2" [ngClass]="{ active: showCapability == true }" (click)="loadData(pending)" class="tab-link w-inline-block w-tab-link">{{
                                 pending.pageTitle }}
                             </a>
@@ -42,7 +42,7 @@
                                 <div class="split-container horizontal inner-page-max-width">
                                     <div class="header-text">
                                         <div class="heading-1">Capabilities</div>
-                                        <p class="_16pt grey 12-top-space w-50 desc">
+                                        <p class="_16pt grey _12-top-space w-50 desc">
                                             Components are the reusable building blocks of our design system. Each component meets a specific interaction or UI need, and has been specifically created to work together to create patterns and intuitive user experiences.
                                         </p>
                                     </div>

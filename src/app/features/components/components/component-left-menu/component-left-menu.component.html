@@ -5,7 +5,7 @@
                 <div class="tabs-menu w-tab-menu"   >
                     <app-navigation-indication></app-navigation-indication>
                     <a data-w-tab="Tab 1" data-toggle="tabs"    [ngClass]="{active:showHomePage==true }" (click)="loadHome()" class="tab-link w-inline-block w-tab-link">Components Home</a>
-                    <div *ngFor="let listObj of list">
+                    <div *ngFor="let listObj of listAsync | async">
                         <a data-w-tab="Tab 2" data-toggle="tabs"    [ngClass]="{active:clicked.artifactId==listObj.artifactId }" (click)="loadData('approved',listObj)" class="tab-link w-inline-block w-tab-link">{{listObj.pageTitle}}</a>
                     </div>
                     <div class="buttonDiv">

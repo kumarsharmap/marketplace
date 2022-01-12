@@ -20,6 +20,7 @@ export class ComponentLeftMenuComponent implements OnInit {
   public showCreatePage = false;
   public showViewPage = false;
   public list: any = [];
+  public listAsync;
   public statusFlag: any;
   public clicked: any = {};
   public inpObjTosend: any = {};
@@ -78,13 +79,13 @@ export class ComponentLeftMenuComponent implements OnInit {
   }
   public getComponentList(): void {
     this.list = [];
-    this.componentServ.getComponentArtifactsByStatus('Approved', this.tennatId).subscribe(
+    this.listAsync = this.componentServ.getComponentArtifactsByStatus('Approved', this.tennatId)/*.subscribe(
       (res) => {
         this.list = res;
       }, (error: HttpErrorResponse) => {
         throw error;
       }
-    )
+    )*/
   }
 
   public loadData(type, obj): void {

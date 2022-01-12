@@ -32,7 +32,6 @@ export class AppComponent extends ParentSubscriptionComponent implements OnInit,
 		this.subscriptions.push(
 			this.loginService.authentication$.subscribe((loginData: LoginResponse[]) => {
 				const data = JSON.parse(sessionStorage.getItem('loginResponse'));
-				console.log(data);
 				if (data && data[0].isSuperAdmin === '1') {
 					
 					this.checkSuperAdmin = data[0].isSuperAdmin;

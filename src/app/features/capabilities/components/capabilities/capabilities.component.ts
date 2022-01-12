@@ -6,7 +6,7 @@ import { capabilitiesData, imageValue } from '../capabilities/capabilities.model
 import { TabDirective, TabsetComponent } from "ngx-bootstrap/tabs";
 import { Subject } from 'rxjs';
 import { CapabilitiesService } from './capabilities.service';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { Route, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastNotificationService } from 'src/app/core/services/toast-notification/toast-notification.service';
@@ -66,6 +66,7 @@ export class CapabilitiesComponent implements OnInit {
   public toggleSubmit = false;
   public toggleSave = false;
   public isSuperAdmin: boolean;
+  public capabilityList;
 
   constructor(
     public capabilityService: CapabilitiesService,
@@ -192,17 +193,21 @@ export class CapabilitiesComponent implements OnInit {
 
   public getCapabilityListByStatus(status): void {
     this.capabilitiesList = [];
-    this.capabilityService.getCapabilityByStatus(status, this.tenantId).pipe(takeUntil(this.onDestroy$))
-      .subscribe(
+    this.capabilityList = this.capabilityService.getCapabilityByStatus(status, this.tenantId) // takeUntil(this.onDestroy$),
+      /*.subscribe(
         (res) => {
           if (res) {
-            this.capabilitiesList = res;
+            //console.log(res);
+            //this.capabilitiesList = res;
           }
+          console.log('getCapabilityListByStatus');
+          console.log(res);
+          this.capabilitiesList = res;
         },
         (err) => {
-          setTimeout(() => { }, 1000);
+          //setTimeout(() => { }, 1000);
         }
-      );
+      );*/
   }
 
   public onkeyUp(e: KeyboardEvent): void {

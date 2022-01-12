@@ -84,11 +84,11 @@
                 <div class="w-form">
                     <form [formGroup]="registrationForm">
                         <label for="name" class="field-label">Email Address</label>
-                        <input type="email" class="text-field w-input" formControlName="registeremail" placeholder="email@hcl.com" id="name" />
-                        <div *ngIf="registrationForm.controls['registeremail'].invalid && registrationForm.controls['registeremail'].touched" class=" alert alert-danger">
-                            <small *ngIf="registrationForm.controls['registeremail'].errors.required">
+                        <input type="email" class="text-field w-input" formControlName="email" placeholder="email@hcl.com" id="name" />
+                        <div *ngIf="registrationForm.controls['email'].invalid && registrationForm.controls['email'].touched" class=" alert alert-danger">
+                            <small *ngIf="registrationForm.controls['email'].errors.required">
                                 Email is required.</small>
-                            <small *ngIf="registrationForm.controls['registeremail'].errors.email">Email address is
+                            <small *ngIf="registrationForm.controls['email'].errors.email">Email address is
                                 invalid.</small>
                         </div>
                         <label>Name</label>

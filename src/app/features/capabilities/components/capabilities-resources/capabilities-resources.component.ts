@@ -88,22 +88,24 @@ export class CapabilitiesResourcesComponent implements OnInit {
     obj.forEach((x) => {
       control.push(
         this.fb.group({
-         resourceName: x['resourceName'],
+          resourceName: x['resourceName'],
           linkLocation: x['linkLocation']
-       })
+        })
       );
-     });
+    });
   }
   public resetLink(resIdx): void {
     this.myResIndx = resIdx;
     this.resource().controls[resIdx]['controls']['linkLocation'].reset();
     this.downloadLink = '#';
-    if (this.resource().controls[resIdx]['controls']['resourceName'].value === 'Jira') {
-      this.showUpload = false;
-      this.resource().controls[resIdx]['controls']['linkLocation'].enable();
-    } else {
+    if (this.resource().controls[resIdx]['controls']['resourceName'].value === 'Bitbucket' ||
+      this.resource().controls[resIdx]['controls']['resourceName'].value === 'Artifactory') {
       this.showUpload = true;
       this.resource().controls[resIdx]['controls']['linkLocation'].disable();
+    } else {
+      this.showUpload = false;
+      this.resource().controls[resIdx]['controls']['linkLocation'].enable();
+
     }
   }
   public toggle(): void {
@@ -145,8 +147,8 @@ export class CapabilitiesResourcesComponent implements OnInit {
   }
   public onUpload(index): void {
     const fd = new FormData();
-    this.resource().controls[index]['controls']['resourceName'].value === 'Bitbucket'?
-     fd.append('content', this.selectedFile, this.selectedFile.name):fd.append('file', this.selectedFile, this.selectedFile.name)
+    this.resource().controls[index]['controls']['resourceName'].value === 'Bitbucket' ?
+      fd.append('content', this.selectedFile, this.selectedFile.name) : fd.append('file', this.selectedFile, this.selectedFile.name)
     const name = JSON.parse(sessionStorage.getItem('menu')).tenantName;
     const category = JSON.parse(sessionStorage.getItem('mainMenu')).artifactName;
     let url =
