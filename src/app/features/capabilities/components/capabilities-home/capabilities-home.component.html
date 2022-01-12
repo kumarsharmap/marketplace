@@ -1,4 +1,4 @@
-<!-- <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+<div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
     <div class="section">
         <div class="in-page-container">
             <div class="w-layout-grid grid-2 inner-page-max-width">
@@ -12,15 +12,16 @@
                             <div class="heading-2">Most Popular</div>
                         </div>
                     </div>
-                    <a href="#" *ngFor="let mostViewed of listOfMostViewedArtifacts" class="update-container small bottom-border smaller-container w-inline-block">
+                    <a href="#" *ngFor="let mostViewed of listofMostViewedArtifacts" class="update-container small bottom-border smaller-container w-inline-block">
                         <div class="card-block-title" (click)="navigateTosearcPage(mostViewed)" class="div-block-21">
                             <div class="div-block-20">
                                 <div class="text-block-4">{{ mostViewed.pageTitle }}</div>
-                                <div class="_14pt grey _4-top-space">{{ mostViewed.viewcount }} Views</div>
+                                <div class="_14pt grey _4-top-space">{{ mostViewed.viewCount }} Views</div>
                             </div>
                         </div>
+                    </a>
                 </div>
-                </a>
+               
             </div>
             <div class="card _32-top-space">
                 <app-top-guides-for-developers></app-top-guides-for-developers>
@@ -28,4 +29,3 @@
         </div>
     </div>
 </div>
-</div> -->
