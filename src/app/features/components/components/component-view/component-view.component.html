@@ -149,10 +149,10 @@
                                             </div>
                                             <div data-w-tab="Tab 4" class="w-tab-pane w--tab-active" *ngIf="tabHeading == 'Code'">
                                                 <div class=" section" *ngFor="let code of details['code'].richTextArray">
-                                                    <div class="in-page-container" *ngIf="code?.blockTitle">
+                                                    <div class="in-page-container" *ngIf="code?.blockTiitle">
                                                         <div class="card inner-page-max-width">
                                                             <div class="panel-content">
-                                                                <h1 class="heading-2">{{ code.blockTitle }}</h1>
+                                                                <h1 class="heading-2">{{ code.blockTiitle }}</h1>
                                                             </div>
                                                             <div class="panel-content">
                                                                 <div [innerHTML]="code.richText"></div>
@@ -163,10 +163,10 @@
                                             </div>
                                             <div data-w-tab="Tab 4" class="w-tab-pane w--tab-active" *ngIf="tabHeading == 'Usage'">
                                                 <div class="section" *ngFor="let usage of details['usage'].richTextArray">
-                                                    <div class="in-page-container" *ngIf="usage?.blockTitle">
+                                                    <div class="in-page-container" *ngIf="usage?.blockTiitle">
                                                         <div class="card inner-page-max-width">
                                                             <div class="panel-content">
-                                                                <h1 class="heading-2">{{ usage.blockTitle }}</h1>
+                                                                <h1 class="heading-2">{{ usage.blockTiitle }}</h1>
                                                             </div>
                                                             <div class="panel-content">
                                                                 <div [innerHTML]="usage.richText"></div>
