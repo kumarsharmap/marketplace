@@ -130,8 +130,8 @@ export class AddUserComponent
 
   private createRegistration(): void {
     this.registrationForm = this.fb.group({
-      registeremail: ['', [Validators.email, Validators.required]],
-      name: ['', [Validators.required, Validators.maxLength(50), Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$')]],
+      email: ['', [Validators.email, Validators.required]],
+      name: ['', [Validators.required, Validators.maxLength(50), Validators.pattern('^[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$')]],
     });
   }
 }

@@ -5,7 +5,7 @@
                 <div class="tabs-content w-tab-content">
                     <div data-w-tab="Tab 2" class="w-tab-pane w--tab-active">
                         <div class="section white">
-                            <div class="in-page-container">
+                            <div class="in-page-container" *ngIf="selectedCapability?.pageTitle">
                                 <a id="button-back" href="#" class="back _24-bottom-space w-inline-block">
                                     <div class="back-icon">
                                         <img src="images/tick_1.svg" loading="lazy" alt="" class="back-icon" />
@@ -90,7 +90,7 @@
                                             <i *ngIf="!group1?.isOpen" class="fas fa-angle-right" style="font-size:20px"></i>
                                         </div>
                                     </div>
-                                    <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                                    <div data-duration-in="300" data-duration-out="100" class="w-tabs" *ngIf="headings?.length">
                                         <div class="tabs-menu-2 bottom-border w-tab-menu">
                                             <tabset type="pills" #tabset>
                                                 <tab *ngFor="let tab of headings" style="font-weight: 600" [(heading)]="tab.tabTitle" (selectTab)="confirmTabSwitch($event)">
@@ -102,7 +102,7 @@
                                                 <div>
                                                     <div>
                                                         <div class="section">
-                                                            <div class="in-page-container">
+                                                            <div class="in-page-container" *ngIf="details['tech']['previews'][0].blockTitle">
                                                                 <div class="card inner-page-max-width">
                                                                     <div class="panel-content">
                                                                         <h1 class="heading-2">
@@ -119,11 +119,11 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+                                                                    <div data-duration-in="300" data-duration-out="100" class="w-tabs" *ngIf="details['tech']['previews'][0].codeSection?.length">
                                                                         <div class="tabs-menu-2 bottom-border w-tab-menu">
                                                                             <tabset type="pills">
                                                                                 <tab *ngFor="let tabTitle of details['tech']['previews'][0].codeSection" [(heading)]="tabTitle.syntax" (selectTab)="subTabSwitch($event)">
-                                                                                    <div class="w-tab-content">
+                                                                                    <div class="w-tab-content"  *ngIf="tabTitle.code">
                                                                                         <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
                                                                                             <div class="html-embed w-embed">
                                                                                                 <pre><code class="language-css">{{tabTitle.code | parseCode}}</code></pre>
@@ -138,7 +138,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="section" *ngIf="details['tech'].richTextBlock.length != 0">
+                                                    <div class="section" *ngIf="details['tech'].richTextBlock.length && details['tech'].richTextBlock[0].blockTitle">
                                                         <div class="in-page-container">
                                                             <div class="card inner-page-max-width">
                                                                 <div class="panel-content" *ngFor="let services of details['tech'].richTextBlock">
@@ -207,7 +207,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div data-w-tab="Tab 5" class="w-tab-pane w--tab-active" *ngIf="tabHeading =='Updates'">
+                                            <div data-w-tab="Tab 5" class="w-tab-pane w--tab-active" *ngIf="tabHeading =='Updates' && details['update'].updates.length">
                                                 <div class="section" *ngFor="let updates of details['update'].updates">
                                                     <div class="in-page-container">
                                                         <div class="card inner-page-max-width">

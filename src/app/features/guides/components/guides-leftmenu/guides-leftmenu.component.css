@@ -12,5 +12,11 @@
     position: fixed;
     bottom: 0px;
     left: 0px;
+    width: 290px;
+    border-top: 1px solid #d2d6d9;
+}
+
+.buttonDiv button {
+    padding: 24px;
 }
 

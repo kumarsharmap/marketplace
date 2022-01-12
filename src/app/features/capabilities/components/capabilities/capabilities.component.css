@@ -263,6 +263,12 @@ button:focus {
     bottom: 0px;
     left: 0px;
     font-family: Inter;
+    border-top: 1px solid #d2d6d9;
+    width: 290px;
+}
+
+.buttonDiv button {
+    padding: 24px;
 }
 
 .code-area {
