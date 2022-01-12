@@ -36,8 +36,8 @@ export class NavigationIndicationComponent implements OnInit {
     private getColors(selectedTenantName): void {
         selectedTenantName.forEach((colorItem) => {
           if (this.isSuperAdmin) {
-            this.backgroundClass = this.hexToRGB(colorItem.tenantColor, 0.9);
-            this.fontClass = "#fff";
+            this.backgroundClass = 'rgba(255,255,255,1)';
+            this.fontClass = "#000";
           } else {
             if (colorItem.tenantName === this.selectedTenant) {
                 this.backgroundClass = this.hexToRGB(colorItem.tenantColor, 0.1);
